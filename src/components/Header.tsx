@@ -179,9 +179,16 @@ const Header = () => {
             {/* Left Content */}
             <div className="lg:w-1/2 text-center lg:text-left">
               {/* Greeting */}
-              <div className={`mb-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <span className="text-blue-800 dark:text-blue-400 text-xl font-semibold bg-blue-100 dark:bg-blue-900/30 px-6 py-3 rounded-full shadow-lg">Hi, I'm Mounir Mahmoudi</span>
-              </div>
+             <div
+  className={`mb-8 transform transition-all duration-1000 ${
+    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+  }`}
+>
+  <span className="text-blue-800 dark:text-blue-400 text-lg font-semibold bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full shadow-md">
+    Hi, I'm Mounir Mahmoudi
+  </span>
+</div>
+
 
               {/* Main Title */}
               <h1 className={`text-4xl lg:text-6xl font-bold mb-6 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
