@@ -247,7 +247,7 @@ const Header = () => {
                 {/* Pour utiliser votre propre image, remplacez l'URL par "/images/votre-photo.jpg" */}
                 <div className="relative">
                   <img
-                    src="/public/images/manou.jpg"
+                    src="../../public/images/manou.jpg"
                     alt="Mounir Mahmoudi"
                     className="w-80 h-80 rounded-full object-cover border-4 border-white shadow-2xl transform group-hover:scale-105 transition duration-300"
                   />
