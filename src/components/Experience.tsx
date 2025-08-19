@@ -195,11 +195,8 @@ const Experience = () => {
                       {exp.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className={`px-2 py-1 rounded-md text-xs font-medium transition-all duration-300 ${
-                            ['Educational Audit', 'Ministry Leadership', 'Policy Development', 'International Training'].includes(tech) ?
-                            'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                            'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'
-                          }`}
+                         className="px-2 py-1 rounded-md text-xs font-medium transition-all duration-300 
+           bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300"
                         >
                           {tech}
                         </span>

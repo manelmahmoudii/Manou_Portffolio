@@ -101,15 +101,7 @@ const Header = () => {
             {/* Language, Theme Toggle & Contact CTA */}
             <div className="hidden lg:flex items-center space-x-3">
               <LanguageSelector />
-              <button
-                onClick={toggleDarkMode}
-                className="relative p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-500 transform hover:scale-110 hover:rotate-12 group overflow-hidden"
-                aria-label="Toggle dark mode"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
               
-                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/30 to-blue-600/30 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-              </button>
               <button className="relative px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-900 text-white rounded-xl font-medium hover:from-blue-900 hover:to-indigo-900 transform hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-blue-800/50 group overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -121,12 +113,30 @@ const Header = () => {
             </div>
 
             {/* Mobile Menu & Theme Toggle */}
-           
+            <div className="md:hidden flex items-center space-x-2">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-700 dark:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-300 transform hover:scale-110"
+              >
+                <div className="relative w-6 h-6">
+                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : 'translate-y-1'}`}></span>
+                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'translate-y-2.5'}`}></span>
+                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 translate-y-2.5' : 'translate-y-4'}`}></span>
+                </div>
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
           <div className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-            <div className="py-4 border-t border-gray-200/50">
+            <div className="py-4 ">
               <div className="flex flex-col space-y-2">
                 <button onClick={() => scrollToSection('home')} className="mobile-nav-item text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
                   <span className="font-medium">Home</span>
@@ -201,10 +211,14 @@ const Header = () => {
                   <span className="relative z-10">View My Work</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-indigo-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </button>
-                <button className="flex items-center space-x-2 px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-xl font-semibold hover:border-blue-800 hover:text-blue-800 hover:bg-blue-100 transition-all duration-300 hover:scale-105 hover:shadow-lg group">
-                  <Download className="w-5 h-5 group-hover:animate-bounce" />
-                  <span>Download CV</span>
-                </button>
+               <a 
+  href="/CV_FR_Mounir Mahmoudi_2024.pdf" 
+  download 
+  className="flex items-center space-x-2 px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-xl font-semibold hover:border-blue-800 hover:text-blue-800 hover:bg-blue-100 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+>
+  <Download className="w-5 h-5 group-hover:animate-bounce" />
+  <span>Download CV</span>
+</a>
               </div>
 
               {/* Availability Badge */}
