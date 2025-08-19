@@ -1,50 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from './components/Header';
-import PersonalInfo from './components/PersonalInfo';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Certifications from './components/Certifications';
-import Trainings from './components/Trainings';
 import Skills from './components/Skills';
 import Footer from './components/Footer';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      {/* Enhanced Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-50/30 dark:bg-blue-900/20 rounded-full opacity-30 transform animate-pulse"
-          style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
-        />
-        <div
-          className="absolute top-1/2 -left-20 w-60 h-60 bg-slate-50/20 dark:bg-slate-800/20 rounded-full opacity-20 transform animate-pulse"
-          style={{ transform: `translate(${scrollY * -0.08}px, ${scrollY * 0.1}px)`, animationDelay: '1s' }}
-        />
-        <div
-          className="absolute bottom-20 right-1/4 w-40 h-40 bg-purple-50/20 dark:bg-purple-900/10 rounded-full opacity-15 transform animate-pulse"
-          style={{ transform: `translate(${scrollY * 0.05}px, ${scrollY * -0.03}px)`, animationDelay: '2s' }}
-        />
-      </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/10 to-gray-50 dark:from-gray-900 dark:via-blue-950/5 dark:to-gray-900">
+        {/* Enhanced Global Background */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:60px_60px] opacity-30"></div>
+          {/* Floating blue orbs */}
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-100/10 dark:bg-blue-900/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }}></div>
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-blue-50/15 dark:bg-blue-950/8 rounded-full blur-2xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+        </div>
 
-      <div className="relative z-10">
-        <Header />
-        <Experience />
-        <Education />
-        <Certifications />
-        <Skills />
-        <Trainings />
-        <Footer />
+        <div className="relative z-10">
+          <Header />
+          <Experience />
+          <Education />
+          <Skills />
+          <Certifications />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 }
 

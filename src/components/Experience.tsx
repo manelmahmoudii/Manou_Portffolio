@@ -98,62 +98,76 @@ const Experience = () => {
     }
   ];
 
-  return (
-    <section id="experience" className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)] animate-pulse"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,197,253,0.06),transparent_50%)] animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:60px_60px] animate-grid-move opacity-50"></div>
+  // Function to highlight specific words in green
+  const highlightKeywords = (text: string) => {
+    const keywords = ['Educational Audit', 'Ministry Leadership', 'Policy Development', 'International Training'];
+    return text.split(' ').map((word, i) => {
+      const cleanWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+      return keywords.includes(cleanWord) ? 
+        <span key={i} className="text-green-600 font-semibold">{word} </span> : 
+        <span key={i}>{word} </span>;
+    });
+  };
 
-        {/* Floating particles */}
-        <div className="absolute top-20 left-20 w-2 h-2 bg-blue-400/60 rounded-full animate-float-slow shadow-lg shadow-blue-400/30"></div>
-        <div className="absolute bottom-20 right-20 w-3 h-3 bg-slate-400/40 rounded-full animate-float-fast shadow-lg shadow-slate-400/20"></div>
-        <div className="absolute top-1/2 left-1/4 w-1 h-1 bg-blue-300/70 rounded-full animate-float-medium delay-1000 shadow-lg shadow-blue-300/50"></div>
+  return (
+    <section id="experience" className="py-16 bg-gradient-to-br from-blue-50/40 via-white to-white dark:from-blue-950/30 dark:via-gray-900 dark:to-gray-900 relative overflow-hidden">
+      {/* Enhanced blue effects with animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-blue-100/50 to-transparent dark:from-blue-900/20 dark:to-transparent animate-[pulse_8s_ease-in-out_infinite]"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 dark:bg-blue-900/10 rounded-full blur-3xl animate-[float_15s_ease-in-out_infinite]"></div>
+        <div className="absolute top-1/2 left-0 w-72 h-72 bg-blue-50/40 dark:bg-blue-950/15 rounded-full blur-2xl animate-[float_12s_ease-in-out_infinite_reverse]"></div>
+        {/* Animated grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 animate-[shift_20s_linear_infinite]"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">Professional Journey</span>
+        {/* Current Position - Moved to top */}
+        
+        <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-full mb-4">
+            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium uppercase tracking-wide">Professional Journey</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Professional <span className="bg-gradient-to-r from-blue-600 to-slate-800 dark:from-blue-400 dark:to-slate-200 bg-clip-text text-transparent">Experience</span>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+            <span className="relative">
+              Professional Experience
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+            </span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-slate-600 mx-auto rounded-full mb-4"></div>
-          <p className="text-slate-600 dark:text-slate-300 text-lg max-w-2xl mx-auto">Three decades of leadership in engineering and education</p>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">30+ years of leadership in engineering and education</p>
         </div>
 
-        {/* Enhanced Experience Cards */}
-        <div className="max-w-6xl mx-auto">
-          <div className="grid gap-8">
-            {experiences.slice(0, 3).map((exp, index) => (
+        {/* Animated Experience Cards */}
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 relative overflow-hidden ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                style={{ transitionDelay: `${200 + index * 100}ms` }}
+                className={`bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 transition-all duration-300 border-l-4 border-blue-600 relative overflow-hidden group ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                style={{ 
+                  transitionDelay: `${200 + index * 100}ms`,
+                  animation: isVisible ? 'cardEntrance 0.5s ease-out forwards' : 'none'
+                }}
               >
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-900/20 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-                <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${exp.color} rounded-l-2xl`}></div>
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                {/* Animated background element */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
+                
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 relative z-10">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-3">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${exp.color}`}>
+                      <div className={`p-2 rounded-lg bg-gradient-to-r ${exp.color} shadow-md group-hover:scale-110 transition-transform duration-300`}>
                         <Briefcase className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-slate-900">{exp.title}</h3>
-                        <div className="flex items-center space-x-2 text-blue-600 font-semibold">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors duration-300">{exp.title}</h3>
+                        <div className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 font-semibold">
                           <Building className="w-4 h-4" />
                           <span>{exp.company}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4 text-slate-600 text-sm mb-4">
+                    <div className="flex items-center space-x-4 text-slate-600 dark:text-slate-400 text-sm mb-4">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-4 h-4" />
                         <span>{exp.period}</span>
@@ -163,30 +177,39 @@ const Experience = () => {
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold text-slate-800 mb-2 flex items-center">
-                        <Award className="w-4 h-4 mr-2 text-slate-500" />
+                      <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2 flex items-center">
+                        <Award className="w-4 h-4 mr-2 text-slate-500 dark:text-slate-400" />
                         Key Achievements
                       </h4>
                       <ul className="space-y-1">
                         {exp.achievements.slice(0, 2).map((achievement, i) => (
-                          <li key={i} className="flex items-start space-x-2 text-slate-700">
+                          <li key={i} className="flex items-start space-x-2 text-slate-700 dark:text-slate-300">
                             <TrendingUp className="w-3 h-3 mt-1 text-green-500 flex-shrink-0" />
-                            <span className="text-sm">{achievement}</span>
+                            <span className="text-sm">{highlightKeywords(achievement)}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      {exp.technologies.slice(0, 4).map((tech, i) => (
+                      {exp.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-2 py-1 bg-slate-100 text-slate-700 rounded-md text-xs font-medium"
+                          className={`px-2 py-1 rounded-md text-xs font-medium transition-all duration-300 ${
+                            ['Educational Audit', 'Ministry Leadership', 'Policy Development', 'International Training'].includes(tech) ?
+                            'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                            'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'
+                          }`}
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
+                  </div>
+                  <div className="mt-4 md:mt-0">
+                    <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>
@@ -260,7 +283,7 @@ const Experience = () => {
           </div>
 
           {/* Achievement Banner */}
-          <div className="mt-12 bg-gradient-to-r from-blue-600 via-green-600 to-purple-600 rounded-2xl p-1">
+          <div className="mt-12 bg-gradient-to-r from-blue-600 via-green-600 to-purple-600 rounded-2xl p-1 animate-[gradientShift_6s_ease_infinite]">
             <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center">
               <div className="flex items-center justify-center space-x-2 mb-3">
                 <Trophy className="w-6 h-6 text-blue-600 animate-bounce" />
@@ -274,6 +297,8 @@ const Experience = () => {
           </div>
         </div>
       </div>
+
+     
     </section>
   );
 };

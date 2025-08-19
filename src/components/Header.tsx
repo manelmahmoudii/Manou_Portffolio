@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { MapPin, Phone, Mail, Menu, X, Sun, Moon, Download, Sparkles, Zap } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Header = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,39 +72,35 @@ const Header = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-1 bg-gray-50/80 dark:bg-gray-800/80 rounded-2xl p-2 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
               <button onClick={() => scrollToSection('home')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">Home</span>
+                <span className="relative z-10">{t('nav.home')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
               </button>
-              <button onClick={() => scrollToSection('personal-info')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">About</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-              </button>
               <button onClick={() => scrollToSection('experience')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">Experience</span>
+                <span className="relative z-10">{t('nav.experience')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
               </button>
               <button onClick={() => scrollToSection('education')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">Education</span>
+                <span className="relative z-10">{t('nav.education')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
               </button>
               <button onClick={() => scrollToSection('skills')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">Skills</span>
+                <span className="relative z-10">{t('nav.skills')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
               </button>
               <button onClick={() => scrollToSection('certifications')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">Certifications</span>
+                <span className="relative z-10">{t('nav.certifications')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
               </button>
             </div>
 
-            {/* Theme Toggle & Contact CTA */}
+            {/* Language, Theme Toggle & Contact CTA */}
             <div className="hidden lg:flex items-center space-x-3">
+              <LanguageSelector />
               <button
                 onClick={toggleDarkMode}
                 className="relative p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-500 transform hover:scale-110 hover:rotate-12 group overflow-hidden"
@@ -117,7 +116,7 @@ const Header = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 <span className="relative z-10 flex items-center space-x-2">
-                  <span>Contact Me</span>
+                  <span>{t('common.contactMe')}</span>
                   <Zap className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:rotate-12" />
                 </span>
               </button>
@@ -179,46 +178,10 @@ const Header = () => {
         </div>
       </nav>
 
-      <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden pt-20">
-        {/* Animated Background */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 overflow-hidden pt-20">
+        {/* Simple Clean Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,197,253,0.06),transparent_50%)]"></div>
-
-          {/* Subtle floating elements with parallax */}
-          <div
-            className="absolute top-32 left-20 w-1 h-1 bg-blue-400/60 rounded-full animate-float-slow"
-            style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-          ></div>
-          <div
-            className="absolute top-48 right-32 w-1.5 h-1.5 bg-slate-400/40 rounded-full animate-float-fast"
-            style={{ transform: `translateY(${scrollY * -0.05}px)` }}
-          ></div>
-          <div
-            className="absolute bottom-40 left-40 w-1 h-1 bg-blue-300/50 rounded-full animate-float-medium"
-            style={{ transform: `translateY(${scrollY * 0.08}px)` }}
-          ></div>
-          <div
-            className="absolute bottom-32 right-24 w-1.5 h-1.5 bg-slate-300/60 rounded-full animate-float-slow"
-            style={{ transform: `translateY(${scrollY * -0.03}px)` }}
-          ></div>
-
-          {/* Additional floating particles */}
-          <div
-            className="absolute top-1/4 left-1/4 w-0.5 h-0.5 bg-blue-500/40 rounded-full animate-float-medium delay-1000"
-            style={{ transform: `translateY(${scrollY * 0.06}px)` }}
-          ></div>
-          <div
-            className="absolute top-3/4 right-1/4 w-1 h-1 bg-slate-400/30 rounded-full animate-float-slow delay-2000"
-            style={{ transform: `translateY(${scrollY * -0.04}px)` }}
-          ></div>
-          <div
-            className="absolute top-1/2 left-1/3 w-0.5 h-0.5 bg-blue-300/50 rounded-full animate-float-fast delay-1500"
-            style={{ transform: `translateY(${scrollY * 0.07}px)` }}
-          ></div>
-
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:60px_60px] animate-grid-move"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">

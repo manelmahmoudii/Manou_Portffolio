@@ -46,7 +46,8 @@ const Education = () => {
       year: '1999-2022',
       description: 'CENAFFIF, AFPA France, British Council, ENA Tunis',
       grade: 'Various Certifications',
-      color: 'from-cyan-500 to-teal-500'
+      color: 'from-cyan-500 to-teal-500',
+       // Ajouté pour le dernier cadre
     },
     {
       icon: Calendar,
@@ -69,83 +70,103 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-20 bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
-      {/* Enhanced Background */}
+    <section id="education" className="py-16 bg-gradient-to-tl from-gray-50 via-blue-50/20 to-gray-50 dark:from-gray-800 dark:via-blue-950/15 dark:to-gray-800 relative overflow-hidden">
+      {/* Enhanced blue effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)] animate-pulse"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,197,253,0.06),transparent_50%)] animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:60px_60px] animate-grid-move opacity-50"></div>
-
-        {/* Floating particles */}
-        <div className="absolute top-20 left-20 w-2 h-2 bg-blue-400/60 rounded-full animate-float-slow shadow-lg shadow-blue-400/30"></div>
-        <div className="absolute bottom-20 right-20 w-3 h-3 bg-slate-400/40 rounded-full animate-float-fast shadow-lg shadow-slate-400/20"></div>
-        <div className="absolute top-1/2 left-1/4 w-1 h-1 bg-blue-300/70 rounded-full animate-float-medium delay-1000 shadow-lg shadow-blue-300/50"></div>
+        <div className="absolute top-0 right-0 w-full h-40 bg-gradient-to-b from-blue-50/35 to-transparent dark:from-blue-900/12 dark:to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-100/25 dark:bg-blue-900/8 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/3 right-1/4 w-60 h-60 bg-blue-50/30 dark:bg-blue-950/10 rounded-full blur-3xl"></div>
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.015)_1px,transparent_1px)] bg-[size:35px_35px] opacity-50"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">Academic Journey</span>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
+            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium uppercase tracking-wide">Academic Foundation</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Education & <span className="bg-gradient-to-r from-blue-600 to-slate-800 dark:from-blue-400 dark:to-slate-200 bg-clip-text text-transparent">Learning</span>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+            <span className="relative">
+              Education & Learning
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
+            </span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-slate-600 mx-auto rounded-full mb-4"></div>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto">Academic Foundation & Continuous Learning</p>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">Academic foundation and continuous learning journey spanning decades of professional development</p>
         </div>
 
-        {/* Simple Education Cards */}
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+        {/* Enhanced Education Cards */}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
             {educationData.map((edu, index) => (
               <div
                 key={index}
-                className={`group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 relative overflow-hidden ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                style={{ transitionDelay: `${200 + index * 150}ms` }}
+                className={`bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 transition-all duration-300 relative overflow-hidden group ${edu.fullWidth ? 'md:col-span-2' : ''} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                style={{ 
+                  transitionDelay: `${200 + index * 150}ms`,
+                  borderLeft: `4px solid ${index === 0 ? '#7c3aed' : index === 1 ? '#3b82f6' : index === 2 ? '#06b6d4' : '#0d9488'}` 
+                }}
               >
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-900/20 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+                {/* Gradient background on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${edu.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-xl`}></div>
 
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${edu.color} mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                    <edu.icon className="w-8 h-8 text-white" />
+                <div className="flex flex-col h-full relative z-10">
+                  {/* Header with icon */}
+                  <div className="flex items-start space-x-4 mb-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${edu.color} shadow-md group-hover:shadow-lg transition-all duration-300`}>
+                      <edu.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                        {edu.level}
+                      </h3>
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1">{edu.institution}</p>
+                    </div>
                   </div>
 
-                  {/* Content */}
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                    {edu.level}
-                  </h3>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold mb-3 text-lg">{edu.institution}</p>
-                  <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">{edu.description}</p>
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed flex-grow">
+                    {edu.description}
+                  </p>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between">
-                    <div className="bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full">
-                      <span className="text-slate-700 dark:text-slate-300 font-semibold text-sm">{edu.grade}</span>
-                    </div>
-                    <div className="bg-blue-100 dark:bg-blue-900/50 px-4 py-2 rounded-full">
-                      <span className="text-blue-700 dark:text-blue-300 font-semibold text-sm">{edu.year}</span>
-                    </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-600">
+                    <span className="text-gray-500 dark:text-gray-400 text-sm">{edu.grade}</span>
+                    <span className="text-blue-600 dark:text-blue-400 font-medium text-sm bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full">
+                      {edu.year}
+                    </span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Additional Studies - Simple List */}
-          <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Additional Training</h3>
+          {/* Enhanced Additional Training Section */}
+          <div className={`bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Additional Professional Training</h3>
+            </div>
+            
             <div className="grid md:grid-cols-2 gap-4">
               {additionalStudies.map((study, index) => (
                 <div
                   key={index}
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-300"
+                  className="flex items-start space-x-3 p-4 rounded-lg border border-gray-100 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600/30 transition-colors duration-200 group"
                 >
-                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-slate-500 rounded-full flex-shrink-0"></div>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm">{study}</p>
+                  <div className="flex-shrink-0 mt-0.5">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    {study.split(' - ').map((part, i) => (
+                      <span key={i} className={i === 0 ? "font-medium text-gray-900 dark:text-white" : ""}>
+                        {part}
+                        {i < study.split(' - ').length - 1 && ' - '}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               ))}
             </div>
