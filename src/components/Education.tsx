@@ -28,7 +28,8 @@ const Education = () => {
       year: '1984-1990',
       description: 'Specialization in Electronic Machines and Computers (6 years including preparatory year)',
       grade: 'Graduated June 25, 1990',
-      color: 'from-purple-500 to-blue-600'
+      color: 'from-purple-500 to-blue-600',
+      flag: '🇷🇺' // Drapeau russe ajouté
     },
     {
       icon: Award,
@@ -37,7 +38,8 @@ const Education = () => {
       year: '1976-1983',
       description: 'Mathematics and Sciences (7 years)',
       grade: 'Session June 1983',
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-blue-500 to-cyan-500',
+      flag: '🇹🇳' // Drapeau tunisien ajouté
     },
     {
       icon: BookOpen,
@@ -47,7 +49,6 @@ const Education = () => {
       description: 'CENAFFIF, AFPA France, British Council, ENA Tunis',
       grade: 'Various Certifications',
       color: 'from-cyan-500 to-teal-500',
-       // Ajouté pour le dernier cadre
     },
     {
       icon: Calendar,
@@ -120,7 +121,10 @@ const Education = () => {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
                         {edu.level}
                       </h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1">{edu.institution}</p>
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1">
+                        {edu.flag && <span className="mr-2 text-lg">{edu.flag}</span>}
+                        {edu.institution}
+                      </p>
                     </div>
                   </div>
 
