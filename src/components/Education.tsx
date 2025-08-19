@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { GraduationCap, Award, BookOpen, Calendar } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, Calendar, LucideIcon } from 'lucide-react';
+
+interface EducationItem {
+  icon: LucideIcon;
+  level: string;
+  institution: string;
+  year: string;
+  description: string;
+  grade: string;
+  color: string;
+  flag?: string;
+}
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,7 +31,7 @@ const Education = () => {
     return () => observer.disconnect();
   }, []);
 
-  const educationData = [
+  const educationData: EducationItem[] = [
     {
       icon: GraduationCap,
       level: 'Master in Electronic Machines and Computers',
@@ -29,7 +40,7 @@ const Education = () => {
       description: 'Specialization in Electronic Machines and Computers (6 years including preparatory year)',
       grade: 'Graduated June 25, 1990',
       color: 'from-purple-500 to-blue-600',
-      flag: '🇷🇺' // Drapeau russe ajouté
+      flag: 'ru'
     },
     {
       icon: Award,
@@ -39,7 +50,7 @@ const Education = () => {
       description: 'Mathematics and Sciences (7 years)',
       grade: 'Session June 1983',
       color: 'from-blue-500 to-cyan-500',
-      flag: '🇹🇳' // Drapeau tunisien ajouté
+      flag: 'tn'
     },
     {
       icon: BookOpen,
@@ -69,6 +80,34 @@ const Education = () => {
     'ISO-17024 Audit Standards - UTICA (2016) - 3 weeks with German auditor',
     'Early Warning Systems Training (2022) - Government officials program'
   ];
+
+  // Fonction pour obtenir le drapeau approprié
+  const getFlag = (flagCode: string) => {
+    if (flagCode === 'ru') {
+      return (
+        <img 
+          src="https://flagcdn.com/w20/ru.png" 
+          srcSet="https://flagcdn.com/w40/ru.png 2x"
+          width="20"
+          height="10"
+          alt="Russia"
+          className="mr-2 rounded-sm shadow-sm"
+        />
+      );
+    } else if (flagCode === 'tn') {
+      return (
+        <img 
+          src="https://flagcdn.com/w20/tn.png" 
+          srcSet="https://flagcdn.com/w40/tn.png 2x"
+          width="20"
+          height="10"
+          alt="Tunisia"
+          className="mr-2 rounded-sm shadow-sm"
+        />
+      );
+    }
+    return null;
+  };
 
   return (
     <section id="education" className="py-16 bg-gradient-to-tl from-gray-50 via-blue-50/20 to-gray-50 dark:from-gray-800 dark:via-blue-950/15 dark:to-gray-800 relative overflow-hidden">
@@ -102,7 +141,7 @@ const Education = () => {
             {educationData.map((edu, index) => (
               <div
                 key={index}
-                className={`bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 transition-all duration-300 relative overflow-hidden group ${edu.fullWidth ? 'md:col-span-2' : ''} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 transition-all duration-300 relative overflow-hidden group ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   transitionDelay: `${200 + index * 150}ms`,
                   borderLeft: `4px solid ${index === 0 ? '#7c3aed' : index === 1 ? '#3b82f6' : index === 2 ? '#06b6d4' : '#0d9488'}` 
@@ -121,8 +160,8 @@ const Education = () => {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
                         {edu.level}
                       </h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1">
-                        {edu.flag && <span className="mr-2 text-lg">{edu.flag}</span>}
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1 flex items-center">
+                        {edu.flag && getFlag(edu.flag)}
                         {edu.institution}
                       </p>
                     </div>
