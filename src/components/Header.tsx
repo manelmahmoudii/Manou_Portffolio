@@ -107,9 +107,7 @@ const Header = () => {
                 aria-label="Toggle dark mode"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
-                <div className="relative z-10 transition-all duration-500">
-                  {isDarkMode ? <Sun className="w-5 h-5 group-hover:text-yellow-500 transition-colors duration-300" /> : <Moon className="w-5 h-5 group-hover:text-blue-500 transition-colors duration-300" />}
-                </div>
+              
                 <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/30 to-blue-600/30 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
               </button>
               <button className="relative px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-900 text-white rounded-xl font-medium hover:from-blue-900 hover:to-indigo-900 transform hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-blue-800/50 group overflow-hidden">
@@ -123,25 +121,7 @@ const Header = () => {
             </div>
 
             {/* Mobile Menu & Theme Toggle */}
-            <div className="md:hidden flex items-center space-x-2">
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
-                aria-label="Toggle dark mode"
-              >
-                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 dark:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-300 transform hover:scale-110"
-              >
-                <div className="relative w-6 h-6">
-                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : 'translate-y-1'}`}></span>
-                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'translate-y-2.5'}`}></span>
-                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 translate-y-2.5' : 'translate-y-4'}`}></span>
-                </div>
-              </button>
-            </div>
+           
           </div>
 
           {/* Mobile Menu */}
