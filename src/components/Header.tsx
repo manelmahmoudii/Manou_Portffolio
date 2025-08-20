@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapPin, Phone, Mail, Menu, X, Sun, Moon, Download, Sparkles, Zap, Linkedin } from 'lucide-react';
+import { MapPin, Phone, Mail, Menu, X, Sun, Moon, Download, Sparkles, Zap, Linkedin, Trophy } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
@@ -147,7 +147,7 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile Menu - CORRIGÉ POUR ÊTRE VISIBLE */}
+          {/* Mobile Menu */}
           <div className={`md:hidden absolute left-0 right-0 bg-white dark:bg-gray-900 transition-all duration-500 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-screen opacity-100 border-t border-gray-200 dark:border-gray-700' : 'max-h-0 opacity-0'}`}>
             <div className="py-4 overflow-y-auto">
               <div className="flex flex-col space-y-2">
@@ -268,23 +268,26 @@ const Header = () => {
                 {/* Glowing background */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/60 to-slate-100/60 dark:from-blue-900/30 dark:to-slate-900/30 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition duration-300"></div>
 
-                {/* Rotating ring */}
-                <div className="absolute -inset-2 rounded-full border border-blue-200/60 dark:border-blue-700/60 rotate-ring"></div>
-
+                {/* Animated rotating ring */}
+                <div className="absolute -inset-2 rounded-full border-2 border-transparent border-t-blue-400 border-r-blue-600 border-b-blue-400 border-l-blue-600 animate-spin-slow"></div>
+                
+                {/* Second animated ring */}
+                
+               
                 {/* Profile image */}
-                {/* Pour utiliser votre propre image, remplacez l'URL par "/images/votre-photo.jpg" */}
                 <div className="relative">
                   <img
                     src="/images/manou.jpg"
                     alt="Mounir Mahmoudi"
-                    className="w-80 h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl transform group-hover:scale-105 transition duration-300"
+                    className="w-80 h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl transform group-hover:scale-105 transition duration-700"
                   />
 
                   {/* Professional badges */}
-                  
                   <div className="absolute -top-4 -right-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-pulse">
                     Expert
                   </div>
+                  
+                
                 </div>
               </div>
             </div>
@@ -300,6 +303,8 @@ const Header = () => {
           </div>
         </div>
       </section>
+
+    
     </>
   );
 };

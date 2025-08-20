@@ -81,7 +81,7 @@ const Education = () => {
     'Early Warning Systems Training (2022) - Government officials program'
   ];
 
-  // Fonction pour obtenir le drapeau approprié
+  // Fonction pour obtenir le drapeau approprié - CORRIGÉ
   const getFlag = (flagCode: string) => {
     if (flagCode === 'ru') {
       return (
