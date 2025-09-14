@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from './components/Header';
 import Education from './components/Education';
 import Experience from './components/Experience';
@@ -8,6 +7,7 @@ import Footer from './components/Footer';
 import Projects from './components/Projects'; // Import the new Projects component
 import Contact from './components/Contact'; // Import the new Contact component
 import { LanguageProvider } from './contexts/LanguageContext';
+import Formation from './components/Formation';
 
 function App() {
 
@@ -28,6 +28,7 @@ function App() {
           <Education />
           <Projects /> {/* Add the Projects component here */}
           <Skills />
+          <Formation />
           <Certifications />
           <Contact /> {/* Add the Contact component here */}
           <Footer />
