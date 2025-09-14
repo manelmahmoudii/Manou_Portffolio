@@ -62,7 +62,7 @@ const Header = () => {
 
               <div className="transform group-hover:translate-x-1 group-hover:scale-105 transition-all duration-500 ease-out relative z-10">
                 <span className="text-gray-800 dark:text-white font-bold text-xl bg-gradient-to-r from-gray-800 dark:from-white to-blue-600 bg-clip-text text-transparent animate-gradient">Mounir Mahmoudi</span>
-                <div className="text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Engineering Director</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Directeur Général </div>
               </div>
 
               {/* Sparkle effect */}
@@ -113,14 +113,7 @@ const Header = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               
-              <button className="relative px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-900 text-white rounded-xl font-medium hover:from-blue-900 hover:to-indigo-900 transform hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-blue-800/50 group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                <span className="relative z-10 flex items-center space-x-2">
-                  <span>{t('common.contactMe')}</span>
-                  <Zap className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:rotate-12" />
-                </span>
-              </button>
+            
             </div>
 
             {/* Mobile Menu & Theme Toggle */}
@@ -217,23 +210,21 @@ const Header = () => {
               {/* Main Title */}
               <h1 className={`text-4xl lg:text-6xl font-bold mb-6 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <span className="bg-gradient-to-r from-slate-800 via-blue-700 to-slate-900 bg-clip-text text-transparent">
-                  Senior Engineering Director
-                </span>
+Directeur Général                </span>
               </h1>
 
               {/* Typing effect subtitle */}
               <div className={`text-xl text-slate-700 dark:text-slate-300 mb-8 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <span className="typing-text">Inspection & Educational Audit</span>
-                <span className="typing-cursor">|</span>
-              </div>
+  <span className="typing-text">Inspection & Audit éducatif</span>
+  <span className="typing-cursor">|</span>
+</div>
 
-              {/* Description */}
-              <p className={`text-slate-700 dark:text-slate-300 mb-10 leading-relaxed text-lg transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                Experienced engineering leader with <span className="text-blue-800 dark:text-blue-400 font-bold bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-lg text-lg">30+ years</span> of expertise in professional training,
-                educational audit, and ministry leadership. Master's degree from Kiev Institute of Civil Aviation Engineers (1990).
-                Currently serving as Director General at MFPE since 2020.
-              </p>
-
+{/* Description */}
+<p className={`text-slate-700 dark:text-slate-300 mb-10 leading-relaxed text-lg transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+  Ingénieur expérimenté avec <span className="text-blue-800 dark:text-blue-400 font-bold bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-lg text-lg">+ de 30 ans</span> d’expertise dans la formation professionnelle,
+  l’audit éducatif et la gestion ministérielle. Titulaire d’un master de l’Institut de génie civil de l’aviation de Kiev (1990).
+  Actuellement Directeur Général au MFPE depuis 2020.
+</p>
               {/* Stats */}
              
               {/* CTA Buttons */}

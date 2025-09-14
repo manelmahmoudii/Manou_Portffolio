@@ -28,7 +28,6 @@ const translations = {
     'nav.education': 'Formation',
     'nav.skills': 'Compétences',
     'nav.certifications': 'Certifications',
-    'nav.contact': 'Contact',
 
     // Experience
     'experience.badge': 'Parcours Professionnel',
@@ -53,10 +52,12 @@ const translations = {
     'certifications.badge': 'Apprentissage Continu',
     'certifications.title': 'Certifications & Formation',
     'certifications.subtitle': 'Développement professionnel et apprentissage continu',
+    'certifications.professionalCertificatesTitle': 'Certificats Professionnels',
+    'certifications.professionalCertificatesDescription': 'Découvrez mes certifications professionnelles obtenues auprès d\'organismes de formation reconnus.',
+    'certifications.moocTitle': 'Formations à distance / MOOC',
     'certifications.moocs': 'Certifications en Ligne (MOOCs)',
 
     // Common
-    'common.contactMe': 'Me Contacter',
     'common.years': 'ans',
     'common.experience': 'expérience',
   },
@@ -76,7 +77,6 @@ const translations = {
     'nav.education': 'Education',
     'nav.skills': 'Skills',
     'nav.certifications': 'Certifications',
-    'nav.contact': 'Contact',
 
     // Experience
     'experience.badge': 'Professional Journey',
@@ -101,10 +101,12 @@ const translations = {
     'certifications.badge': 'Continuous Learning',
     'certifications.title': 'Certifications & Training',
     'certifications.subtitle': 'Professional development and continuous learning',
+    'certifications.professionalCertificatesTitle': 'Professional Certificates',
+    'certifications.professionalCertificatesDescription': 'Explore my professional certifications obtained from recognized training organizations.',
+    'certifications.moocTitle': 'Online Courses / MOOCs',
     'certifications.moocs': 'Online Certifications (MOOCs)',
 
     // Common
-    'common.contactMe': 'Contact Me',
     'common.years': 'years',
     'common.experience': 'experience',
   }
