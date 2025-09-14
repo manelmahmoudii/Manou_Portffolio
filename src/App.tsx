@@ -5,6 +5,8 @@ import Experience from './components/Experience';
 import Certifications from './components/Certifications';
 import Skills from './components/Skills';
 import Footer from './components/Footer';
+import Projects from './components/Projects'; // Import the new Projects component
+import Contact from './components/Contact'; // Import the new Contact component
 import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
@@ -24,8 +26,10 @@ function App() {
           <Header />
           <Experience />
           <Education />
+          <Projects /> {/* Add the Projects component here */}
           <Skills />
           <Certifications />
+          <Contact /> {/* Add the Contact component here */}
           <Footer />
         </div>
       </div>
