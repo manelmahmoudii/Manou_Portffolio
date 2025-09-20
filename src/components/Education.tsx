@@ -110,16 +110,13 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="py-16 bg-gradient-to-tl from-gray-50 via-blue-50/20 to-gray-50 dark:from-gray-800 dark:via-blue-950/15 dark:to-gray-800 relative overflow-hidden">
+    <section id="education" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Enhanced blue effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-full h-40 bg-gradient-to-b from-blue-50/35 to-transparent dark:from-blue-900/12 dark:to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-100/25 dark:bg-blue-900/8 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/3 right-1/4 w-60 h-60 bg-blue-50/30 dark:bg-blue-950/10 rounded-full blur-3xl"></div>
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.015)_1px,transparent_1px)] bg-[size:35px_35px] opacity-50"></div>
-      </div>
-
+      
+      
+      
+      
+      
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">

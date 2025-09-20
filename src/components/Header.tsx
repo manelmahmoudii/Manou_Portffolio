@@ -56,7 +56,7 @@ const Header = () => {
         <div className="container mx-auto px-6">
           <div className={`flex items-center justify-between transition-all duration-500 ease-out ${isScrolled ? 'h-16' : 'h-20'}`}>
             {/* Logo */}
-            <div className="flex items-center space-x-3 group cursor-pointer relative">
+            <div className="flex items-center space-x-3 group relative">
               {/* Animated background glow */}
               <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
 
@@ -194,7 +194,7 @@ const Header = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-6xl mx-auto">
             {/* Left Content */}
-            <div className="lg:w-1/2 text-center lg:text-left">
+            <div className="lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
               {/* Greeting */}
              <div
   className={`mb-8 transform transition-all duration-1000 ${
@@ -251,10 +251,17 @@ Directeur Général                </span>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-green-700 dark:text-green-400 text-sm font-medium">Available for projects</span>
               </div>
+
+              {/* Scroll indicator for mobile */}
+              <div className="flex justify-center mt-7 md:hidden">
+                <div className="w-6 h-10 border-2 border-gray-400 rounded-full p-1 animate-bounce">
+                  <div className="w-1 h-3 bg-blue-400 rounded-full mx-auto animate-pulse"></div>
+                </div>
+              </div>
             </div>
 
             {/* Right Image */}
-            <div className={`lg:w-1/2 flex justify-center transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className={`lg:w-1/2 flex justify-center order-1 lg:order-2 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <div className="relative group">
                 {/* Glowing background */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/60 to-slate-100/60 dark:from-blue-900/30 dark:to-slate-900/30 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition duration-300"></div>
@@ -287,8 +294,8 @@ Directeur Général                </span>
          
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        {/* Scroll indicator for desktop */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
           <div className="w-6 h-10 border-2 border-gray-400 rounded-full p-1">
             <div className="w-1 h-3 bg-blue-400 rounded-full mx-auto animate-pulse"></div>
           </div>

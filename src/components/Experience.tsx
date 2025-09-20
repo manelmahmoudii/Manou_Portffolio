@@ -11,7 +11,7 @@ const Experience = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
 
     const element = document.getElementById('experience');
@@ -160,16 +160,10 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-16 bg-gradient-to-br from-blue-50/40 via-white to-white dark:from-blue-950/30 dark:via-gray-900 dark:to-gray-900 relative overflow-hidden">
+    <section id="experience" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-20 sm:pt-32">
       {/* Enhanced blue effects with animation */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-blue-100/50 to-transparent dark:from-blue-900/20 dark:to-transparent animate-[pulse_8s_ease-in-out_infinite]"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 dark:bg-blue-900/10 rounded-full blur-3xl animate-[float_15s_ease-in-out_infinite]"></div>
-        <div className="absolute top-1/2 left-0 w-72 h-72 bg-blue-50/40 dark:bg-blue-950/15 rounded-full blur-2xl animate-[float_12s_ease-in-out_infinite_reverse]"></div>
-        {/* Animated grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 animate-[shift_20s_linear_infinite]"></div>
-      </div>
-
+      
+      
       <div className="container mx-auto px-6 relative z-10">
         {/* Current Position - Moved to top */}
         
@@ -195,8 +189,8 @@ const Experience = () => {
                 key={index}
                 className={`bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 transition-all duration-300 border-l-4 border-blue-600 relative overflow-hidden group ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
-                  transitionDelay: `${200 + index * 100}ms`,
-                  animation: isVisible ? 'cardEntrance 0.5s ease-out forwards' : 'none'
+                  animation: isVisible ? 'cardEntrance 0.5s ease-out forwards' : 'none',
+                  transitionDelay: `${50 + index * 50}ms` 
                 }}
               >
                 {/* Animated background element */}
@@ -273,7 +267,7 @@ const Experience = () => {
         </div>
 
         {/* Career Highlights - Spectacular Design */}
-        <div className={`mt-16 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`mt-16 transform transition-all duration-1000 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-slate-50 dark:from-blue-900/30 dark:to-slate-800/30 px-6 py-3 rounded-full mb-6 border border-blue-200/50">
               <Trophy className="w-5 h-5 text-blue-600" />

@@ -237,7 +237,7 @@ const Certifications = () => {
 
   return (
     <>
-      <section id="certifications" className="py-20 bg-white dark:from-gray-900 dark:to-slate-900">
+      <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
@@ -473,7 +473,7 @@ const Certifications = () => {
         )}
       </section>
 
-      <section id="formations" className="py-20 bg-white dark:from-gray-900 dark:to-slate-900">
+      <section id="formations" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center space-x-2">
