@@ -1,34 +1,26 @@
 import { useEffect, useState } from 'react';
-import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, GraduationCap, BookOpen, LucideIcon } from 'lucide-react';
+import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, GraduationCap, BookOpen, LucideIcon, Code, Globe } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
 
-interface Certificate {
+interface CertificationItem {
   title: string;
   provider: string;
   year: string;
   score: string;
   type: string;
   color: string;
+  description: string;
   qrCode?: string;
   certificateLink?: string;
   image?: string;
-}
-
-interface EducationItem {
-  icon: LucideIcon;
-  level: string;
-  institution: string;
-  year: string;
-  description: string;
-  grade: string;
-  color: string;
+  icon?: LucideIcon;
 }
 
 const Certifications = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<CertificationItem | null>(null);
   const [certificateIndex, setCertificateIndex] = useState(0);
   const { t } = useTranslation();
 
@@ -43,175 +35,193 @@ const Certifications = () => {
     );
 
     const element = document.getElementById('certifications');
-    const formationElement = document.getElementById('formations');
-
     if (element) observer.observe(element);
-    if (formationElement) observer.observe(formationElement);
 
     return () => observer.disconnect();
   }, []);
 
-  const certificates: Certificate[] = [
+  const certificationsData: CertificationItem[] = [
     {
-      title: 'Planification de l\'éducation',
-      provider: 'IIPE-UNESCO',
-      year: '2023',
-      score: '95%',
-      type: 'Education',
-      color: 'blue',
-      qrCode: 'https://www.iiep.unesco.org/', 
-      image: '/images/Certificat_IIPE_UNESCO.jpg'
-    },
-    {
-      title: 'Digital Marketing Fundamentals',
-      provider: 'Google Digital Active',
-      year: '2022',
-      score: '92%',
-      type: 'Marketing',
-      color: 'green',
-      qrCode: 'https://learndigital.withgoogle.com/atelierdigital',
-      image: '/images/Certificat_Google.jpg'
-    },
-    {
-      title: 'Microsoft Office Specialist',
+      title: 'Microsoft Office Specialist Associate (Excel, Word & PowerPoint)',
       provider: 'Microsoft',
-      year: '2022',
-      score: '88%',
+      year: '2025',
+      score: 'N/A',
       type: 'Bureautique',
       color: 'purple',
       qrCode: 'https://www.microsoft.com/certifications',
-      image: '/images/Certificat_Microsoft.jpg'
+      image: '/images/Certificat_Microsoft.jpg',
+      certificateLink: 'https://www.microsoft.com/certifications',
+      description: 'Maîtrise avancée de la suite Microsoft Office et outils de productivité, incluant Excel, Word et PowerPoint.'
     },
     {
-      title: 'Python Programming',
-      provider: 'SOLOLEARN',
-      year: '2021',
-      score: '90%',
-      type: 'Programmation',
+      title: 'Certification en formation Agile Scrum / PMP',
+      provider: 'Master of Project Academy',
+      year: '2019',
+      score: 'N/A',
+      type: 'Gestion de Projet',
       color: 'orange',
-      qrCode: 'https://www.sololearn.com/',
-      image: '/images/Certificat_Python.jpg'
+      certificateLink: 'https://masterofproject.com/',
+      description: 'Formation et certification en méthodes Agiles Scrum et PMP.'
     },
     {
-      title: 'English Professional Development',
-      provider: 'British Council',
-      year: '2020',
-      score: '91%',
-      type: 'Langues',
+      icon: BookOpen,
+      title: 'Initiation aux statistiques pour la planification et la gestion de l\'éducation',
+      provider: 'l\'Institut International de Planification de l\'Éducation (l\'IIPE-UNESCO)',
+      year: '2015',
+      score: '17.5/20',
+      type: 'Éducation',
+      color: 'blue',
+      description: 'MOOC certifiant en français, note finale : 17.5/20',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Learning Assessments',
+      provider: 'IIPE-UNESCO',
+      year: '2016',
+      score: '18.5/20',
+      type: 'Éducation',
+      color: 'green',
+      description: 'MOOC certifiant en anglais, note finale : 18.5/20',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Les Évaluations des Apprentissages',
+      provider: 'IIPE-UNESCO',
+      year: '2017',
+      score: '19.5/20',
+      type: 'Éducation',
+      color: 'purple',
+      description: 'MOOC certifiant en français, note finale : 19.5/20',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'IIEP e-Seminar 2017: Transforming Teacher Education to Improve Learning Outcomes',
+      provider: 'IIPE-UNESCO',
+      year: '2017',
+      score: 'Certifié',
+      type: 'Éducation',
+      color: 'yellow',
+      description: 'Séminaire en ligne sur la transformation de la formation des enseignants pour améliorer les résultats d\'apprentissage',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Gestion de Projets – GdP8',
+      provider: 'Ecole centrale de Lille & UNOW',
+      year: '2016',
+      score: '87/100',
+      type: 'Gestion de Projet',
+      color: 'orange',
+      description: 'MOOC certifiant, 4 modules classiques et 2 de spécialisation validés. Note finale: 87/100',
+      certificateLink: 'https://www.unow-mooc.org/'
+    },
+    {
+      icon: BookOpen,
+      title: 'Gestion de Projets – GdP9',
+      provider: 'UNOW',
+      year: '2017',
+      score: '92/100',
+      type: 'Gestion de Projet',
       color: 'red',
-      qrCode: 'https://www.britishcouncil.org/',
-      image: '/images/Certificat_British_Council.jpg'
+      description: 'MOOC en gestion de projets, note finale : 92/100',
+      certificateLink: 'https://www.unow-mooc.org/'
     },
     {
-      title: 'Gestion de Projet',
-      provider: 'FUN-MOOC',
-      year: '2021',
-      score: '87%',
+      icon: BookOpen,
+      title: 'Human Resources Management Course',
+      provider: 'Brentwood Open Learning College',
+      year: '2017',
+      score: 'Excellent',
       type: 'Management',
       color: 'pink',
-      qrCode: 'https://www.fun-mooc.fr/',
-      image: '/images/Certificat_FUN_MOOC.jpg'
+      description: 'Cours en ligne de gestion des ressources humaines, mention Excellent (90+ %)',
+      certificateLink: '#'
     },
     {
-      title: 'Data Analysis with Excel',
-      provider: 'UNOW',
-      year: '2020',
-      score: '89%',
-      type: 'Analyse',
+      icon: BookOpen,
+      title: 'Formation Digital Active',
+      provider: 'Google',
+      year: '2017',
+      score: 'Certifié',
+      type: 'Marketing',
       color: 'indigo',
-      qrCode: 'https://www.unow.fr/',
-      image: '/images/Certificat_Excel.jpg'
+      description: 'MOOC certifiant de Google sur les fondamentaux du marketing digital (26 thèmes)',
+      certificateLink: 'https://learndigital.withgoogle.com'
     },
     {
-      title: 'Intelligence Artificielle',
-      provider: 'FUN-MOOC',
+      icon: BookOpen,
+      title: 'Fondamentaux de la Finance',
+      provider: 'HP Life via Edcastcloud',
+      year: '2018',
+      score: 'Certifié',
+      type: 'Finance',
+      color: 'teal',
+      description: 'MOOC certifiant sur les bases de la finance',
+      certificateLink: 'hplife.edcastcloud.com/verify/FBKrMtkg'
+    },
+    {
+      icon: Code,
+      title: 'Compétences de Base en Informatique',
+      provider: 'Code.org',
       year: '2019',
-      score: '93%',
-      type: 'IA',
+      score: 'Certifié',
+      type: 'Programmation',
+      color: 'blue',
+      description: 'Certificats de réussite pour des heures de codage démontrant une compréhension des concepts fondamentaux de l\'informatique',
+      certificateLink: 'www.code.org'
+    },
+    {
+      icon: Globe,
+      title: 'Compétences Digitales et Informatiques (multiples)',
+      provider: 'SOLOLEARN, Khan Academy, Codecademy',
+      year: '2017-2019',
+      score: 'Plusieurs badges',
+      type: 'Informatique',
+      color: 'green',
+      description: 'Maîtrise de compétences en informatique et digital (Trello, Python, JavaScript, Anglais, Tableaux de bord Excel, Excel Avancé, HTML, Sketch Tutorial)',
+      certificateLink: 'https://fr.khanacademy.org/badges https://www.codecademy.com/fr'
+    },
+    {
+      icon: BookOpen,
+      title: 'Gouvernance Territoriale',
+      provider: 'CNFPT via FUN-MOOC',
+      year: '2019',
+      score: '100%',
+      type: 'Gouvernance',
       color: 'purple',
-      qrCode: 'https://www.fun-mooc.fr/',
-      image: '/images/Certificat_IA.jpg'
-    }
-  ];
-
-  const educationData: EducationItem[] = [
-    {
-      icon: GraduationCap,
-      level: 'Planification de l\'éducation',
-      institution: 'IIPE-UNESCO',
-      year: '2023',
-      description: 'Formation avancée en planification et gestion des systèmes éducatifs au niveau international',
-      grade: '95%',
-      color: 'Education'
-    },
-    {
-      icon: Award,
-      level: 'Digital Marketing Fundamentals',
-      institution: 'Google Digital Active',
-      year: '2022',
-      description: 'Certification Google en marketing digital et stratégies numériques',
-      grade: '92%',
-      color: 'Marketing'
+      description: 'Certificat de suivi avec succès (100%) du MOOC sur la gouvernance territoriale',
+      certificateLink: 'https://www.fun-mooc.fr/'
     },
     {
       icon: BookOpen,
-      level: 'Microsoft Office Specialist',
-      institution: 'Microsoft',
-      year: '2022',
-      description: 'Certification avancée sur la suite Microsoft Office et outils de productivité',
-      grade: '88%',
-      color: 'Bureautique'
-    },
-    {
-      icon: Calendar,
-      level: 'Python Programming',
-      institution: 'SOLOLEARN',
-      year: '2021',
-      description: 'Formation complète en programmation Python et développement d\'applications',
-      grade: '90%',
-      color: 'Programmation'
-    },
-    {
-      icon: GraduationCap,
-      level: 'Gestion de projet',
-      institution: 'FUN-MOOC',
-      year: '2021',
-      description: 'Méthodologies de gestion de projet et outils collaboratifs',
-      grade: '87%',
-      color: 'Management'
-    },
-    {
-      icon: Award,
-      level: 'English for Professional Development',
-      institution: 'British Council',
-      year: '2020',
-      description: 'Anglais professionnel et communication internationale certifiée',
-      grade: '91%',
-      color: 'Langues'
+      title: 'Webinaires de Gestion de Projet et UNESCO',
+      provider: 'Project Management Institute, UNESCO',
+      year: '2018-2025',
+      score: 'Certifié',
+      type: 'Gestion de Projet',
+      color: 'orange',
+      description: 'Certificats de participation à divers webinaires sur des thèmes de gestion de projet (PMXPO) et UNESCO',
+      certificateLink: '#'
     },
     {
       icon: BookOpen,
-      level: 'Data Analysis with Excel',
-      institution: 'UNOW',
-      year: '2020',
-      description: 'Analyse de données avancée avec Excel et VBA',
-      grade: '89%',
-      color: 'Analyse'
-    },
-    {
-      icon: Calendar,
-      level: 'Intelligence Artificielle',
-      institution: 'FUN-MOOC',
-      year: '2019',
-      description: 'Introduction à l\'IA et applications pédagogiques',
-      grade: '93%',
-      color: 'IA'
+      title: 'Coronavirus - What you need to know',
+      provider: 'Alison',
+      year: '2025',
+      score: 'Certifié',
+      type: 'Santé',
+      color: 'red',
+      description: 'Certificat sur les informations essentielles concernant le Coronavirus',
+      certificateLink: 'https://alison.com/course/coronavirus-what-you-need-to-know'
     }
   ];
 
-  const allCertificates = certificates;
+  const allCertifications: CertificationItem[] = certificationsData;
 
-  const openModal = (certificate: Certificate, index: number) => {
+  const openModal = (certificate: CertificationItem, index: number) => {
     setSelectedCertificate(certificate);
     setCertificateIndex(index);
     setIsModalOpen(true);
@@ -223,15 +233,15 @@ const Certifications = () => {
   };
 
   const goToNextCertificate = () => {
-    const nextIndex = (certificateIndex + 1) % allCertificates.length;
+    const nextIndex = (certificateIndex + 1) % allCertifications.length;
     setCertificateIndex(nextIndex);
-    setSelectedCertificate(allCertificates[nextIndex]);
+    setSelectedCertificate(allCertifications[nextIndex]);
   };
 
   const goToPreviousCertificate = () => {
-    const prevIndex = (certificateIndex - 1 + allCertificates.length) % allCertificates.length;
+    const prevIndex = (certificateIndex - 1 + allCertifications.length) % allCertifications.length;
     setCertificateIndex(prevIndex);
-    setSelectedCertificate(allCertificates[prevIndex]);
+    setSelectedCertificate(allCertifications[prevIndex]);
   };
 
 
@@ -242,12 +252,12 @@ const Certifications = () => {
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-base font-medium uppercase tracking-wide">Continuous Learning
+            <span className="text-blue-600 dark:text-blue-400 text-base font-medium uppercase tracking-wide">Apprentissage Continu
             </span>
           </div>
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
               <span className="relative">
-                Certifications & Training
+                Certifications & Formations
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-36 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
               </span>
             </h2>
@@ -255,28 +265,27 @@ const Certifications = () => {
 
          
 
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center space-x-2">
-            <Award className="w-6 h-6 text-blue-600" />
-            <span>Certificats Professionnels</span>
-          </h3>
+          
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-center mb-8">
-            Découvrez mes certifications professionnelles obtenues auprès d'organismes de formation reconnus.
+            Découvrez mes certifications professionnelles et formations en ligne (MOOCs) obtenues auprès d'organismes de formation reconnus.
           </p>
 
-          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            {certificates.map((cert, index) => (
+          <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {allCertifications.map((cert, index) => (
               <div
                 key={index}
-                className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                className="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 style={{
                   borderLeft: `6px solid ${
                     cert.color === 'blue' ? '#3b82f6' :
                     cert.color === 'green' ? '#10b981' :
                     cert.color === 'purple' ? '#8b5cf6' :
+                    cert.color === 'yellow' ? '#facc15' :
                     cert.color === 'orange' ? '#f97316' :
                     cert.color === 'red' ? '#ef4444' :
                     cert.color === 'pink' ? '#ec4899' :
                     cert.color === 'indigo' ? '#6366f1' :
+                    cert.color === 'teal' ? '#14b8a6' :
                     '#3b82f6'
                   }`
                 }}
@@ -286,45 +295,43 @@ const Certifications = () => {
                   cert.color === 'blue' ? 'bg-blue-500' :
                   cert.color === 'green' ? 'bg-green-500' :
                   cert.color === 'purple' ? 'bg-purple-500' :
+                  cert.color === 'yellow' ? 'bg-yellow-500' :
                   cert.color === 'orange' ? 'bg-orange-500' :
                   cert.color === 'red' ? 'bg-red-500' :
                   cert.color === 'pink' ? 'bg-pink-500' :
                   cert.color === 'indigo' ? 'bg-indigo-500' :
+                  cert.color === 'teal' ? 'bg-teal-500' :
                   'bg-blue-500'
                 }`}></div>
                 
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-lg mb-2 leading-tight">{cert.title}</h4>
+                    <h4 className="font-bold text-gray-900 text-base mb-2 leading-tight">{cert.title}</h4>
                     <div className="flex items-center text-blue-600 text-sm mb-2">
+                      {cert.icon && <cert.icon className="w-4 h-4 mr-1" />} {/* Display icon for MOOCs */}
                       <Building className="w-4 h-4 mr-1" />
                       <span>{cert.provider}</span>
                     </div>
                   </div>
                   <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${
-                    cert.type === 'Education' ? 'bg-blue-500' :
-                    cert.type === 'Marketing' ? 'bg-green-500' :
                     cert.type === 'Bureautique' ? 'bg-purple-500' :
-                    cert.type === 'Programmation' ? 'bg-orange-500' :
-                    cert.type === 'Langues' ? 'bg-red-500' :
+                    cert.type === 'Gestion de Projet' ? 'bg-orange-500' :
+                    cert.type === 'Éducation' ? 'bg-blue-500' :
+                    cert.type === 'Marketing' ? 'bg-green-500' :
                     cert.type === 'Management' ? 'bg-pink-500' :
-                    cert.type === 'Analyse' ? 'bg-indigo-500' :
-                    cert.type === 'IA' ? 'bg-purple-600' :
-                    'bg-blue-500'
+                    cert.type === 'Finance' ? 'bg-teal-500' :
+                    cert.type === 'Programmation' ? 'bg-blue-600' :
+                    cert.type === 'Informatique' ? 'bg-green-600' :
+                    cert.type === 'Gouvernance' ? 'bg-purple-600' :
+                    cert.type === 'Santé' ? 'bg-red-500' :
+                    '#3b82f6'
                   }`}>
-                    Certification {cert.type}
+                    {cert.type}
                   </span>
                 </div>
 
                 <div className="text-sm text-gray-600 mb-4">
-                  {cert.type === 'Education' && 'Formation avancée en planification et gestion des systèmes éducatifs au niveau international'}
-                  {cert.type === 'Marketing' && 'Certification complète en marketing digital et stratégies de communication en ligne'}
-                  {cert.type === 'Bureautique' && 'Maîtrise avancée de la suite Microsoft Office et outils de productivité'}
-                  {cert.type === 'Programmation' && 'Compétences avancées en programmation Python et développement d\'applications'}
-                  {cert.type === 'Langues' && 'Anglais professionnel et communication internationale certifiée'}
-                  {cert.type === 'Management' && 'Méthodologies de gestion de projet et leadership d\'équipe'}
-                  {cert.type === 'Analyse' && 'Analyse de données avancée avec Excel et VBA'}
-                  {cert.type === 'IA' && 'Introduction à l\'IA et applications pédagogiques'}
+                  <p>{cert.description}</p>
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
@@ -340,7 +347,7 @@ const Certifications = () => {
                 
                 <button 
                   onClick={() => openModal(cert, index)}
-                  className="w-full py-3 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium text-sm transition-colors duration-300 flex items-center justify-center border"
+                  className="w-full py-2 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium text-xs transition-colors duration-300 flex items-center justify-center border"
                 >
                   <Eye className="w-4 h-4 mr-2" />
                   Voir Certificat
@@ -355,7 +362,7 @@ const Certifications = () => {
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 animate-fade-in">
             <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-zoom-in flex flex-col">
               <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Certificate Details</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Détails du Certificat</h3>
                 <button
                   onClick={closeModal}
                   className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700"
@@ -370,7 +377,7 @@ const Certifications = () => {
                     <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center min-h-[300px]">
                       {selectedCertificate.image ? (
                         selectedCertificate.image.endsWith('.pdf') ? (
-                          <iframe src={selectedCertificate.image} className="w-full h-64 rounded-lg" title="Certificate PDF"></iframe>
+                          <iframe src={selectedCertificate.image} className="w-full h-64 rounded-lg" title="Certificat PDF"></iframe>
                         ) : (
                           <img 
                             src={selectedCertificate.image} 
@@ -381,7 +388,7 @@ const Certifications = () => {
                       ) : (
                         <div className="text-center text-gray-500 dark:text-gray-400">
                           <Award className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                          <p>Certificate image not available</p>
+                          <p>Image du certificat non disponible</p>
                         </div>
                       )}
                     </div>
@@ -389,7 +396,7 @@ const Certifications = () => {
                     <div className="mt-4 flex gap-3">
                       <button className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center">
                         <Download className="w-4 h-4 mr-2" />
-                        Download
+                        Télécharger
                       </button>
                       {selectedCertificate.certificateLink && selectedCertificate.certificateLink !== '#' && (
                         <a
@@ -399,7 +406,7 @@ const Certifications = () => {
                           className="flex-1 py-2.5 px-4 bg-gray-200 hover:bg-gray-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-800 dark:text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
-                          Verify Online
+                          Vérifier en ligne
                         </a>
                       )}
                     </div>
@@ -408,13 +415,14 @@ const Certifications = () => {
                   <div className="lg:w-1/2">
                     <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{selectedCertificate.title}</h4>
                     <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4 flex items-center">
+                      {selectedCertificate.icon && <selectedCertificate.icon className="w-4 h-4 mr-2" />} {/* Display icon for MOOCs in modal */}
                       <Building className="w-4 h-4 mr-2" />
                       {selectedCertificate.provider}
                     </p>
                     
                     <div className="space-y-3 mb-6">
                       <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Year</span>
+                        <span className="text-gray-500 dark:text-gray-400">Année</span>
                         <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.year}</span>
                       </div>
                       
@@ -431,7 +439,7 @@ const Certifications = () => {
                     
                     {selectedCertificate.qrCode && (
                       <div className="mt-6 p-4 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col items-center">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Scan to verify this certificate</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Scanner pour vérifier ce certificat</p>
                         <QRCodeSVG 
                           value={selectedCertificate.qrCode} 
                           size={140} 
@@ -445,25 +453,25 @@ const Certifications = () => {
               </div>
               
               {/* Navigation */}
-              {allCertificates.length > 1 && (
+              {allCertifications.length > 1 && (
                 <div className="flex justify-between items-center p-4 border-t border-gray-200 dark:border-slate-700">
                   <button
                     onClick={goToPreviousCertificate}
                     className="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 rounded-lg transition-colors duration-300"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
-                    Previous
+                    Précédent
                   </button>
                   
                   <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {certificateIndex + 1} of {allCertificates.length}
+                    {certificateIndex + 1} de {allCertifications.length}
                   </span>
                   
                   <button
                     onClick={goToNextCertificate}
                     className="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 rounded-lg transition-colors duration-300"
                   >
-                    Next
+                    Suivant
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </button>
                 </div>
@@ -471,77 +479,6 @@ const Certifications = () => {
             </div>
           </div>
         )}
-      </section>
-
-      <section id="formations" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className={`text-center mb-16 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center space-x-2">
-            <BookOpen className="w-6 h-6 text-blue-600" />
-            <span>Formations à distance / MOOC</span>
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-center mb-8">
-          Explorez mes certifications obtenues via des plateformes d'apprentissage en ligne de renom.
-          </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              {educationData.map((edu, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 relative"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h4 className="font-bold text-gray-900 text-lg mb-2 leading-tight">{edu.level}</h4>
-                      <div className="flex items-center text-blue-600 text-sm mb-2">
-                        <Building className="w-4 h-4 mr-1" />
-                        <span>{edu.institution}</span>
-                      </div>
-                    </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${
-                      edu.color === 'Education' ? 'bg-blue-500' :
-                      edu.color === 'Marketing' ? 'bg-green-500' :
-                      edu.color === 'Bureautique' ? 'bg-purple-500' :
-                      edu.color === 'Programmation' ? 'bg-orange-500' :
-                      edu.color === 'Management' ? 'bg-red-500' :
-                      edu.color === 'Langues' ? 'bg-yellow-500' :
-                      edu.color === 'Analyse' ? 'bg-blue-600' :
-                      edu.color === 'IA' ? 'bg-purple-600' :
-                      'bg-blue-500'
-                    }`}>
-                      {edu.color}
-                    </span>
-                  </div>
-
-                  <div className="text-sm text-gray-600 mb-4">
-                    {edu.description}
-                  </div>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-2 text-gray-500 text-sm">
-                      <Calendar className="w-4 h-4" />
-                      <span>{edu.year}</span>
-                    </div>
-                    <div className="flex items-center text-black font-bold">
-                      <Star className="w-4 h-4 mr-1 fill-yellow-500 text-yellow-500" />
-                      <span>{edu.grade}</span>
-                    </div>
-                  </div>
-                  
-                  <button 
-                    className="w-full py-3 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium text-sm transition-colors duration-300 flex items-center justify-center border"
-                  >
-                    <Eye className="w-4 h-4 mr-2" />
-                    Voir Certificat
-                  </button>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
       </section>
     </>
   );

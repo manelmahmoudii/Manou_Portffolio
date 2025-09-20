@@ -21,41 +21,40 @@ const Skills = () => {
   }, []);
 
   const technicalSkills = [
-    { name: 'Project Management', level: 95, icon: BarChart3, proficiency: 'Expert' },
-    { name: 'Electronics Engineering', level: 98, icon: Cpu, proficiency: 'Expert' },
-    { name: 'Python Programming', level: 85, icon: Code, proficiency: 'Advanced' },
-    { name: 'Database Management', level: 90, icon: Database, proficiency: 'Expert' },
-    { name: 'VBA & Excel Advanced', level: 92, icon: BarChart3, proficiency: 'Expert' },
-    { name: 'HTML/CSS/JavaScript', level: 80, icon: Globe, proficiency: 'Advanced' },
-    { name: 'AutoCAD & Design Tools', level: 88, icon: Cpu, proficiency: 'Expert' },
-    { name: 'Dashboard Development', level: 87, icon: BarChart3, proficiency: 'Advanced' },
-    { name: 'Data Analysis & Reporting', level: 90, icon: BarChart3, proficiency: 'Expert' },
-    { name: 'Process Modeling', level: 82, icon: GitBranch, proficiency: 'Advanced' },
-    { name: 'Decision Support Tools', level: 85, icon: Target, proficiency: 'Advanced' }
+    { name: 'Gestion de Projet', level: 95, icon: BarChart3, proficiency: 'Expert' },
+    { name: 'Ingénierie Électronique', level: 98, icon: Cpu, proficiency: 'Expert' },
+    { name: 'Programmation Python', level: 85, icon: Code, proficiency: 'Avancé' },
+    { name: 'Gestion de Bases de Données', level: 90, icon: Database, proficiency: 'Expert' },
+    { name: 'VBA & Excel Avancé', level: 92, icon: BarChart3, proficiency: 'Expert' },
+    { name: 'HTML/CSS/JavaScript', level: 80, icon: Globe, proficiency: 'Avancé' },
+    { name: 'AutoCAD & Outils de Conception', level: 88, icon: Cpu, proficiency: 'Expert' },
+    { name: 'Développement de Tableaux de Bord', level: 87, icon: BarChart3, proficiency: 'Avancé' },
+    { name: 'Analyse et Rapports de Données', level: 90, icon: BarChart3, proficiency: 'Expert' },
+    { name: 'Modélisation de Processus', level: 82, icon: GitBranch, proficiency: 'Avancé' },
+    { name: 'Outils d\'Aide à la Décision', level: 85, icon: Target, proficiency: 'Avancé' }
   ];
 
   const languages = [
-    { name: 'Arabic', level: 100, flag: 'tn', proficiency: 'Native' },
-    { name: 'French', level: 95, flag: 'fr', proficiency: 'Fluent' },
-    { name: 'English', level: 92, flag: 'us', proficiency: 'Fluent' },
-    { name: 'German', level: 70, flag: 'de', proficiency: 'Intermediate' },
-    { name: 'Russian', level: 65, flag: 'ru', proficiency: 'Intermediate' }
+    { name: 'Arabe', level: 100, flag: 'tn', proficiency: 'Langue maternelle' },
+    { name: 'Français', level: 95, flag: 'fr', proficiency: 'Courant' },
+    { name: 'Anglais', level: 92, flag: 'us', proficiency: 'Courant' },
+    { name: 'Russe', level: 65, flag: 'ru', proficiency: 'Intermédiaire' }
   ];
 
   const interests = [
-    { name: 'Chess Strategy', icon: Trophy },
-    { name: 'Mathematics', icon: BarChart3 },
+    { name: 'Stratégie d\'Échecs', icon: Trophy },
+    { name: 'Mathématiques', icon: BarChart3 },
     { name: 'Sports & Fitness', icon: Heart },
-    { name: 'Charity Work', icon: Heart },
-    { name: 'Online MOOCs', icon: BookOpen },
-    { name: 'Mind Mapping', icon: Brain }
+    { name: 'Œuvres Caritatives', icon: Heart },
+    { name: 'MOOCs en Ligne', icon: BookOpen },
+    { name: 'Cartographie Mentale', icon: Brain }
   ];
 
   const documentationSkills = [
-    { name: 'Multilingual Document Editing', icon: Edit3, description: 'Rédaction et correction de documents en plusieurs langues' },
-    { name: 'Synthetical Reporting', icon: FileText, description: 'Élaboration de rapports synthétiques et analytiques' },
-    { name: 'Statistical Analysis', icon: BarChart3, description: 'Analyse statistique avancée et interprétation des données' },
-    { name: 'Educational Systems', icon: Users, description: 'Connaissance des systèmes éducatifs et politiques publiques inclusives' }
+    { name: 'Rédaction Documentaire Multilingue', icon: Edit3, description: 'Rédaction et correction de documents en plusieurs langues' },
+    { name: 'Rapports Synthétiques', icon: FileText, description: 'Élaboration de rapports synthétiques et analytiques' },
+    { name: 'Analyse Statistique', icon: BarChart3, description: 'Analyse statistique avancée et interprétation des données' },
+    { name: 'Systèmes Éducatifs', icon: Users, description: 'Connaissance des systèmes éducatifs et politiques publiques inclusives' }
   ];
 
   // Interface pour typer l'objet toolIcons
@@ -140,22 +139,22 @@ const Skills = () => {
         <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-base font-medium uppercase tracking-wide">Technical Expertise</span>
+            <span className="text-blue-600 dark:text-blue-400 text-base font-medium uppercase tracking-wide">Expertise Technique</span>
           </div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
-              Skills & Expertise
+              Compétences & Expertise
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
             </span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Technical and leadership competencies</p>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Compétences techniques et de leadership</p>
         </div>
 
         {/* Technical Skills */}
         <div className={`mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <BarChart3 className="mr-3 h-7 w-7 text-blue-600" />
-            Technical Skills
+            Compétences Techniques
           </h3>
           <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
             {technicalSkills.map((skill, index) => (
@@ -197,7 +196,7 @@ const Skills = () => {
         <div className={`mb-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <Edit3 className="mr-3 h-7 w-7 text-blue-600" />
-            Documentation & Reporting Expertise
+            Expertise en Documentation & Rapports
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
             {documentationSkills.map((skill, index) => (
@@ -224,7 +223,7 @@ const Skills = () => {
         <div className={`mb-12 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <Languages className="mr-3 h-7 w-7 text-blue-600" />
-            Languages
+            Langues
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-5 max-w-5xl mx-auto">
             {languages.map((lang, index) => (
@@ -260,7 +259,7 @@ const Skills = () => {
         <div className={`mb-12 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <Cpu className="mr-3 h-7 w-7 text-blue-600" />
-            Professional Tools & Software
+            Outils & Logiciels Professionnels
           </h3>
           <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
             {certificationTools.map((tool, index) => (
@@ -282,7 +281,7 @@ const Skills = () => {
         <div className={`mb-12 transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <Heart className="mr-3 h-7 w-7 text-blue-600" />
-            Personal Interests & Hobbies
+            Intérêts Personnels & Loisirs
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
             {interests.map((interest, index) => (
@@ -312,7 +311,7 @@ const Skills = () => {
                 <BookOpen className="w-7 h-7 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Passion for Online MOOCs</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Passion pour les MOOCs en ligne</h3>
                 <p className="text-base text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
                   Engagement continu dans les cours en ligne pour le développement professionnel et l'acquisition de nouvelles compétences.
                 </p>

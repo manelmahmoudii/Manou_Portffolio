@@ -160,7 +160,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-20 sm:pt-32">
+    <section id="experience" className="py-16 bg-white dark:bg-gray-900 relative overflow-hidden pt-20 sm:pt-32">
       {/* Enhanced blue effects with animation */}
       
       

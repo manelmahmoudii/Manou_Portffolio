@@ -34,51 +34,51 @@ const Education = () => {
   const educationData: EducationItem[] = [
     {
       icon: GraduationCap,
-      level: 'Master in Electronic Machines and Computers',
-      institution: 'Kiev Institute of Civil Aviation Engineers',
+      level: 'Master en Machines Électroniques et Ordinateurs',
+      institution: 'Institut de l\'Aviation Civile de Kiev',
       year: '1984-1990',
-      description: 'Specialization in Electronic Machines and Computers (6 years including preparatory year)',
-      grade: 'Graduated June 25, 1990',
+      description: 'Spécialisation en Machines Électroniques et Ordinateurs (6 ans incluant l\'année préparatoire)',
+      grade: 'Diplômé le 25 juin 1990',
       color: 'from-purple-500 to-blue-600',
       flag: 'ru'
     },
     {
       icon: Award,
-      level: 'Baccalauréat in Math-Sciences',
+      level: 'Baccalauréat Mathématiques-Sciences',
       institution: 'Lycée 2 Mars 1934, La Goulette-Tunis',
       year: '1976-1983',
-      description: 'Mathematics and Sciences (7 years)',
-      grade: 'Session June 1983',
+      description: 'Mathématiques et Sciences (7 ans)',
+      grade: 'Session de Juin 1983',
       color: 'from-blue-500 to-cyan-500',
       flag: 'tn'
     },
     {
       icon: BookOpen,
-      level: 'Professional Training Certifications',
-      institution: 'Multiple International Institutions',
+      level: 'Certifications de Formation Professionnelle',
+      institution: 'Multiples Institutions Internationales',
       year: '1999-2022',
       description: 'CENAFFIF, AFPA France, British Council, ENA Tunis',
-      grade: 'Various Certifications',
+      grade: 'Diverses Certifications',
       color: 'from-cyan-500 to-teal-500',
     },
     {
       icon: Calendar,
-      level: '15+ MOOC Certifications',
+      level: '15+ Certifications MOOC',
       institution: 'UNESCO, Google, École Centrale Lille',
       year: '2015-2020',
-      description: 'Education Statistics, Project Management, Digital Marketing, HR Management',
-      grade: 'Excellent Grades (17-19/20)',
+      description: 'Statistiques Éducatives, Gestion de Projet, Marketing Digital, Gestion des Ressources Humaines',
+      grade: 'Excellentes Notes (17-19/20)',
       color: 'from-teal-500 to-green-500'
     }
   ];
 
   const additionalStudies = [
-    'Educational Audit Training - AFPA France (2006-2007) - 11 weeks certification',
-    'English Certification - British Council Tunis (2009) - Excellent 19/20',
-    'Pedagogical Coaching Certification (2015)',
-    'Public Policy Development - ENA Tunis (2022) - 7 months program',
-    'ISO-17024 Audit Standards - UTICA (2016) - 3 weeks with German auditor',
-    'Early Warning Systems Training (2022) - Government officials program'
+    'Formation en Audit Pédagogique - AFPA France (2006-2007) - Certification de 11 semaines',
+    'Certification d\'Anglais - British Council Tunis (2009) - Excellent 19/20',
+    'Certification de Coaching Pédagogique (2015)',
+    'Développement de Politiques Publiques - ENA Tunis (2022) - Programme de 7 mois',
+    'Normes d\'Audit ISO-17024 - UTICA (2016) - 3 semaines avec un auditeur allemand',
+    'Formation aux Systèmes d\'Alerte Précoce (2022) - Programme pour fonctionnaires'
   ];
 
   // Fonction pour obtenir le drapeau approprié - CORRIGÉ
@@ -121,15 +121,15 @@ const Education = () => {
         <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium uppercase tracking-wide">Academic Foundation</span>
+            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium uppercase tracking-wide">Fondation Académique</span>
           </div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
-              Education & Learning
+              Éducation & Apprentissage
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">Academic foundation and continuous learning journey spanning decades of professional development</p>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">Fondation académique et parcours d'apprentissage continu couvrant des décennies de développement professionnel</p>
         </div>
 
         {/* Enhanced Education Cards */}
@@ -187,7 +187,7 @@ const Education = () => {
               <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow">
                 <BookOpen className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Additional Professional Training</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Formation Professionnelle Additionnelle</h3>
             </div>
             
             <div className="grid md:grid-cols-2 gap-4">
