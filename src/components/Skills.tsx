@@ -66,7 +66,6 @@ const Skills = () => {
   const toolIcons: ToolIcons = {
     'MS Project': '/images/MS.jpg',
     'Primavera P6': '/images/primavera.png',
-    'MATLAB': '/images/Matlab_Logo.png',
     'LabVIEW': '/images/labview.svg',
     'Simulink': '/images/simulink.png',
     'Power BI': '/images/powerbi.png',

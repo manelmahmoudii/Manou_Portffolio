@@ -215,7 +215,7 @@ Directeur Général                </span>
 
               {/* Typing effect subtitle */}
               <div className={`text-xl text-slate-700 dark:text-slate-300 mb-8 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-  <span className="typing-text">Inspection & Audit éducatif</span>
+  <span >Inspection & Audit éducatif</span>
   <span className="typing-cursor">|</span>
 </div>
 
@@ -275,7 +275,7 @@ Directeur Général                </span>
                 {/* Profile image */}
                 <div className="relative">
                   <img
-                    src="/images/manou.jpg"
+                    src="/images/manouu.jpg"
                     alt="Mounir Mahmoudi"
                     className="w-80 h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl transform group-hover:scale-105 transition duration-700"
                   />
