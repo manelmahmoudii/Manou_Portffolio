@@ -185,7 +185,7 @@ const Header = () => {
         </div>
       </nav>
 
-      <section id="home" className="relative min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 overflow-hidden pt-20">
+      <section id="home" className="relative min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 overflow-hidden pt-28 ">
         {/* Simple Clean Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>

@@ -108,13 +108,19 @@ html {
 .typing-text {
   overflow: hidden;
   white-space: nowrap;
-  animation: typing 3s steps(40, end) 1s both;
+  border-right: 2px solid transparent; /* Added from user provided CSS */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite; /* Updated animation duration and added blink-caret */
 }
 
 .typing-cursor {
-  animation: blink 1s infinite;
+  animation: blink-caret 0.75s step-end infinite; /* Updated from user provided CSS */
   color: #60a5fa;
   font-weight: bold;
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Enhanced gradient text */
@@ -252,7 +258,7 @@ html {
 }
 
 /* Expert animations */
-@keyframes spin-slow {
+@keyframes spin-slow { /* Consolidated with user provided spin-slow */
   from {
     transform: rotate(0deg);
   }
@@ -262,129 +268,97 @@ html {
 }
 
 .animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+  animation: spin-slow 8s linear infinite; /* Updated animation duration from user provided */
 }
 
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
+/* Consolidated typing animations */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-@keyframes float-medium {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(90deg); }
-}
-
-@keyframes float-fast {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(270deg); }
-}
-
-.animate-grid-move {
-  animation: grid-move 20s linear infinite;
-}
-
-/* Expert gradient animation */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
 }
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
+  animation: gradient 3s ease infinite;
 }
 
-/* Professional header animations */
-@keyframes float-glow {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-  50% {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-  }
+@keyframes gradient {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
 }
 
-@keyframes text-shimmer {
-  0% {
-    background-position: -200% center;
+/* PWA specific mobile enhancements */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
-  100% {
-    background-position: 200% center;
-  }
-}
 
-@keyframes morph-blob {
-  0%, 100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    transform: rotate(0deg) scale(1);
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
   }
-  25% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-    transform: rotate(90deg) scale(1.1);
-  }
-  50% {
-    border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
-    transform: rotate(180deg) scale(0.9);
-  }
-  75% {
-    border-radius: 60% 40% 60% 30% / 70% 30% 60% 40%;
-    transform: rotate(270deg) scale(1.05);
-  }
-}
 
-@keyframes particle-dance {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) rotate(0deg);
-    opacity: 0.6;
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
   }
-  25% {
-    transform: translateY(-10px) translateX(5px) rotate(90deg);
-    opacity: 1;
+
+  /* Enhanced mobile menu animation */
+  .mobile-nav-item {
+    transform: translateX(-10px);
+    opacity: 0;
+    animation: slideInLeft 0.3s ease-out forwards;
   }
-  50% {
-    transform: translateY(-5px) translateX(-5px) rotate(180deg);
-    opacity: 0.8;
-  }
-  75% {
-    transform: translateY(-15px) translateX(3px) rotate(270deg);
-    opacity: 0.9;
+
+  .mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
+  .mobile-nav-item:nth-child(2) { animation-delay: 0.2s; }
+  .mobile-nav-item:nth-child(3) { animation-delay: 0.3s; }
+  .mobile-nav-item:nth-child(4) { animation-delay: 0.4s; }
+  .mobile-nav-item:nth-child(5) { animation-delay: 0.5s; }
+  .mobile-nav-item:nth-child(6) { animation-delay: 0.6s; }
+  .mobile-nav-item:nth-child(7) { animation-delay: 0.7s; }
+
+  @keyframes slideInLeft {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 }
 
-@keyframes professional-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2), 0 0 40px rgba(59, 130, 246, 0.1);
+/* Enhanced mobile scroll behavior */
+@media (max-width: 640px) {
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
-  50% {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+}
+
+/* PWA status bar adjustments */
+@media screen and (display-mode: standalone) {
+  nav {
+    padding-top: env(safe-area-inset-top);
   }
 }
 
-.animate-float-glow {
-  animation: float-glow 4s ease-in-out infinite;
+/* Improved focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
-.animate-text-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  background-size: 200% 100%;
-  animation: text-shimmer 2s infinite;
-}
-
-.animate-morph-blob {
-  animation: morph-blob 8s ease-in-out infinite;
-}
-
-.animate-particle-dance {
-  animation: particle-dance 6s ease-in-out infinite;
-}
-
-.animate-professional-glow {
-  animation: professional-glow 3s ease-in-out infinite;
+/* Dark mode improvements for OLED screens */
+@media (prefers-color-scheme: dark) {
+  .dark {
+    background-color: #000000;
+  }
 }
