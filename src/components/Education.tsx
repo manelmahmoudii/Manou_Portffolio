@@ -48,7 +48,6 @@ const Education = () => {
       images: [ // Placeholder for Master's degree images
         '/images/master_diploma_1.jfif',
         '/images/master_diploma_2.jpg',
-        '/images/master_diploma_3.jpg',
       ]
     },
     {
