@@ -151,7 +151,15 @@ const Header = () => {
 
             {/* Mobile Menu & Theme Toggle */}
             <div className="md:hidden flex items-center space-x-2">
-              
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleDarkMode}
+                className="text-gray-700 dark:text-gray-300 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+             
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-700 dark:text-gray-300 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
