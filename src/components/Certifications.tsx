@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, GraduationCap, BookOpen, LucideIcon, Code, Globe } from 'lucide-react';
+import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-import { useTranslation } from 'react-i18next';
 
 interface CertificationItem {
   title: string;
@@ -22,7 +21,6 @@ const Certifications = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState<CertificationItem | null>(null);
   const [certificateIndex, setCertificateIndex] = useState(0);
-  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,20 +38,71 @@ const Certifications = () => {
     return () => observer.disconnect();
   }, []);
 
+  const getTypeHexColor = (type: string) => {
+    switch (type) {
+      case 'Bureautique': return '#8b5cf6'; // purple-500
+      case 'Gestion de Projet': return '#f97316'; // orange-500
+      case 'Éducation': return '#3b82f6'; // blue-500
+      case 'Marketing': return '#10b981'; // green-500
+      case 'Management': return '#ec4899'; // pink-500
+      case 'Finance': return '#14b8a6'; // teal-500
+      case 'Programmation': return '#2563eb'; // blue-600
+      case 'Informatique': return '#16a34a'; // green-600
+      case 'Gouvernance': return '#8b5cf6'; // purple-600
+      case 'Santé': return '#ef4444'; // red-500
+      case 'Pédagogie': return '#6366f1'; // indigo-500
+      case 'Audit': return '#eab308'; // yellow-600
+      case 'Qualité': return '#dc2626'; // red-600
+      case 'International': return '#f97316'; // orange-600
+      case 'Langue': return '#06b6d4'; // cyan-600
+      case 'Coaching': return '#e879f9'; // fuchsia-600
+      case 'Formation Animée': return '#65a30d'; // lime-600
+      default: return '#6b7280'; // gray-500
+    }
+  };
+
   const certificationsData: CertificationItem[] = [
     {
-      title: 'Microsoft Office Specialist Associate (Excel, Word & PowerPoint)',
+      icon: Code,
+      title: 'Microsoft Office Specialist - Excel Associate',
       provider: 'Microsoft',
       year: '2025',
       score: 'N/A',
       type: 'Bureautique',
       color: 'purple',
       qrCode: 'https://www.microsoft.com/certifications',
-      image: '/images/Certificat_Microsoft.jpg',
+      image: '/images/excel.jpg',
       certificateLink: 'https://www.microsoft.com/certifications',
-      description: 'Maîtrise avancée de la suite Microsoft Office et outils de productivité, incluant Excel, Word et PowerPoint.'
+      description: 'Maîtrise avancée de Microsoft Excel.'
     },
     {
+      icon: Code,
+      title: 'Microsoft Office Specialist - Word Associate',
+      provider: 'Microsoft',
+      year: '2025',
+      score: 'N/A',
+      type: 'Bureautique',
+      color: 'purple',
+      qrCode: 'https://www.microsoft.com/certifications',
+      image: '/images/word.jpg',
+      certificateLink: 'https://www.microsoft.com/certifications',
+      description: 'Maîtrise avancée de Microsoft Word.'
+    },
+    {
+      icon: Code,
+      title: 'Microsoft Office Specialist - PowerPoint Associate',
+      provider: 'Microsoft',
+      year: '2025',
+      score: 'N/A',
+      type: 'Bureautique',
+      color: 'purple',
+      qrCode: 'https://www.microsoft.com/certifications',
+      image: '/images/powerpoint.jpg',
+      certificateLink: 'https://www.microsoft.com/certifications',
+      description: 'Maîtrise avancée de Microsoft PowerPoint.'
+    },
+    {
+      icon: Award,
       title: 'Certification en formation Agile Scrum / PMP',
       provider: 'Master of Project Academy',
       year: '2019',
@@ -219,7 +268,162 @@ const Certifications = () => {
     }
   ];
 
-  const allCertifications: CertificationItem[] = certificationsData;
+  const allCertifications: CertificationItem[] = certificationsData.concat([
+    {
+      icon: BookOpen,
+      title: 'Stage pédagogique (2 mois)',
+      provider: 'CENAFFIF',
+      year: '1999',
+      score: 'Certifié',
+      type: 'Pédagogie',
+      color: 'blue',
+      description: 'Stage pédagogique obligatoire pour les nouvelles recrues des formateurs, organisé par le CENAFFIF.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Audit dans la formation professionnelle',
+      provider: 'AFPA (France)',
+      year: '1999',
+      score: 'Certifié',
+      type: 'Audit',
+      color: 'green',
+      description: 'Formation d’une semaine assurée par un expert français de l’AFPA sur l’audit de la formation professionnelle.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Cycle d’ingénierie de formation',
+      provider: 'CENAFFIF',
+      year: '1999-2000',
+      score: 'Certifié',
+      type: 'Qualité',
+      color: 'orange',
+      description: 'Cycle d’un an sur la qualité, la gestion des centres de formation, les enquêtes statistiques et l’audit.',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'Mission qualité France',
+      provider: 'Ministère & partenaires français',
+      year: '2002',
+      score: 'Certifié',
+      type: 'Qualité',
+      color: 'red',
+      description: 'Mission en France sur l’implantation d’une démarche qualité dans la formation professionnelle.',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'Mission Audit France',
+      provider: 'Ministère & partenaires français',
+      year: '2007',
+      score: 'Certifié',
+      type: 'Audit',
+      color: 'purple',
+      description: 'Mission de 2 semaines en France sur l’appropriation des techniques d’audit appliquées à la formation professionnelle.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Cycle certifiant Audit de la formation professionnelle',
+      provider: 'AFPA (France)',
+      year: '2006-2007',
+      score: 'Certifié',
+      type: 'Audit',
+      color: 'yellow',
+      description: 'Cycle de 11 semaines, phases pratiques : familiarisation, diagnostic et mise en place d’une démarche qualité pour l’audit de formation.',
+      certificateLink: '#'
+    },
+    {
+      icon: Globe,
+      title: 'Perfectionnement en anglais',
+      provider: 'British Council, Tunis',
+      year: '2009',
+      score: '19/20',
+      type: 'Langue',
+      color: 'blue',
+      description: 'Cycle certifiant de 6 mois couronné par un certificat de langue (niveau intermédiaire, mention excellent).',
+      certificateLink: '#'
+    },
+    {
+      icon: Trophy,
+      title: 'Conférence BTLH & UK Skills Show',
+      provider: 'British Council, Birmingham',
+      year: '2015',
+      score: 'Participation officielle',
+      type: 'International',
+      color: 'indigo',
+      description: 'Mission officielle en Angleterre sur invitation du British Council pour la conférence Bringing The Learning Home et la foire UK Skills Show.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Coaching pédagogique',
+      provider: 'Formation nationale',
+      year: '2015',
+      score: 'Certifié',
+      type: 'Coaching',
+      color: 'pink',
+      description: 'Formation certifiante d’une semaine en coaching pédagogique.',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'Mise en place d’un système de certification ISO-17024',
+      provider: 'UTICA & expert allemand',
+      year: '2016',
+      score: 'Certifié',
+      type: 'Qualité',
+      color: 'teal',
+      description: 'Cycle d’ateliers de 3 semaines sur l’appropriation des exigences de la norme ISO-17024 appliquée à la formation professionnelle.',
+      certificateLink: '#'
+    },
+    {
+      icon: Globe,
+      title: 'Reconnaissance diplômes professionnels',
+      provider: 'Hambourg, Allemagne',
+      year: '2022',
+      score: 'Participation officielle',
+      type: 'International',
+      color: 'orange',
+      description: 'Mission officielle sur le système allemand de reconnaissance des diplômes de formation professionnelle.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Politiques publiques inclusives',
+      provider: 'ENA Tunis – Institut de Leadership',
+      year: '2022',
+      score: 'Certifié',
+      type: 'Gouvernance',
+      color: 'blue',
+      description: 'Session de formation certifiante (7 mois) pour hauts cadres, désigné rapporteur adjoint du comité de rédaction du rapport final.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Systèmes d’alerte précoce',
+      provider: 'ENA Tunis',
+      year: '2022',
+      score: 'Certifié',
+      type: 'Gouvernance',
+      color: 'red',
+      description: 'Formation certifiante au profit de hauts cadres tunisiens sur les outils de mise en place de systèmes d’alerte précoce.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Animation Pédagogique (Inspection & Audit Formation)',
+      provider: 'Ministère MFPE, Instituts Nationaux et Étrangers',
+      year: 'Diverses Années',
+      score: 'N/A',
+      type: 'Formation Animée',
+      color: 'indigo',
+      description: 'Animation de formations pour hauts cadres (tunisiens et étrangers) sur l\'inspection et l\'audit pédagogique, incluant la méthodologie d\'audit et l\'élaboration de logigrammes. Chaque session est suivie d\'un rapport d\'évaluation.',
+      certificateLink: '#'
+    }
+  ]);
 
   const openModal = (certificate: CertificationItem, index: number) => {
     setSelectedCertificate(certificate);
@@ -276,18 +480,7 @@ const Certifications = () => {
                 key={index}
                 className="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 style={{
-                  borderLeft: `6px solid ${
-                    cert.color === 'blue' ? '#3b82f6' :
-                    cert.color === 'green' ? '#10b981' :
-                    cert.color === 'purple' ? '#8b5cf6' :
-                    cert.color === 'yellow' ? '#facc15' :
-                    cert.color === 'orange' ? '#f97316' :
-                    cert.color === 'red' ? '#ef4444' :
-                    cert.color === 'pink' ? '#ec4899' :
-                    cert.color === 'indigo' ? '#6366f1' :
-                    cert.color === 'teal' ? '#14b8a6' :
-                    '#3b82f6'
-                  }`
+                  borderLeft: `3px solid ${getTypeHexColor(cert.type)}` // Finer, more sky blue, and translucent dynamic colors
                 }}
               >
                 {/* Circular element in top right */}
@@ -313,19 +506,7 @@ const Certifications = () => {
                       <span>{cert.provider}</span>
                     </div>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${
-                    cert.type === 'Bureautique' ? 'bg-purple-500' :
-                    cert.type === 'Gestion de Projet' ? 'bg-orange-500' :
-                    cert.type === 'Éducation' ? 'bg-blue-500' :
-                    cert.type === 'Marketing' ? 'bg-green-500' :
-                    cert.type === 'Management' ? 'bg-pink-500' :
-                    cert.type === 'Finance' ? 'bg-teal-500' :
-                    cert.type === 'Programmation' ? 'bg-blue-600' :
-                    cert.type === 'Informatique' ? 'bg-green-600' :
-                    cert.type === 'Gouvernance' ? 'bg-purple-600' :
-                    cert.type === 'Santé' ? 'bg-red-500' :
-                    '#3b82f6'
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium text-white`} style={{ backgroundColor: getTypeHexColor(cert.type) }}>
                     {cert.type}
                   </span>
                 </div>
@@ -374,15 +555,15 @@ const Certifications = () => {
               <div className="flex-1 overflow-auto p-6">
                 <div className="flex flex-col lg:flex-row gap-6">
                   <div className="lg:w-1/2 flex flex-col">
-                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center min-h-[300px]">
+                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center min-h-[350px]">
                       {selectedCertificate.image ? (
                         selectedCertificate.image.endsWith('.pdf') ? (
-                          <iframe src={selectedCertificate.image} className="w-full h-64 rounded-lg" title="Certificat PDF"></iframe>
+                          <iframe src={selectedCertificate.image} className="w-full h-72 rounded-lg" title="Certificat PDF"></iframe>
                         ) : (
                           <img 
                             src={selectedCertificate.image} 
                             alt={selectedCertificate.title} 
-                            className="max-w-full max-h-64 object-contain rounded-lg shadow-md" 
+                            className="max-w-full max-h-72 object-contain rounded-lg shadow-md" 
                           />
                         )
                       ) : (
@@ -394,10 +575,19 @@ const Certifications = () => {
                     </div>
                     
                     <div className="mt-4 flex gap-3">
-                      <button className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center">
-                        <Download className="w-4 h-4 mr-2" />
-                        Télécharger
-                      </button>
+                      {selectedCertificate.image || selectedCertificate.certificateLink ? (
+                        <a
+                          href={selectedCertificate.image && !selectedCertificate.image.endsWith('.pdf') ? selectedCertificate.image : selectedCertificate.certificateLink || '#'}
+                          download={selectedCertificate.image && !selectedCertificate.image.endsWith('.pdf') ? selectedCertificate.title + '.jpg' : undefined}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          Télécharger
+                        </a>
+                      ) : null}
+                      
                       {selectedCertificate.certificateLink && selectedCertificate.certificateLink !== '#' && (
                         <a
                           href={selectedCertificate.certificateLink}
