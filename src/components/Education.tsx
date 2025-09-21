@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GraduationCap, Award, BookOpen, Calendar, LucideIcon } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, Calendar, LucideIcon, Eye, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface EducationItem {
   icon: LucideIcon;
@@ -10,10 +10,14 @@ interface EducationItem {
   grade: string;
   color: string;
   flag?: string;
+  images?: string[]; // Added for multiple images
 }
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,7 +44,12 @@ const Education = () => {
       description: 'Spécialisation en Machines Électroniques et Ordinateurs (6 ans incluant l\'année préparatoire)',
       grade: 'Diplômé le 25 juin 1990',
       color: 'from-purple-500 to-blue-600',
-      flag: 'ru'
+      flag: 'ru',
+      images: [ // Placeholder for Master's degree images
+        '/images/master_diploma_1.jfif',
+        '/images/master_diploma_2.jpg',
+        '/images/master_diploma_3.jpg',
+      ]
     },
     {
       icon: Award,
@@ -107,6 +116,26 @@ const Education = () => {
       );
     }
     return null;
+  };
+
+  const openImageModal = (images: string[]) => {
+    setSelectedImages(images);
+    setCurrentImageIndex(0);
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
+    setSelectedImages([]);
+    setCurrentImageIndex(0);
+  };
+
+  const goToPreviousImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? selectedImages.length - 1 : prevIndex - 1));
+  };
+
+  const goToNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === selectedImages.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
@@ -176,6 +205,15 @@ const Education = () => {
                       {edu.year}
                     </span>
                   </div>
+                  {edu.images && edu.images.length > 0 && (
+                    <button
+                      onClick={() => openImageModal(edu.images || [])}
+                      className="absolute top-4 right-4 p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                      aria-label="View diploma images"
+                    >
+                      <Eye className="w-5 h-5" />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -213,6 +251,54 @@ const Education = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {isImageModalOpen && selectedImages.length > 0 && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 animate-fade-in">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-zoom-in flex flex-col">
+            <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-slate-700">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Images du Diplôme</h3>
+              <button
+                onClick={closeImageModal}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700"
+                aria-label="Close image modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-auto relative flex items-center justify-center p-4 h-full w-full">
+              <img
+                src={selectedImages[currentImageIndex]}
+                alt={`Diploma image ${currentImageIndex + 1}`}
+                className="max-w-full max-h-full object-contain rounded-lg lg:max-w-[45%] lg:max-h-[70%]"
+              />
+              {selectedImages.length > 1 && (
+                <>
+                  <button
+                    onClick={goToPreviousImage}
+                    className="absolute left-4 p-3 bg-white/70 dark:bg-slate-700/70 rounded-full shadow-md text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-slate-600 transition-colors duration-200"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={goToNextImage}
+                    className="absolute right-4 p-3 bg-white/70 dark:bg-slate-700/70 rounded-full shadow-md text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-slate-600 transition-colors duration-200"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+            </div>
+            {selectedImages.length > 1 && (
+              <div className="p-4 border-t border-gray-200 dark:border-slate-700 text-center text-sm text-gray-600 dark:text-gray-300">
+                {currentImageIndex + 1} / {selectedImages.length}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

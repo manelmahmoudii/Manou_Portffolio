@@ -16,7 +16,7 @@ const translations = {
     // Header
     'header.greeting': 'Salut, je suis Mounir Mahmoudi',
     'header.title': 'Directeur Général d\'Ingénierie',
-    'header.subtitle': 'Inspection & Audit Éducatif',
+    'header.subtitle': 'Inspection & Audit Pédagogique',
     'header.viewWork': 'Voir Mon Travail',
     'header.downloadCV': 'Télécharger CV',
     'header.scrollExplore': 'Défiler pour explorer',

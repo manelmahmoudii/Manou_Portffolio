@@ -48,7 +48,6 @@ const Certifications = () => {
       case 'Marketing': return '#10b981'; // green-500
       case 'Management': return '#ec4899'; // pink-500
       case 'Finance': return '#14b8a6'; // teal-500
-      case 'Programmation': return '#2563eb'; // blue-600
       case 'Informatique': return '#16a34a'; // green-600
       case 'Gouvernance': return '#8b5cf6'; // purple-600
       case 'Santé': return '#ef4444'; // red-500
@@ -144,6 +143,8 @@ const Certifications = () => {
       score: '19.5/20',
       type: 'Éducation',
       color: 'purple',
+      image: '/images/Les_Évaluations_des_Apprentissages.jpg',
+
       description: 'MOOC certifiant en français, note finale : 19.5/20',
       certificateLink: '#'
     },
@@ -220,7 +221,7 @@ const Certifications = () => {
       provider: 'Code.org',
       year: '2019',
       score: 'Certifié',
-      type: 'Programmation',
+      type: 'Informatique',
       color: 'blue',
       description: 'Certificats de réussite pour des heures de codage démontrant une compréhension des concepts fondamentaux de l\'informatique',
       certificateLink: 'www.code.org'
@@ -233,7 +234,7 @@ const Certifications = () => {
       score: 'Certifié',
       type: 'Informatique',
       color: 'green',
-      image: '/images/trello.png',
+      image: '/images/appdesign.jpg',
       description: 'Certificat d\'accomplissement pour avoir terminé l\'unité en ligne de Devslopes sur Sketch Tutorial pour les débutants.',
       certificateLink: '#'
     },
@@ -250,6 +251,18 @@ const Certifications = () => {
       certificateLink: '#'
     },
     {
+      icon: Code,
+      title: 'Apprendre à coder avec Python',
+      provider: 'Université Libre de Bruxelles (ULB)',
+      year: '2019',
+      score: '100%',
+      type: 'Informatique',
+      color: 'blue',
+      image: '/images/python.jpg',
+      description: 'MOOC sur la plateforme FUN pour apprendre à coder avec Python.',
+      certificateLink: '#'
+    },
+    {
       icon: BookOpen,
       title: 'Gouvernance Territoriale',
       provider: 'CNFPT via FUN-MOOC',
@@ -257,6 +270,8 @@ const Certifications = () => {
       score: '100%',
       type: 'Gouvernance',
       color: 'purple',
+      image: '/images/cnfpt2019.jpg',
+
       description: 'Certificat de suivi avec succès (100%) du MOOC sur la gouvernance territoriale',
       certificateLink: 'https://www.fun-mooc.fr/'
     },
