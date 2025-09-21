@@ -541,7 +541,7 @@ const Certifications = () => {
         {/* Certificate Modal */}
         {isModalOpen && selectedCertificate && (
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 animate-fade-in">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-zoom-in flex flex-col">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-zoom-in flex flex-col">
               <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-slate-700">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Détails du Certificat</h3>
                 <button
@@ -554,16 +554,16 @@ const Certifications = () => {
               
               <div className="flex-1 overflow-auto p-6">
                 <div className="flex flex-col lg:flex-row gap-6">
-                  <div className="lg:w-1/2 flex flex-col">
-                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center min-h-[350px]">
+                  <div className="lg:w-2/3 flex flex-col">
+                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center min-h-[600px]">
                       {selectedCertificate.image ? (
                         selectedCertificate.image.endsWith('.pdf') ? (
-                          <iframe src={selectedCertificate.image} className="w-full h-72 rounded-lg" title="Certificat PDF"></iframe>
+                          <iframe src={selectedCertificate.image} className="w-full h-full rounded-lg" title="Certificat PDF"></iframe>
                         ) : (
                           <img 
                             src={selectedCertificate.image} 
                             alt={selectedCertificate.title} 
-                            className="max-w-full max-h-72 object-contain rounded-lg shadow-md" 
+                            className="max-w-full max-h-full object-contain rounded-lg shadow-md" 
                           />
                         )
                       ) : (
@@ -583,7 +583,7 @@ const Certifications = () => {
                           rel="noopener noreferrer"
                           className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
                         >
-                          <Download className="w-4 h-4 mr-2" />
+                        <Download className="w-4 h-4 mr-2" />
                           Télécharger
                         </a>
                       ) : null}
@@ -602,7 +602,7 @@ const Certifications = () => {
                     </div>
                   </div>
                   
-                  <div className="lg:w-1/2">
+                  <div className="lg:w-1/3">
                     <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{selectedCertificate.title}</h4>
                     <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4 flex items-center">
                       {selectedCertificate.icon && <selectedCertificate.icon className="w-4 h-4 mr-2" />} {/* Display icon for MOOCs in modal */}

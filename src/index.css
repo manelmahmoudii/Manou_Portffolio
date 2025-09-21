@@ -4,7 +4,7 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -12,12 +12,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #64748b, #3b82f6);
+  background: linear-gradient(to bottom, #8b5cf6, #3b82f6); /* Violet to Blue */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #475569, #2563eb);
+  background: linear-gradient(to bottom, #6b21a8, #1e40af); /* Darker Violet to Darker Blue */
 }
 
 /* Smooth scrolling */
@@ -220,6 +220,22 @@ html {
 
 .mobile-nav-item:hover::after {
   width: 100%;
+}
+
+.nav-item.active-underline span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Adjust as needed for spacing from text */
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6); /* Violet to Blue */
+  transition: width 0.3s ease-in-out;
+}
+
+.mobile-nav-item.active-underline::after {
+  width: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6); /* Violet to Blue */
 }
 
 /* Smooth scroll behavior */

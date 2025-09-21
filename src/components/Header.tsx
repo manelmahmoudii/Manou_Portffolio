@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapPin, Phone, Mail, Menu, X, Sun, Moon, Download, Sparkles, Zap, Linkedin, Trophy } from 'lucide-react';
+import { Sun, Moon, Download, Sparkles, Linkedin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
@@ -8,8 +8,8 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeSection, setActiveSection] = useState('home'); // New state for active section
 
   useEffect(() => {
     setIsVisible(true);
@@ -23,7 +23,35 @@ const Header = () => {
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        { id: 'home', offset: 0 },
+        { id: 'personal-info', offset: 0 }, // Added personal-info section
+        { id: 'experience', offset: 0 },
+        { id: 'education', offset: 0 },
+        { id: 'skills', offset: 0 },
+        { id: 'certifications', offset: 0 },
+      ];
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Adjusted condition to trigger section change slightly before section reaches top
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -46,6 +74,7 @@ const Header = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+      setActiveSection(sectionId); // Set active section
     }
   };
 
@@ -71,30 +100,25 @@ const Header = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-1 bg-gray-50/80 dark:bg-gray-800/80 rounded-2xl p-2 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-              <button onClick={() => scrollToSection('home')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">{t('nav.home')}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+              <button onClick={() => scrollToSection('home')} className={`nav-item text-gray-600 dark:text-gray-300 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:shadow-lg transform hover:scale-105 focus-visible:outline-none ${activeSection === 'home' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                <span className="relative z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 group-hover:after:w-full">{t('nav.home')}</span>
+                
               </button>
-              <button onClick={() => scrollToSection('experience')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">{t('nav.experience')}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+              <button onClick={() => scrollToSection('experience')} className={`nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:shadow-lg transform hover:scale-105 focus-visible:outline-none ${activeSection === 'experience' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                <span className="relative z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 group-hover:after:w-full">{t('nav.experience')}</span>
+                
               </button>
-              <button onClick={() => scrollToSection('education')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">{t('nav.education')}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+              <button onClick={() => scrollToSection('education')} className={`nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:shadow-lg transform hover:scale-105 focus-visible:outline-none ${activeSection === 'education' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                <span className="relative z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 group-hover:after:w-full">{t('nav.education')}</span>
+                
               </button>
-              <button onClick={() => scrollToSection('skills')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">{t('nav.skills')}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+              <button onClick={() => scrollToSection('skills')} className={`nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:shadow-lg transform hover:scale-105 focus-visible:outline-none ${activeSection === 'skills' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                <span className="relative z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 group-hover:after:w-full">{t('nav.skills')}</span>
+                
               </button>
-              <button onClick={() => scrollToSection('certifications')} className="nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transform hover:scale-105">
-                <span className="relative z-10">{t('nav.certifications')}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+              <button onClick={() => scrollToSection('certifications')} className={`nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-500 font-medium relative group px-4 py-2 rounded-xl hover:shadow-lg transform hover:scale-105 focus-visible:outline-none ${activeSection === 'certifications' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                <span className="relative z-10 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 group-hover:after:w-full">{t('nav.certifications')}</span>
+                
               </button>
             </div>
 
@@ -107,7 +131,7 @@ const Header = () => {
                 href="https://www.linkedin.com/in/mounir-mahmoudi-6b992119" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-110 rounded-lg focus-visible:outline-none"
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin className="w-5 h-5" />
@@ -121,7 +145,7 @@ const Header = () => {
               {/* Theme Toggle Button */}
               <button
                 onClick={toggleDarkMode}
-                className="text-gray-700 dark:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-300 transform hover:scale-110"
+                className="text-gray-700 dark:text-gray-300 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
                 aria-label="Toggle dark mode"
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -129,13 +153,12 @@ const Header = () => {
              
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 dark:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-300 transform hover:scale-110"
+                className="text-gray-700 dark:text-gray-300 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
               >
                 <div className="relative w-6 h-6">
                   <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : 'translate-y-1'}`}></span>
                   <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'translate-y-2.5'}`}></span>
-                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 translate-y-2.5' : 'translate-y-4'}`}></span>
-                </div>
+                  <span className={`absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-300 transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 translate-y-2.5' : 'translate-y-4'}`}></span>                </div>
               </button>
             </div>
           </div>
@@ -144,28 +167,28 @@ const Header = () => {
           <div className={`md:hidden absolute left-0 right-0 bg-white dark:bg-gray-900 transition-all duration-500 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-screen opacity-100 border-t border-gray-200 dark:border-gray-700' : 'max-h-0 opacity-0'}`}>
             <div className="py-4 overflow-y-auto">
               <div className="flex flex-col space-y-2">
-                <button onClick={() => scrollToSection('home')} className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
-                  <span className="font-medium">Home</span>
+                <button onClick={() => scrollToSection('home')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'home' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">Home</span>
                   <div className="text-xs text-gray-400 mt-1">Welcome & Introduction</div>
                 </button>
-                <button onClick={() => scrollToSection('personal-info')} className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
-                  <span className="font-medium">About</span>
+                <button onClick={() => scrollToSection('personal-info')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'personal-info' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">About</span>
                   <div className="text-xs text-gray-400 mt-1">Personal Information</div>
                 </button>
-                <button onClick={() => scrollToSection('experience')} className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
-                  <span className="font-medium">Experience</span>
+                <button onClick={() => scrollToSection('experience')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'experience' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">Experience</span>
                   <div className="text-xs text-gray-400 mt-1">Professional Journey</div>
                 </button>
-                <button onClick={() => scrollToSection('education')} className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
-                  <span className="font-medium">Education</span>
+                <button onClick={() => scrollToSection('education')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'education' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">Education</span>
                   <div className="text-xs text-gray-400 mt-1">Academic Background</div>
                 </button>
-                <button onClick={() => scrollToSection('skills')} className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
-                  <span className="font-medium">Skills</span>
+                <button onClick={() => scrollToSection('skills')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'skills' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">Skills</span>
                   <div className="text-xs text-gray-400 mt-1">Technical Expertise</div>
                 </button>
-                <button onClick={() => scrollToSection('certifications')} className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2">
-                  <span className="font-medium">Certifications</span>
+                <button onClick={() => scrollToSection('certifications')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'certifications' ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''}`}>
+                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">Certifications</span>
                   <div className="text-xs text-gray-400 mt-1">Professional Development</div>
                 </button>
                 
@@ -174,7 +197,7 @@ const Header = () => {
                   href="https://www.linkedin.com/in/mounir-mahmoudi-6b992119" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 flex items-center space-x-2"
+                  className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 flex items-center space-x-2 focus-visible:outline-none"
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="font-medium">LinkedIn Profile</span>
