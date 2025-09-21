@@ -36,12 +36,12 @@ const Projects = () => {
       category: 'Automatisation',
       description: 'Conception et mise en œuvre de systèmes GTB/GTC pour l\'optimisation énergétique des bâtiments.',
       details: [
-        "Réduction significative de la consommation énergétique par l'automatisation.",
+        "Réduction significative de la consommation énergétique par l\'automatisation.",
         'Développement de programmes informatiques de commande et de régulation.',
         'Formation et assistance technique des équipes d\'exploitation.'
       ],
       icon: Settings,
-      color: 'from-blue-500 to-blue-700'
+      color: 'from-blue-600 to-indigo-600'
     },
     {
       title: 'Rédaction de Cahiers de Charges Fonctionnels et Techniques',
@@ -53,7 +53,7 @@ const Projects = () => {
         'Standardisation des documents pour des projets nationaux et inter-ministériels.'
       ],
       icon: FileText,
-      color: 'from-green-500 to-green-700'
+      color: 'from-emerald-600 to-green-600'
     },
     {
       title: 'Conception et Optimisation de Bases de Données',
@@ -65,7 +65,7 @@ const Projects = () => {
         'Sécurisation et maintenance des systèmes de bases de données.'
       ],
       icon: Database,
-      color: 'from-purple-500 to-purple-700'
+      color: 'from-purple-600 to-fuchsia-600'
     },
     {
       title: 'Développement de Tableaux de Bord Interactifs (Dashboards)',
@@ -77,7 +77,7 @@ const Projects = () => {
         'Formation des utilisateurs à l\'exploitation des tableaux de bord.'
       ],
       icon: BarChart,
-      color: 'from-yellow-500 to-yellow-700'
+      color: 'from-yellow-600 to-orange-600'
     },
     {
       title: 'Études et Audits Nationaux et Sectoriels',
@@ -89,7 +89,7 @@ const Projects = () => {
         'Publication de rapports d\'audit et de faisabilité.'
       ],
       icon: TrendingUp,
-      color: 'from-red-500 to-red-700'
+      color: 'from-red-600 to-rose-600'
     },
     {
       title: 'Projets Inter-Ministériels et Coopération Internationale',
@@ -101,7 +101,7 @@ const Projects = () => {
         'Représentation auprès des instances nationales et internationales.'
       ],
       icon: Layers,
-      color: 'from-indigo-500 to-indigo-700'
+      color: 'from-cyan-600 to-blue-600'
     },
     {
       title: 'Élaboration de Business Plans et Stratégies Opérationnelles',
@@ -113,7 +113,7 @@ const Projects = () => {
         'Mise en place de plans d\'action et d\'indicateurs de performance.'
       ],
       icon: Lightbulb,
-      color: 'from-pink-500 to-pink-700'
+      color: 'from-pink-600 to-rose-600'
     },
   ];
 

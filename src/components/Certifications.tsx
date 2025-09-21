@@ -43,7 +43,7 @@ const Certifications = () => {
   const getTypeHexColor = (type: string) => {
     switch (type) {
       case 'Bureautique': return '#8b5cf6'; // purple-500
-      case 'Gestion de Projet': return '#f97316'; // orange-500
+      case 'Gestion de Projet': return 'rgb(65, 163, 193)'; // orange-500
       case 'Éducation': return '#3b82f6'; // blue-500
       case 'Marketing': return '#10b981'; // green-500
       case 'Management': return '#ec4899'; // pink-500
@@ -109,7 +109,7 @@ const Certifications = () => {
       year: '2019',
       score: 'N/A',
       type: 'Gestion de Projet',
-      color: 'orange',
+      color: 'blue',
       certificateLink: 'https://masterofproject.com/',
       description: 'Formation et certification en méthodes Agiles Scrum et PMP.'
     },
@@ -166,7 +166,7 @@ const Certifications = () => {
       year: '2016',
       score: '87/100',
       type: 'Gestion de Projet',
-      color: 'orange',
+      color: 'blue',
       description: 'MOOC certifiant, 4 modules classiques et 2 de spécialisation validés. Note finale: 87/100',
       certificateLink: 'https://www.unow-mooc.org/'
     },
@@ -177,7 +177,7 @@ const Certifications = () => {
       year: '2017',
       score: '92/100',
       type: 'Gestion de Projet',
-      color: 'red',
+      color: 'blue',
       description: 'MOOC en gestion de projets, note finale : 92/100',
       certificateLink: 'https://www.unow-mooc.org/'
     },
@@ -282,7 +282,7 @@ const Certifications = () => {
       year: '2018-2025',
       score: 'Certifié',
       type: 'Gestion de Projet',
-      color: 'orange',
+      color: 'blue',
       description: 'Certificats de participation à divers webinaires sur des thèmes de gestion de projet (PMXPO) et UNESCO',
       certificateLink: '#'
     },
@@ -374,6 +374,8 @@ const Certifications = () => {
       score: '19/20',
       type: 'Langue',
       color: 'blue',
+      image: '/images/britchcouncil.jfif',
+
       description: 'Cycle certifiant de 6 mois couronné par un certificat de langue (niveau intermédiaire, mention excellent).',
       certificateLink: '#'
     },
@@ -454,6 +456,90 @@ const Certifications = () => {
       type: 'Formation Animée',
       color: 'indigo',
       description: 'Animation de formations pour hauts cadres (tunisiens et étrangers) sur l\'inspection et l\'audit pédagogique, incluant la méthodologie d\'audit et l\'élaboration de logigrammes. Chaque session est suivie d\'un rapport d\'évaluation.',
+      certificateLink: '#'
+    },
+    {
+      icon: Globe,
+      title: 'Test de niveau d\'anglais',
+      provider: 'Gymglish',
+      year: '2018',
+      score: '4.0 (~B2-C1)',
+      type: 'Langue',
+      color: 'cyan',
+      image: '/images/gymglish.jpg',
+      description: 'Évaluation détaillée du niveau d\'anglais et résumé pédagogique, couvrant les concepts maîtrisés en vocabulaire, communication et grammaire, ainsi que les points à réviser.',
+      certificateLink: '#'
+    },
+    {
+      icon: Globe,
+      title: 'Test de niveau de français',
+      provider: 'Frantastique',
+      year: '2018',
+      score: '4.4',
+      type: 'Langue',
+      color: 'blue',
+      image: '/images/frantastique.jpg',
+      description: 'Évaluation détaillée du niveau de français et bilan pédagogique, couvrant les compétences maîtrisées en syntaxe, grammaire et orthographe, ainsi que les points à acquérir ou à réviser.',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'PMXPO 2018: The Simpsons - Innovation',
+      provider: 'Project Management Institute',
+      year: '2018',
+      score: 'Certificat de présence',
+      type: 'Gestion de Projet',
+      color: 'blue',
+      image: '/images/pmxpo2018.jpg',
+      description: 'Certificat de présence pour la participation aux remarques d\'ouverture et à la conférence principale de PMXPO 2018: The Simpsons: There’s no ’I’ in ’Innovation’ (oh wait, there’s ).',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'PMXPO 2018: Imagining the Future of PMOs',
+      provider: 'Project Management Institute',
+      year: '2018',
+      score: 'Certificat de présence',
+      type: 'Gestion de Projet',
+      color: 'blue',
+      image: '/images/pmxpo2018_session1.jpg',
+      description: 'Certificat de présence pour la participation à la session 1 de PMXPO 2018: Imagining the Future of PMOs.',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'PMXPO 2018: Creative Thinking & Stakeholders',
+      provider: 'Project Management Institute',
+      year: '2018',
+      score: 'Certificat de présence',
+      type: 'Gestion de Projet',
+      color: 'blue',
+      image: '/images/pmxpo2018_session2.jpg',
+      description: 'Certificat de présence pour la participation à la session 2 de PMXPO 2018: Creative Thinking: Engaging Your Stakeholders, Improving Your R.',
+      certificateLink: '#'
+    },
+    {
+      icon: Award,
+      title: 'PMXPO 2018: Pulse of the Profession',
+      provider: 'Project Management Institute',
+      year: '2018',
+      score: 'Certificat de présence',
+      type: 'Gestion de Projet',
+      color: 'blue',
+      image: '/images/pmxpo2018_session3.jpg',
+      description: 'Certificat de présence pour la participation à la session 3 de PMXPO 2018: 2018 Pulse of the Profession.',
+      certificateLink: '#'
+    },
+    {
+      icon: BookOpen,
+      title: 'Gestion des Risques (Cours Court)',
+      provider: 'Fournisseur de Cours en Ligne',
+      year: '2018',
+      score: 'Inscription Confirmée',
+      type: 'Management',
+      color: 'pink',
+      image: '/images/risk_management.jpg',
+      description: 'Confirmation d\'inscription au cours en ligne de gestion des risques, avec évaluation par des travaux écrits et projets.',
       certificateLink: '#'
     }
   ]);
