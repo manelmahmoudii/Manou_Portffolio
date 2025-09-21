@@ -150,11 +150,40 @@ const Experience = () => {
 
   // Function to highlight specific words in green
   const highlightKeywords = (text: String) => {
-    const keywords = ['Educational Audit', 'Ministry Leadership', 'Policy Development', 'International Training'];
+    const keywords = [
+      'Gestion de la Direction Générale de l\'Inspection et de l\'Audit Pédagogique',
+      'Encadrement du réseau des inspecteurs-auditeurs à travers la Tunisie',
+      'Formation des cadres nationaux et internationaux en audit de la formation professionnelle',
+      'Membre du conseil d\'administration du RNE (Registre National des Entreprises) depuis 2019',
+      'Nommé par décision ministérielle "Responsable du programme de la formation professionnelle"',
+      'Chef de la commission d\'audit interne des services centraux du ministère MFPE (depuis Mai 2018)',
+      'Promu au grade d\'Inspecteur pédagogique général (2019)',
+      'Réalisation d\'inspections pédagogiques et d\'évaluations des établissements de formation',
+      'Début de carrière au ministère de la Formation Professionnelle et de l\'Emploi',
+      'Evolution progressive vers des postes à responsabilités',
+      'Participation à des projets de réforme de la formation professionnelle',
+      'Contributions au développement des programmes de formation',
+      'Gestion Technique du Bâtiment (GTB/GTC) avec matériel électronique de la société française Energie-Système',
+      'Réduction de la consommation énergétique des bâtiments',
+      'Conception de programmes informatiques de commande et régulation',
+      'Formation et assistance du personnel client',
+      'Enseignement des travaux pratiques d\'Instrumentation et Mesures',
+      'Encadrement des étudiants de 1ère et 2ème années',
+      'Autorisation du Ministre de la formation professionnelle et de l\'emploi',
+      'Gestion Technique Centralisée (GTC) pour contrôle et commande d\'équipements de bâtiment',
+      'Utilisation de matériel Staefa Control System (Suisse)',
+      'Réalisation et chiffrage des armoires électriques selon les normes',
+      'Maintenance d\'installations électromécaniques de traitement de surfaces sous-vide',
+      'Interprétariat de réunions et traduction de documents scientifiques russes vers le français',
+      'Stage d\'initiation à la vie professionnelle',
+      'Maintenance de photocopieurs SELEX',
+      'Stage pratique de 10 jours avec un inspecteur technique de SELEX-France',
+      'Stage d\'initiation à la vie professionnelle'
+    ];
     return text.split(' ').map((word, i) => {
       const cleanWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
       return keywords.includes(cleanWord) ? 
-        <span key={i} className="text-green-600 font-semibold">{word} </span> : 
+        <span key={i} className="text-green-600 dark:text-green-400 font-semibold">{word} </span> : 
         <span key={i}>{word} </span>;
     });
   };
@@ -288,9 +317,9 @@ const Experience = () => {
                 <Target className="w-8 h-8 text-white" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-black text-blue-700 mb-2 group-hover:scale-110 transition-transform duration-300">30+</div>
-                <div className="text-blue-600 font-semibold text-sm">Années d'expérience</div>
-                <div className="text-blue-500 text-xs mt-1">Depuis 1993</div>
+                <div className="text-4xl font-black text-blue-700 dark:text-blue-300 mb-2 group-hover:scale-110 transition-transform duration-300">30+</div>
+                <div className="text-blue-600 dark:text-blue-400 font-semibold text-sm">Années d'expérience</div>
+                <div className="text-blue-500 dark:text-blue-500 text-xs mt-1">Depuis 1993</div>
               </div>
             </div>
 
@@ -300,9 +329,9 @@ const Experience = () => {
                 <Users className="w-8 h-8 text-white" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-black text-green-700 mb-2 group-hover:scale-110 transition-transform duration-300">100+</div>
-                <div className="text-green-600 font-semibold text-sm">Formations dispensées</div>
-                <div className="text-green-500 text-xs mt-1">Nationales & Internationales</div>
+                <div className="text-4xl font-black text-green-700 dark:text-green-300 mb-2 group-hover:scale-110 transition-transform duration-300">100+</div>
+                <div className="text-green-600 dark:text-green-400 font-semibold text-sm">Formations dispensées</div>
+                <div className="text-green-500 dark:text-green-500 text-xs mt-1">Nationales & Internationales</div>
               </div>
             </div>
 
@@ -312,9 +341,9 @@ const Experience = () => {
                 <BookOpen className="w-8 h-8 text-white" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-black text-purple-700 mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
-                <div className="text-purple-600 font-semibold text-sm">Certifications MOOC</div>
-                <div className="text-purple-500 text-xs mt-1">UNESCO, Google & Plus</div>
+                <div className="text-4xl font-black text-purple-700 dark:text-purple-300 mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
+                <div className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Certifications MOOC</div>
+                <div className="text-purple-500 dark:text-purple-500 text-xs mt-1">UNESCO, Google & Plus</div>
               </div>
             </div>
 
@@ -324,9 +353,9 @@ const Experience = () => {
                 <Trophy className="w-8 h-8 text-white" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-black text-orange-700 mb-2 group-hover:scale-110 transition-transform duration-300">5+</div>
-                <div className="text-orange-600 font-semibold text-sm">Postes de direction</div>
-                <div className="text-orange-500 text-xs mt-1">Directeur Général & Plus</div>
+                <div className="text-4xl font-black text-orange-700 dark:text-orange-300 mb-2 group-hover:scale-110 transition-transform duration-300">5+</div>
+                <div className="text-orange-600 dark:text-orange-400 font-semibold text-sm">Postes de direction</div>
+                <div className="text-orange-500 dark:text-orange-500 text-xs mt-1">Directeur Général & Plus</div>
               </div>
             </div>
           </div>

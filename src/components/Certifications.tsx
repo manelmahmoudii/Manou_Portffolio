@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe, Search } from 'lucide-react';
 
 interface CertificationItem {
@@ -22,6 +22,8 @@ const Certifications = () => {
   const [certificateIndex, setCertificateIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isYearFilterOpen, setIsYearFilterOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -478,6 +480,11 @@ const Certifications = () => {
     setSelectedCertificate(filteredCertifications[prevIndex]);
   };
 
+  const clearFilters = useCallback(() => {
+    setSearchQuery('');
+    setSelectedYear('');
+  }, []);
+
 
   return (
     <>
@@ -518,22 +525,44 @@ const Certifications = () => {
               />
             </div>
             <div className="relative flex-1">
-              <select
-                className="w-full p-3 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm hover:border-blue-400"
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-              >
-                <option value="">Toutes les années</option>
-                {uniqueYears.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
-                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-              </div>
-            </div>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setIsYearFilterOpen(!isYearFilterOpen)}
+                            className="w-full p-3 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-left appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm hover:border-blue-400 flex items-center justify-between"
+                          >
+                            <span>{selectedYear || 'Toutes les années'}</span>
+                            <svg className={`fill-current h-4 w-4 transform transition-transform ${isYearFilterOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                          </button>
+
+                          {isYearFilterOpen && (
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg max-h-60 overflow-y-auto animate-fade-in-up">
+                              <button
+                                key="all-years"
+                                onClick={() => {
+                                  setSelectedYear('');
+                                  setIsYearFilterOpen(false);
+                                }}
+                                className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                              >
+                                Toutes les années
+                              </button>
+                              {uniqueYears.map((year) => (
+                                <button
+                                  key={year}
+                                  onClick={() => {
+                                    setSelectedYear(year);
+                                    setIsYearFilterOpen(false);
+                                  }}
+                                  className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                                >
+                                  {year}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
           </div>
 
           <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>

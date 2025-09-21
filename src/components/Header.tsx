@@ -91,7 +91,7 @@ const Header = () => {
 
               <div className="transform group-hover:translate-x-1 group-hover:scale-105 transition-all duration-500 ease-out relative z-10">
                 <span className="text-gray-800 dark:text-white font-bold text-xl bg-gradient-to-r from-gray-800 dark:from-white to-blue-600 bg-clip-text text-transparent animate-gradient">Mounir Mahmoudi</span>
-                <div className="text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Directeur Général </div>
+                <div className="text-xs text-gray-500 dark:text-white font-medium group-hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Directeur Général </div>
               </div>
 
               {/* Sparkle effect */}
@@ -126,6 +126,15 @@ const Header = () => {
             <div className="hidden lg:flex items-center space-x-3">
               <LanguageSelector />
               
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-110 rounded-lg focus-visible:outline-none"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+              
               {/* LinkedIn Icon */}
               <a 
                 href="https://www.linkedin.com/in/mounir-mahmoudi-6b992119" 
@@ -142,15 +151,7 @@ const Header = () => {
 
             {/* Mobile Menu & Theme Toggle */}
             <div className="md:hidden flex items-center space-x-2">
-              {/* Theme Toggle Button */}
-              <button
-                onClick={toggleDarkMode}
-                className="text-gray-700 dark:text-gray-300 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
-                aria-label="Toggle dark mode"
-              >
-                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
-             
+              
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-700 dark:text-gray-300 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
@@ -232,7 +233,7 @@ const Header = () => {
 
               {/* Main Title */}
               <h1 className={`text-4xl lg:text-6xl font-bold mb-6 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <span className="bg-gradient-to-r from-slate-800 via-blue-700 to-slate-900 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-slate-800 via-blue-700 to-slate-900 dark:from-white dark:via-blue-300 dark:to-gray-200 bg-clip-text text-transparent">
 Directeur Général                </span>
               </h1>
 

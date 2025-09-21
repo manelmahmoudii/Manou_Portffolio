@@ -8,7 +8,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f1f5f9; /* Light mode track */
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a202c; /* Dark mode track (e.g., dark gray from Tailwind's slate-900) */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -16,8 +20,16 @@
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #6d28d9, #1e40af); /* Darker violet to darker blue for dark mode */
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #6b21a8, #1e40af); /* Darker Violet to Darker Blue */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #5b21b6, #1c3d8a); /* Even darker for hover in dark mode */
 }
 
 /* Smooth scrolling */
@@ -166,6 +178,11 @@ html {
   animation: gridmove 6s ease-in-out infinite;
 }
 
+.dark .animated-grid::before,
+.dark .animated-grid::after {
+  background-image: linear-gradient(rgba(71, 85, 105, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(71, 85, 105, 0.15) 1px, transparent 1px); /* Darker grid lines */
+}
+
 /* Gradient orbs */
 .orb {
   border-radius: 9999px;
@@ -174,11 +191,19 @@ html {
 }
 
 .orb--blue {
-  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.6), rgba(29,78,216,0.3));
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.6), rgba(29,78,216,0.3)); /* Light mode blue */
+}
+
+.dark .orb--blue {
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.4), rgba(29,78,216,0.2)); /* Darker blue for dark mode */
 }
 
 .orb--slate {
-  background: radial-gradient(circle at 70% 70%, rgba(100,116,139,0.6), rgba(51,65,85,0.3));
+  background: radial-gradient(circle at 70% 70%, rgba(100,116,139,0.6), rgba(51,65,85,0.3)); /* Light mode slate */
+}
+
+.dark .orb--slate {
+  background: radial-gradient(circle at 70% 70%, rgba(100,116,139,0.4), rgba(51,65,85,0.2)); /* Darker slate for dark mode */
 }
 
 /* Navigation animations */
