@@ -21,6 +21,7 @@ const Certifications = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<CertificationItem | null>(null);
   const [certificateIndex, setCertificateIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -208,6 +209,7 @@ const Certifications = () => {
       score: 'Certifié',
       type: 'Finance',
       color: 'teal',
+      image: '/images/hp.jpg',
       description: 'MOOC certifiant sur les bases de la finance',
       certificateLink: 'hplife.edcastcloud.com/verify/FBKrMtkg'
     },
@@ -223,15 +225,28 @@ const Certifications = () => {
       certificateLink: 'www.code.org'
     },
     {
-      icon: Globe,
-      title: 'Compétences Digitales et Informatiques (multiples)',
-      provider: 'SOLOLEARN, Khan Academy, Codecademy',
-      year: '2017-2019',
-      score: 'Plusieurs badges',
+      icon: Code,
+      title: 'Sketch Tutorial for Beginners: Learn How to Design an App',
+      provider: 'Devslopes By Mark Price',
+      year: '2020',
+      score: 'Certifié',
       type: 'Informatique',
       color: 'green',
-      description: 'Maîtrise de compétences en informatique et digital (Trello, Python, JavaScript, Anglais, Tableaux de bord Excel, Excel Avancé, HTML, Sketch Tutorial)',
-      certificateLink: 'https://fr.khanacademy.org/badges https://www.codecademy.com/fr'
+      image: '/images/trello.png',
+      description: 'Certificat d\'accomplissement pour avoir terminé l\'unité en ligne de Devslopes sur Sketch Tutorial pour les débutants.',
+      certificateLink: '#'
+    },
+    {
+      icon: Code,
+      title: 'HTML course',
+      provider: 'Sololearn',
+      year: '2018',
+      score: 'Certifié',
+      type: 'Informatique',
+      color: 'green',
+      image: '/images/html.jpg',
+      description: 'Certificat d\'achèvement du cours HTML de Sololearn.',
+      certificateLink: '#'
     },
     {
       icon: BookOpen,
@@ -427,12 +442,18 @@ const Certifications = () => {
     }
   ]);
 
-  const filteredCertifications = allCertifications.filter(cert =>
-    cert.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    cert.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    cert.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    cert.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const uniqueYears = Array.from(new Set(allCertifications.map(cert => cert.year))).sort((a, b) => parseInt(b) - parseInt(a));
+
+  const filteredCertifications = allCertifications.filter(cert => {
+    const matchesSearch = (
+      cert.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cert.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cert.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cert.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    const matchesYear = selectedYear === '' || cert.year === selectedYear;
+    return matchesSearch && matchesYear;
+  });
 
   const openModal = (certificate: CertificationItem, index: number) => {
     setSelectedCertificate(certificate);
@@ -483,17 +504,36 @@ const Certifications = () => {
             Découvrez mes certifications professionnelles et formations en ligne (MOOCs) obtenues auprès d'organismes de formation reconnus.
           </p>
 
-          <div className="max-w-2xl mx-auto mb-8 relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+          <div className="max-w-4xl mx-auto mb-6 flex flex-col sm:flex-row gap-4">
+            <div className="relative flex-[3]">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+              </div>
+              <input
+                type="text"
+                placeholder="Rechercher des certifications..."
+                className="w-full p-3 pl-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm hover:border-blue-400"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
-            <input
-              type="text"
-              placeholder="Rechercher des certifications..."
-              className="w-full p-3 pl-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <div className="relative flex-1">
+              <select
+                className="w-full p-3 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm hover:border-blue-400"
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+              >
+                <option value="">Toutes les années</option>
+                {uniqueYears.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+              </div>
+            </div>
           </div>
 
           <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -574,8 +614,8 @@ const Certifications = () => {
                 </button>
               </div>
               
-              <div className="flex-1 overflow-auto p-6">
-                <div className="flex flex-col lg:flex-row gap-6">
+              <div className="flex-1 overflow-auto p-4">
+                <div className="flex flex-col lg:flex-row gap-4">
                   <div className="lg:w-2/3 flex flex-col h-full">
                     <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center h-full flex-grow">
                       {selectedCertificate.image ? (
@@ -624,7 +664,7 @@ const Certifications = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-6 flex gap-3">
+                    <div className="flex gap-3">
                       {selectedCertificate.image || selectedCertificate.certificateLink ? (
                         <a
                           href={selectedCertificate.image && !selectedCertificate.image.endsWith('.pdf') ? selectedCertificate.image : selectedCertificate.certificateLink || '#'}
