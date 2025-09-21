@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe } from 'lucide-react';
-import { QRCodeSVG } from 'qrcode.react';
+import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe, Search } from 'lucide-react';
 
 interface CertificationItem {
   title: string;
@@ -21,6 +20,7 @@ const Certifications = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState<CertificationItem | null>(null);
   const [certificateIndex, setCertificateIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -409,6 +409,8 @@ const Certifications = () => {
       score: 'Certifié',
       type: 'Gouvernance',
       color: 'red',
+      image: '/images/ena.jfif',
+
       description: 'Formation certifiante au profit de hauts cadres tunisiens sur les outils de mise en place de systèmes d’alerte précoce.',
       certificateLink: '#'
     },
@@ -425,6 +427,13 @@ const Certifications = () => {
     }
   ]);
 
+  const filteredCertifications = allCertifications.filter(cert =>
+    cert.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    cert.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    cert.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    cert.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const openModal = (certificate: CertificationItem, index: number) => {
     setSelectedCertificate(certificate);
     setCertificateIndex(index);
@@ -437,15 +446,15 @@ const Certifications = () => {
   };
 
   const goToNextCertificate = () => {
-    const nextIndex = (certificateIndex + 1) % allCertifications.length;
+    const nextIndex = (certificateIndex + 1) % filteredCertifications.length;
     setCertificateIndex(nextIndex);
-    setSelectedCertificate(allCertifications[nextIndex]);
+    setSelectedCertificate(filteredCertifications[nextIndex]);
   };
 
   const goToPreviousCertificate = () => {
-    const prevIndex = (certificateIndex - 1 + allCertifications.length) % allCertifications.length;
+    const prevIndex = (certificateIndex - 1 + filteredCertifications.length) % filteredCertifications.length;
     setCertificateIndex(prevIndex);
-    setSelectedCertificate(allCertifications[prevIndex]);
+    setSelectedCertificate(filteredCertifications[prevIndex]);
   };
 
 
@@ -474,8 +483,21 @@ const Certifications = () => {
             Découvrez mes certifications professionnelles et formations en ligne (MOOCs) obtenues auprès d'organismes de formation reconnus.
           </p>
 
+          <div className="max-w-2xl mx-auto mb-8 relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+            </div>
+            <input
+              type="text"
+              placeholder="Rechercher des certifications..."
+              className="w-full p-3 pl-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
           <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            {allCertifications.map((cert, index) => (
+            {filteredCertifications.map((cert, index) => (
               <div
                 key={index}
                 className="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
@@ -554,8 +576,8 @@ const Certifications = () => {
               
               <div className="flex-1 overflow-auto p-6">
                 <div className="flex flex-col lg:flex-row gap-6">
-                  <div className="lg:w-2/3 flex flex-col">
-                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center min-h-[600px]">
+                  <div className="lg:w-2/3 flex flex-col h-full">
+                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center h-full flex-grow">
                       {selectedCertificate.image ? (
                         selectedCertificate.image.endsWith('.pdf') ? (
                           <iframe src={selectedCertificate.image} className="w-full h-full rounded-lg" title="Certificat PDF"></iframe>
@@ -574,7 +596,35 @@ const Certifications = () => {
                       )}
                     </div>
                     
-                    <div className="mt-4 flex gap-3">
+                    
+                  </div>
+                  
+                  <div className="lg:w-1/3 h-full">
+                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{selectedCertificate.title}</h4>
+                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4 flex items-center">
+                      {selectedCertificate.icon && <selectedCertificate.icon className="w-4 h-4 mr-2" />} {/* Display icon for MOOCs in modal */}
+                      <Building className="w-4 h-4 mr-2" />
+                      {selectedCertificate.provider}
+                    </p>
+                    
+                    <div className="space-y-3 mb-6">
+                      <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
+                        <span className="text-gray-500 dark:text-gray-400">Année</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.year}</span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
+                        <span className="text-gray-500 dark:text-gray-400">Score</span>
+                        <span className="font-medium text-emerald-600 dark:text-emerald-400">{selectedCertificate.score}</span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
+                        <span className="text-gray-500 dark:text-gray-400">Type</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.type}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 flex gap-3">
                       {selectedCertificate.image || selectedCertificate.certificateLink ? (
                         <a
                           href={selectedCertificate.image && !selectedCertificate.image.endsWith('.pdf') ? selectedCertificate.image : selectedCertificate.certificateLink || '#'}
@@ -600,50 +650,13 @@ const Certifications = () => {
                         </a>
                       )}
                     </div>
-                  </div>
-                  
-                  <div className="lg:w-1/3">
-                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{selectedCertificate.title}</h4>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4 flex items-center">
-                      {selectedCertificate.icon && <selectedCertificate.icon className="w-4 h-4 mr-2" />} {/* Display icon for MOOCs in modal */}
-                      <Building className="w-4 h-4 mr-2" />
-                      {selectedCertificate.provider}
-                    </p>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Année</span>
-                        <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.year}</span>
-                      </div>
-                      
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Score</span>
-                        <span className="font-medium text-emerald-600 dark:text-emerald-400">{selectedCertificate.score}</span>
-                      </div>
-                      
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Type</span>
-                        <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.type}</span>
-                      </div>
-                    </div>
-                    
-                    {selectedCertificate.qrCode && (
-                      <div className="mt-6 p-4 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col items-center">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Scanner pour vérifier ce certificat</p>
-                        <QRCodeSVG 
-                          value={selectedCertificate.qrCode} 
-                          size={140} 
-                          level="H"
-                          className="p-2 bg-white rounded-lg"
-                        />
-                      </div>
-                    )}
+
                   </div>
                 </div>
               </div>
               
               {/* Navigation */}
-              {allCertifications.length > 1 && (
+              {filteredCertifications.length > 1 && (
                 <div className="flex justify-between items-center p-4 border-t border-gray-200 dark:border-slate-700">
                   <button
                     onClick={goToPreviousCertificate}
@@ -654,7 +667,7 @@ const Certifications = () => {
                   </button>
                   
                   <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {certificateIndex + 1} de {allCertifications.length}
+                    {certificateIndex + 1} de {filteredCertifications.length}
                   </span>
                   
                   <button
