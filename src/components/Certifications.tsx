@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe, Search } from 'lucide-react';
 
 interface CertificationItem {
@@ -22,7 +22,6 @@ const Certifications = () => {
   const [certificateIndex, setCertificateIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isYearFilterOpen, setIsYearFilterOpen] = useState(false);
 
   useEffect(() => {
@@ -480,11 +479,6 @@ const Certifications = () => {
     setSelectedCertificate(filteredCertifications[prevIndex]);
   };
 
-  const clearFilters = useCallback(() => {
-    setSearchQuery('');
-    setSelectedYear('');
-  }, []);
-
 
   return (
     <>
@@ -569,7 +563,7 @@ const Certifications = () => {
             {filteredCertifications.map((cert, index) => (
               <div
                 key={index}
-                className="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                className="bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-blue-800/20 transition-all duration-300 relative overflow-hidden"
                 style={{
                   borderLeft: `3px solid ${getTypeHexColor(cert.type)}` // Finer, more sky blue, and translucent dynamic colors
                 }}
@@ -590,8 +584,8 @@ const Certifications = () => {
                 
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-base mb-2 leading-tight">{cert.title}</h4>
-                    <div className="flex items-center text-blue-600 text-sm mb-2">
+                    <h4 className="font-bold text-gray-900 dark:text-white text-base mb-2 leading-tight">{cert.title}</h4>
+                    <div className="flex items-center text-blue-600 dark:text-blue-400 text-sm mb-2">
                       {cert.icon && <cert.icon className="w-4 h-4 mr-1" />} {/* Display icon for MOOCs */}
                       <Building className="w-4 h-4 mr-1" />
                       <span>{cert.provider}</span>
@@ -602,16 +596,16 @@ const Certifications = () => {
                   </span>
                 </div>
 
-                <div className="text-sm text-gray-600 mb-4">
+                <div className="text-sm text-gray-600 dark:text-gray-300 mb-4">
                   <p>{cert.description}</p>
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-2 text-gray-500 text-sm">
+                  <div className="flex items-center space-x-2 text-gray-500 dark:text-gray-400 text-sm">
                     <Calendar className="w-4 h-4" />
                     <span>{cert.year}</span>
                   </div>
-                  <div className="flex items-center text-black font-bold">
+                  <div className="flex items-center text-black dark:text-white font-bold">
                     <Star className="w-4 h-4 mr-1 fill-yellow-500 text-yellow-500" />
                     <span>{cert.score}</span>
                   </div>
@@ -619,7 +613,7 @@ const Certifications = () => {
                 
                 <button 
                   onClick={() => openModal(cert, index)}
-                  className="w-full py-2 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium text-xs transition-colors duration-300 flex items-center justify-center border"
+                  className="w-full py-2 rounded-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700/50 text-gray-800 dark:text-gray-200 font-medium text-xs transition-colors duration-300 flex items-center justify-center border border-gray-200 dark:border-gray-700"
                 >
                   <Eye className="w-4 h-4 mr-2" />
                   Voir Certificat

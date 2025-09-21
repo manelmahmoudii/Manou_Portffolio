@@ -89,20 +89,6 @@ const Skills = () => {
 
   const certificationTools = Object.keys(toolIcons);
 
-  // Fonction pour obtenir le drapeau approprié
-  const getFlag = (flagCode: string) => {
-    return (
-      <img 
-        src={`https://flagcdn.com/w20/${flagCode}.png`} 
-        srcSet={`https://flagcdn.com/w40/${flagCode}.png 2x`}
-        width="20"
-        height="15"
-        alt={flagCode}
-        className="mr-2 rounded-sm shadow-sm"
-      />
-    );
-  };
-
   // Fonction pour afficher l'icône d'outil (image ou émoji de secours)
   const renderToolIcon = (tool: string) => {
     const iconSrc = toolIcons[tool];
@@ -158,7 +144,7 @@ const Skills = () => {
           </h3>
           <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
             {technicalSkills.map((skill, index) => (
-              <div key={index} className="bg-white dark:bg-gray-700 p-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group">
+              <div key={index} className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group">
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -166,13 +152,13 @@ const Skills = () => {
                     </div>
                     <div>
                       <span className="font-bold text-lg text-slate-800 dark:text-white">{skill.name}</span>
-                      <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">{skill.proficiency}</div>
+                      <div className="text-sm text-slate-500 dark:text-gray-400 font-medium">{skill.proficiency}</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="relative">
-                  <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2.5 overflow-hidden">
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
                     <div
                       className="h-2.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-1500 ease-out relative overflow-hidden"
                       style={{
@@ -202,7 +188,7 @@ const Skills = () => {
             {documentationSkills.map((skill, index) => (
               <div 
                 key={index}
-                className={`bg-white dark:bg-gray-700 p-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group ${
+                className={`bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ transitionDelay: `${400 + index * 100}ms` }}
@@ -212,7 +198,7 @@ const Skills = () => {
                     <skill.icon className="w-6 h-6 text-white" />
                   </div>
                   <h4 className="font-bold text-lg text-slate-800 dark:text-white mb-3">{skill.name}</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{skill.description}</p>
+                  <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">{skill.description}</p>
                 </div>
               </div>
             ))}
@@ -229,17 +215,24 @@ const Skills = () => {
             {languages.map((lang, index) => (
               <div 
                 key={index}
-                className={`bg-white dark:bg-gray-700 p-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group ${
+                className={`bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ transitionDelay: `${600 + index * 100}ms` }}
               >
                 <div className="text-center">
                   <div className="flex justify-center mb-3">
-                    {getFlag(lang.flag)}
+                    <img 
+                      src={`https://flagcdn.com/w20/${lang.flag}.png`} 
+                      srcSet={`https://flagcdn.com/w40/${lang.flag}.png 2x`}
+                      width="20"
+                      height="15"
+                      alt={lang.flag}
+                      className="mr-2 rounded-sm shadow-sm dark:border-gray-500"
+                    />
                   </div>
                   <h4 className="font-bold text-lg text-slate-800 dark:text-white mb-3">{lang.name}</h4>
-                  <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2.5 mb-3 mx-auto" style={{maxWidth: '120px'}}>
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mb-3 mx-auto" style={{maxWidth: '120px'}}>
                     <div 
                       className="h-2.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-1000 ease-out"
                       style={{ 
@@ -248,7 +241,7 @@ const Skills = () => {
                       }}
                     ></div>
                   </div>
-                  <span className="text-slate-600 dark:text-slate-300 text-sm font-semibold bg-slate-100 dark:bg-slate-600/30 px-3 py-1 rounded-full">{lang.proficiency}</span>
+                  <span className="text-slate-600 dark:text-gray-300 text-sm font-semibold bg-slate-100 dark:bg-slate-600/30 px-3 py-1 rounded-full">{lang.proficiency}</span>
                 </div>
               </div>
             ))}
@@ -265,13 +258,13 @@ const Skills = () => {
             {certificationTools.map((tool, index) => (
               <div 
                 key={index}
-                className={`flex items-center px-4 py-2 bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 border border-slate-200 dark:border-gray-600 group ${
+                className={`flex items-center px-4 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:scale-105 transition-all duration-300 group ${
                   isVisible ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ transitionDelay: `${800 + index * 30}ms` }}
               >
                 {renderToolIcon(tool)}
-                <span className="text-base text-slate-700 dark:text-slate-200 font-medium">{tool}</span>
+                <span className="text-base text-slate-700 dark:text-gray-300 font-medium">{tool}</span>
               </div>
             ))}
           </div>
@@ -287,7 +280,7 @@ const Skills = () => {
             {interests.map((interest, index) => (
               <div 
                 key={index}
-                className={`bg-white dark:bg-gray-700 p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group ${
+                className={`bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ transitionDelay: `${1000 + index * 100}ms` }}

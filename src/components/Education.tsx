@@ -138,7 +138,7 @@ const Education = () => {
             {educationData.map((edu, index) => (
               <div
                 key={index}
-                className={`bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 transition-all duration-300 relative overflow-hidden group ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-800/20 transition-all duration-300 relative overflow-hidden group ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{
                   transitionDelay: `${200 + index * 150}ms`,
                   borderLeft: `4px solid ${index === 0 ? '#7c3aed' : index === 1 ? '#3b82f6' : index === 2 ? '#06b6d4' : '#0d9488'}` 
@@ -182,7 +182,7 @@ const Education = () => {
           </div>
 
           {/* Enhanced Additional Training Section */}
-          <div className={`bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className={`bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <div className="flex items-center space-x-3 mb-6">
               <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow">
                 <BookOpen className="w-5 h-5 text-white" />
@@ -194,7 +194,7 @@ const Education = () => {
               {additionalStudies.map((study, index) => (
                 <div
                   key={index}
-                  className="flex items-start space-x-3 p-4 rounded-lg border border-gray-100 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600/30 transition-colors duration-200 group"
+                  className="flex items-start space-x-3 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200 group"
                 >
                   <div className="flex-shrink-0 mt-0.5">
                     <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
