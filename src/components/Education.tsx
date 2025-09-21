@@ -59,7 +59,11 @@ const Education = () => {
       description: 'Mathématiques et Sciences (7 ans)',
       grade: 'Session de Juin 1983',
       color: 'from-blue-500 to-cyan-500',
-      flag: 'tn'
+      flag: 'tn',
+      images: [ // Placeholder for Baccalauréat images
+        '/images/bac_diploma_1.jpg',
+        '/images/bac_diploma_2.jpg',
+      ]
     },
     {
       icon: BookOpen,
@@ -182,7 +186,7 @@ const Education = () => {
                     <div className={`p-3 rounded-lg bg-gradient-to-br ${edu.color} shadow-md group-hover:shadow-lg transition-all duration-300`}>
                       <edu.icon className="w-5 h-5 text-white" />
                     </div>
-                    <div>
+                    <div className="max-w-[70%]">
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
                         {edu.level}
                       </h3>
@@ -208,7 +212,7 @@ const Education = () => {
                   {edu.images && edu.images.length > 0 && (
                     <button
                       onClick={() => openImageModal(edu.images || [])}
-                      className="absolute top-4 right-4 p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                      className="absolute top-4 right-6 z-10 p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 flex items-center justify-center md:right-8"
                       aria-label="View diploma images"
                     >
                       <Eye className="w-5 h-5" />
