@@ -156,6 +156,8 @@ const Certifications = () => {
       score: 'Certifié',
       type: 'Éducation',
       color: 'yellow',
+      image: '/images/e-Seminar.jpg',
+
       description: 'Séminaire en ligne sur la transformation de la formation des enseignants pour améliorer les résultats d\'apprentissage',
       certificateLink: '#'
     },
@@ -294,6 +296,8 @@ const Certifications = () => {
       score: 'Certifié',
       type: 'Santé',
       color: 'red',
+      image: '/images/corona.jpg',
+
       description: 'Certificat sur les informations essentielles concernant le Coronavirus',
       certificateLink: 'https://alison.com/course/coronavirus-what-you-need-to-know'
     }
