@@ -739,7 +739,7 @@ const Certifications = () => {
          
 
           
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-center mb-8">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-center mb-8">
             {isFr
               ? "Découvrez mes certifications professionnelles et formations en ligne (MOOCs) obtenues auprès d'organismes de formation reconnus."
               : 'Explore my professional certifications and online training (MOOCs) obtained from recognized training organizations.'}

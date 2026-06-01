@@ -236,7 +236,7 @@ const Projects = () => {
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
             {isFr
               ? 'Présentation des projets clés et réalisations majeures au cours de ma carrière.'
               : 'Presentation of key projects and major accomplishments throughout my career.'}

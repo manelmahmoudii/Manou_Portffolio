@@ -322,7 +322,7 @@ const Experience = () => {
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
             {isFr
               ? '30+ années de leadership en ingénierie et éducation'
               : '30+ years of leadership in engineering and education'}
@@ -435,10 +435,10 @@ const Experience = () => {
                 {isFr ? 'Points forts de carrière' : 'Career highlights'}
               </span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               {isFr ? 'Réalisations en chiffres' : 'Achievements in numbers'}
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               {isFr
                 ? "Un parcours marquant et des réalisations concrètes au service de l'éducation"
                 : 'A remarkable career with concrete achievements in service of education'}
@@ -454,8 +454,8 @@ const Experience = () => {
                   <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div className="flex items-baseline gap-0.5 mb-1">
-                  <span className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">30</span>
-                  <span className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">+</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">30</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">+</span>
                 </div>
                 <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                   {isFr ? "Années d'expérience" : 'Years of experience'}
@@ -474,8 +474,8 @@ const Experience = () => {
                   <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
                 </div>
                 <div className="flex items-baseline gap-0.5 mb-1">
-                  <span className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">100</span>
-                  <span className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400">+</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">100</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400">+</span>
                 </div>
                 <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                   {isFr ? 'Formations dispensées' : 'Training delivered'}
@@ -494,8 +494,8 @@ const Experience = () => {
                   <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 </div>
                 <div className="flex items-baseline gap-0.5 mb-1">
-                  <span className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">15</span>
-                  <span className="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">+</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">15</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">+</span>
                 </div>
                 <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                   {isFr ? 'Certifications MOOC' : 'MOOC Certifications'}
@@ -514,8 +514,8 @@ const Experience = () => {
                   <Trophy className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                 </div>
                 <div className="flex items-baseline gap-0.5 mb-1">
-                  <span className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">5</span>
-                  <span className="text-3xl md:text-4xl font-bold text-orange-600 dark:text-orange-400">+</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">5</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 dark:text-orange-400">+</span>
                 </div>
                 <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                   {isFr ? 'Postes de direction' : 'Leadership positions'}

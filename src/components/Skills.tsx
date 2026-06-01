@@ -261,7 +261,7 @@ const Skills = () => {
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
             {isFr
               ? "Un éventail complet de compétences techniques et de leadership acquises au fil de 30+ années d'expérience."
               : 'A comprehensive set of technical and leadership competencies acquired over 30+ years of experience.'}
