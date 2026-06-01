@@ -734,6 +734,15 @@ const Certifications = () => {
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-36 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
               </span>
             </h2>
+
+            {/* Total count chip */}
+            <div className="mt-6 inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 border border-blue-200/60 dark:border-blue-800/60 px-4 py-2 rounded-full">
+              <Award className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <span className="text-base font-bold text-blue-700 dark:text-blue-300 tabular-nums">{allCertifications.length}+</span>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                {isFr ? 'certifications' : 'certifications'}
+              </span>
+            </div>
           </div>
 
          
@@ -797,6 +806,27 @@ const Certifications = () => {
                           )}
                         </div>
                       </div>
+          </div>
+
+          {/* Filtered count indicator */}
+          <div className="max-w-4xl mx-auto mb-6 text-sm text-gray-600 dark:text-gray-400 text-center">
+            {filteredCertifications.length === allCertifications.length ? (
+              <span>
+                {isFr
+                  ? `Affichage de toutes les ${allCertifications.length} certifications`
+                  : `Showing all ${allCertifications.length} certifications`}
+              </span>
+            ) : (
+              <span>
+                <span className="font-semibold text-blue-700 dark:text-blue-300">{filteredCertifications.length}</span>
+                {' '}
+                {isFr ? 'sur' : 'of'}
+                {' '}
+                <span className="font-semibold">{allCertifications.length}</span>
+                {' '}
+                {isFr ? 'certifications correspondent' : 'certifications match'}
+              </span>
+            )}
           </div>
 
           <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>

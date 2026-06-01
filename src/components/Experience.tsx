@@ -494,11 +494,11 @@ const Experience = () => {
                   <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 </div>
                 <div className="flex items-baseline gap-0.5 mb-1">
-                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">15</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">40</span>
                   <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">+</span>
                 </div>
                 <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                  {isFr ? 'Certifications MOOC' : 'MOOC Certifications'}
+                  {isFr ? 'Certifications' : 'Certifications'}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                   {isFr ? 'UNESCO, Google & Plus' : 'UNESCO, Google & more'}

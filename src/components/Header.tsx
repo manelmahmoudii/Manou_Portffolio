@@ -275,7 +275,10 @@ const Header = () => {
 
               {/* CTA Buttons — full-width on mobile, inline from sm+ */}
               <div className={`flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-6 sm:mb-7 transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                <button className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md hover:shadow-blue-500/20 transition-all duration-300">
+                <button
+                  onClick={() => scrollToSection('projects')}
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md hover:shadow-blue-500/20 transition-all duration-300"
+                >
                   {t('header.viewWork')}
                 </button>
                 <a

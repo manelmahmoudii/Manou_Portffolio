@@ -15,18 +15,14 @@ const LanguageSelector: React.FC = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="relative p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-500 transform hover:scale-110 group overflow-hidden"
+      className="inline-flex items-center gap-1.5 p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40"
       aria-label={ariaLabel}
       title={language === 'fr' ? 'Switch to English' : 'Passer au français'}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-slate-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
-      <div className="relative z-10 flex items-center space-x-2">
-        <Languages className="w-5 h-5 group-hover:text-blue-500 transition-colors duration-300" />
-        <span className="text-sm font-medium uppercase tracking-wide">
-          {language === 'fr' ? 'EN' : 'FR'}
-        </span>
-      </div>
-      <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/30 to-slate-400/30 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+      <Languages className="w-5 h-5" />
+      <span className="text-sm font-semibold uppercase tracking-wide">
+        {language === 'fr' ? 'EN' : 'FR'}
+      </span>
     </button>
   );
 };
