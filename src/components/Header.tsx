@@ -183,10 +183,7 @@ const Header = () => {
                   <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">{t('nav.home')}</span>
                   <div className="text-xs text-gray-400 mt-1">{isFr ? 'Bienvenue & Introduction' : 'Welcome & Introduction'}</div>
                 </button>
-                <button onClick={() => scrollToSection('personal-info')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'personal-info' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''}`}>
-                  <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">{t('nav.about')}</span>
-                  <div className="text-xs text-gray-400 mt-1">{isFr ? 'Informations personnelles' : 'Personal Information'}</div>
-                </button>
+               
                 <button onClick={() => scrollToSection('experience')} className={`mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 focus-visible:outline-none ${activeSection === 'experience' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''}`}>
                   <span className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300 after:w-0 hover:after:w-full">{t('nav.experience')}</span>
                   <div className="text-xs text-gray-400 mt-1">{isFr ? 'Parcours Professionnel' : 'Professional Journey'}</div>
@@ -312,10 +309,8 @@ const Header = () => {
                 {/* Soft glow — stronger on hover */}
                 <div className="absolute -inset-6 bg-gradient-to-br from-blue-400/15 to-blue-600/15 group-hover:from-blue-400/35 group-hover:to-blue-600/35 dark:from-blue-500/20 dark:to-blue-700/20 dark:group-hover:from-blue-500/45 dark:group-hover:to-blue-700/45 rounded-full blur-3xl transition-all duration-500 ease-out"></div>
 
-                {/* Rotating gradient ring with opacity pulse */}
-                <div className="absolute -inset-2 rounded-full animate-spin-very-slow">
-                  <div className="absolute inset-0 rounded-full animate-pulse-ring" style={{ background: 'conic-gradient(from 0deg, rgb(96 165 250), rgb(99 102 241), rgb(37 99 235), rgb(59 130 246), rgb(96 165 250))' }}></div>
-                </div>
+                {/* Thin animated border ring — 4-color alternating */}
+                <div className="absolute -inset-2 rounded-full border-2 border-transparent border-t-blue-400 border-r-blue-600 border-b-blue-400 border-l-blue-600 animate-spin-very-slow"></div>
 
                 {/* Hover scale wrapper — independent transform layer */}
                 <div className="relative transition-transform duration-500 ease-out group-hover:scale-[1.03]">
