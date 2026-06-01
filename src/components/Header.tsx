@@ -88,12 +88,12 @@ const Header = () => {
             {/* Logo */}
             <button
               onClick={() => scrollToSection('home')}
-              className="flex items-center group focus-visible:outline-none"
+              className="flex items-center group focus-visible:outline-none min-w-0"
               aria-label="Home"
             >
-              <div className="text-left">
-                <span className="text-gray-800 dark:text-white font-bold text-xl bg-gradient-to-r from-gray-800 dark:from-white to-blue-600 bg-clip-text text-transparent">Mounir Mahmoudi</span>
-                <div className="text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+              <div className="text-left min-w-0">
+                <span className="font-bold text-base sm:text-lg md:text-xl text-slate-900 dark:text-white leading-tight whitespace-nowrap">Mounir Mahmoudi</span>
+                <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-tight">
                   {isFr ? 'Directeur Général' : 'Senior Engineering Director'}
                 </div>
               </div>
