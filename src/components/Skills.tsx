@@ -237,7 +237,7 @@ const Skills = () => {
   const SubHeader = ({ icon: Icon, title }: { icon: any; title: string; accent?: AccentKey }) => (
     <div className="flex items-center gap-3 mb-6">
       <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} />
-      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
+      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
         {title}
       </h3>
       <div className="flex-1 h-px bg-gradient-to-r from-blue-200 dark:from-blue-800 to-transparent ml-1"></div>
@@ -245,7 +245,7 @@ const Skills = () => {
   );
 
   return (
-    <section id="skills" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="skills" className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header — matches Experience / Projects */}
         <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
@@ -255,7 +255,7 @@ const Skills = () => {
               {isFr ? 'Expertise Technique' : 'Technical Expertise'}
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
               {isFr ? 'Compétences & Expertise' : 'Skills & Expertise'}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
@@ -345,7 +345,7 @@ const Skills = () => {
         {/* === Languages — emerald accent === */}
         <div className={`mb-14 max-w-6xl mx-auto transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <SubHeader icon={Languages} title={isFr ? 'Langues' : 'Languages'} accent="blue" />
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {languages.map((lang, i) => (
               <div
                 key={i}

@@ -302,7 +302,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-16 bg-white dark:bg-gray-900 relative overflow-hidden pt-20 sm:pt-32">
+    <section id="experience" className="py-12 sm:py-16 bg-white dark:bg-gray-900 relative overflow-hidden pt-16 sm:pt-32">
       {/* Enhanced blue effects with animation */}
       
       
@@ -316,7 +316,7 @@ const Experience = () => {
               {isFr ? 'Parcours Professionnel' : 'Professional Journey'}
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
               {isFr ? 'Expérience Professionnelle' : 'Professional Experience'}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
@@ -427,7 +427,7 @@ const Experience = () => {
         </div>
 
         {/* Career Highlights */}
-        <div className={`mt-20 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`mt-14 sm:mt-20 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4 border border-blue-200/60 dark:border-blue-800/60">
               <Trophy className="w-4 h-4 text-blue-600 dark:text-blue-400" />

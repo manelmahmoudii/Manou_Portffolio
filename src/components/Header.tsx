@@ -152,7 +152,10 @@ const Header = () => {
             </div>
 
             {/* Mobile Menu & Theme Toggle */}
-            <div className="md:hidden flex items-center space-x-2">
+            <div className="md:hidden flex items-center space-x-1.5">
+              {/* Language Selector — always visible on mobile */}
+              <LanguageSelector />
+
               {/* Theme Toggle Button */}
               <button
                 onClick={toggleDarkMode}
@@ -206,11 +209,12 @@ const Header = () => {
                   href="https://www.linkedin.com/in/mounir-mahmoudi-6b992119"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 text-left py-4 px-6 rounded-xl transform hover:translate-x-2 flex items-center space-x-2 focus-visible:outline-none"
+                  className="mobile-nav-item text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 text-left py-4 px-6 rounded-xl flex items-center space-x-2 focus-visible:outline-none mt-2 border-t border-gray-200 dark:border-gray-700 pt-4"
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="font-medium">{isFr ? 'Profil LinkedIn' : 'LinkedIn Profile'}</span>
                 </a>
+
               </div>
             </div>
           </div>
@@ -230,26 +234,26 @@ const Header = () => {
             {/* Left Content */}
             <div className="text-center lg:text-left order-2 lg:order-1">
               {/* Eyebrow greeting */}
-              <div className={`inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 rounded-full mb-6 border border-blue-200/60 dark:border-blue-800/60 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+              <div className={`inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 rounded-full mb-5 sm:mb-6 border border-blue-200/60 dark:border-blue-800/60 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">
+                <span className="text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-medium">
                   {t('header.greeting')}
                 </span>
               </div>
 
-              {/* Main Title — solid color, no rainbow gradient */}
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight tracking-tight text-slate-900 dark:text-white transform transition-all duration-700 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+              {/* Main Title — solid color, responsive */}
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 leading-tight tracking-tight text-slate-900 dark:text-white transform transition-all duration-700 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 {t('header.title')}
               </h1>
 
               {/* Subtitle with typing cursor */}
-              <div className={`text-lg md:text-xl font-medium text-blue-700 dark:text-blue-400 mb-6 transform transition-all duration-700 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+              <div className={`text-base sm:text-lg md:text-xl font-medium text-blue-700 dark:text-blue-400 mb-5 sm:mb-6 transform transition-all duration-700 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 <span>{t('header.subtitle')}</span>
                 <span className="typing-cursor ml-0.5">|</span>
               </div>
 
               {/* Description */}
-              <p className={`text-base md:text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+              <p className={`text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-7 sm:mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 {isFr ? (
                   <>
                     Ingénieur expérimenté avec{' '}
@@ -269,15 +273,15 @@ const Header = () => {
                 )}
               </p>
 
-              {/* CTA Buttons */}
-              <div className={`flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-7 transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                <button className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md hover:shadow-blue-500/20 transition-all duration-300">
+              {/* CTA Buttons — full-width on mobile, inline from sm+ */}
+              <div className={`flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-6 sm:mb-7 transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                <button className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md hover:shadow-blue-500/20 transition-all duration-300">
                   {t('header.viewWork')}
                 </button>
                 <a
                   href="/CV_FR_Mounir Mahmoudi_2024.pdf"
                   download
-                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold rounded-lg hover:border-blue-300 dark:hover:border-blue-700 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold rounded-lg hover:border-blue-300 dark:hover:border-blue-700 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
                 >
                   <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" />
                   <span>{t('header.downloadCV')}</span>
@@ -319,7 +323,7 @@ const Header = () => {
                     <img
                       src="/images/manouu.jpg"
                       alt="Mounir Mahmoudi"
-                      className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl"
+                      className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl"
                     />
                   </div>
 

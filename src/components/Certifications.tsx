@@ -719,7 +719,7 @@ const Certifications = () => {
 
   return (
     <>
-      <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="certifications" className="py-14 sm:py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
@@ -728,7 +728,7 @@ const Certifications = () => {
               {isFr ? 'Apprentissage Continu' : 'Continuous Learning'}
             </span>
           </div>
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
               <span className="relative">
                 {isFr ? 'Certifications & Formations' : 'Certifications & Training'}
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-36 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>

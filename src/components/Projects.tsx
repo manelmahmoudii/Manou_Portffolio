@@ -215,7 +215,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="projects" className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Enhanced blue effects */}
       
       
@@ -230,7 +230,7 @@ const Projects = () => {
               {isFr ? 'Projets & Réalisations' : 'Projects & Achievements'}
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
               {isFr ? 'Travaux Importants Réalisés' : 'Significant Work Completed'}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>

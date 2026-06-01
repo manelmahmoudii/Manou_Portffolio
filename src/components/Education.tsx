@@ -204,7 +204,7 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="education" className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Enhanced blue effects */}
       
       
@@ -219,7 +219,7 @@ const Education = () => {
               {isFr ? 'Fondation Académique' : 'Academic Foundation'}
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
               {isFr ? 'Éducation & Apprentissage' : 'Education & Learning'}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
@@ -295,10 +295,10 @@ const Education = () => {
             {/* Header — line-art icon + title + line */}
             <div className="flex items-center gap-3 mb-6">
               <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} />
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
+              <h3 className="text-base sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
                 {isFr ? 'Formation Professionnelle Additionnelle' : 'Additional Professional Training'}
               </h3>
-              <div className="flex-1 h-px bg-gradient-to-r from-blue-200 dark:from-blue-800 to-transparent ml-1"></div>
+              <div className="flex-1 h-px bg-gradient-to-r from-blue-200 dark:from-blue-800 to-transparent ml-1 hidden sm:block"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
