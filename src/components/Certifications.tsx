@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe, Search } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface CertificationItem {
   title: string;
+  titleEn?: string;
   provider: string;
   year: string;
   score: string;
+  scoreEn?: string;
   type: string;
   color: string;
   description: string;
+  descriptionEn?: string;
   qrCode?: string;
   certificateLink?: string;
   image?: string;
@@ -23,6 +27,8 @@ const Certifications = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
   const [isYearFilterOpen, setIsYearFilterOpen] = useState(false);
+  const { language } = useLanguage();
+  const isFr = language === 'fr';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,6 +68,38 @@ const Certifications = () => {
     }
   };
 
+  const getTypeLabel = (typeKey: string) => {
+    if (isFr) return typeKey;
+    const labelsEn: Record<string, string> = {
+      'Bureautique': 'Office',
+      'Gestion de Projet': 'Project Management',
+      'Éducation': 'Education',
+      'Marketing': 'Marketing',
+      'Management': 'Management',
+      'Finance': 'Finance',
+      'Informatique': 'IT',
+      'Gouvernance': 'Governance',
+      'Santé': 'Health',
+      'Pédagogie': 'Teaching',
+      'Audit': 'Audit',
+      'Qualité': 'Quality',
+      'International': 'International',
+      'Langue': 'Language',
+      'Coaching': 'Coaching',
+      'Formation Animée': 'Facilitated Training',
+    };
+    return labelsEn[typeKey] || typeKey;
+  };
+
+  const getTitle = (cert: CertificationItem) =>
+    isFr ? cert.title : cert.titleEn ?? cert.title;
+
+  const getDescription = (cert: CertificationItem) =>
+    isFr ? cert.description : cert.descriptionEn ?? cert.description;
+
+  const getScore = (cert: CertificationItem) =>
+    isFr ? cert.score : cert.scoreEn ?? cert.score;
+
   const certificationsData: CertificationItem[] = [
     {
       icon: Code,
@@ -74,7 +112,8 @@ const Certifications = () => {
       qrCode: 'https://www.microsoft.com/certifications',
       image: '/images/excel.jpg',
       certificateLink: 'https://www.microsoft.com/certifications',
-      description: 'Maîtrise avancée de Microsoft Excel.'
+      description: 'Maîtrise avancée de Microsoft Excel.',
+      descriptionEn: 'Advanced mastery of Microsoft Excel.',
     },
     {
       icon: Code,
@@ -87,7 +126,8 @@ const Certifications = () => {
       qrCode: 'https://www.microsoft.com/certifications',
       image: '/images/word.jpg',
       certificateLink: 'https://www.microsoft.com/certifications',
-      description: 'Maîtrise avancée de Microsoft Word.'
+      description: 'Maîtrise avancée de Microsoft Word.',
+      descriptionEn: 'Advanced mastery of Microsoft Word.',
     },
     {
       icon: Code,
@@ -100,28 +140,33 @@ const Certifications = () => {
       qrCode: 'https://www.microsoft.com/certifications',
       image: '/images/powerpoint.jpg',
       certificateLink: 'https://www.microsoft.com/certifications',
-      description: 'Maîtrise avancée de Microsoft PowerPoint.'
+      description: 'Maîtrise avancée de Microsoft PowerPoint.',
+      descriptionEn: 'Advanced mastery of Microsoft PowerPoint.',
     },
     {
       icon: Award,
       title: 'Certification en formation Agile Scrum / PMP',
+      titleEn: 'Agile Scrum / PMP Training & Certification',
       provider: 'Master of Project Academy',
       year: '2019',
       score: 'N/A',
       type: 'Gestion de Projet',
       color: 'blue',
       certificateLink: 'https://masterofproject.com/',
-      description: 'Formation et certification en méthodes Agiles Scrum et PMP.'
+      description: 'Formation et certification en méthodes Agiles Scrum et PMP.',
+      descriptionEn: 'Training and certification in Agile Scrum and PMP methods.',
     },
     {
       icon: BookOpen,
       title: 'Initiation aux statistiques pour la planification et la gestion de l\'éducation',
+      titleEn: 'Introduction to Statistics for Planning and Education Management',
       provider: 'l\'Institut International de Planification de l\'Éducation (l\'IIPE-UNESCO)',
       year: '2015',
       score: '17.5/20',
       type: 'Éducation',
       color: 'blue',
       description: 'MOOC certifiant en français, note finale : 17.5/20',
+      descriptionEn: 'French-language certified MOOC, final score: 17.5/20',
       certificateLink: '#'
     },
     {
@@ -133,11 +178,13 @@ const Certifications = () => {
       type: 'Éducation',
       color: 'green',
       description: 'MOOC certifiant en anglais, note finale : 18.5/20',
+      descriptionEn: 'English-language certified MOOC, final score: 18.5/20',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Les Évaluations des Apprentissages',
+      titleEn: 'Learning Assessments',
       provider: 'IIPE-UNESCO',
       year: '2017',
       score: '19.5/20',
@@ -146,6 +193,7 @@ const Certifications = () => {
       image: '/images/Les_Évaluations_des_Apprentissages.jpg',
 
       description: 'MOOC certifiant en français, note finale : 19.5/20',
+      descriptionEn: 'French-language certified MOOC, final score: 19.5/20',
       certificateLink: '#'
     },
     {
@@ -154,33 +202,39 @@ const Certifications = () => {
       provider: 'IIPE-UNESCO',
       year: '2017',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Éducation',
       color: 'yellow',
       image: '/images/e-Seminar.jpg',
 
       description: 'Séminaire en ligne sur la transformation de la formation des enseignants pour améliorer les résultats d\'apprentissage',
+      descriptionEn: 'Online seminar on transforming teacher education to improve learning outcomes',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Gestion de Projets – GdP8',
+      titleEn: 'Project Management – GdP8',
       provider: 'Ecole centrale de Lille & UNOW',
       year: '2016',
       score: '87/100',
       type: 'Gestion de Projet',
       color: 'blue',
       description: 'MOOC certifiant, 4 modules classiques et 2 de spécialisation validés. Note finale: 87/100',
+      descriptionEn: 'Certified project management MOOC: 4 core modules and 2 specialization modules validated. Final score: 87/100',
       certificateLink: 'https://www.unow-mooc.org/'
     },
     {
       icon: BookOpen,
       title: 'Gestion de Projets – GdP9',
+      titleEn: 'Project Management – GdP9',
       provider: 'UNOW',
       year: '2017',
       score: '92/100',
       type: 'Gestion de Projet',
       color: 'blue',
       description: 'MOOC en gestion de projets, note finale : 92/100',
+      descriptionEn: 'Project management MOOC, final score: 92/100',
       certificateLink: 'https://www.unow-mooc.org/'
     },
     {
@@ -192,40 +246,50 @@ const Certifications = () => {
       type: 'Management',
       color: 'pink',
       description: 'Cours en ligne de gestion des ressources humaines, mention Excellent (90+ %)',
+      descriptionEn: 'Online course in human resource management, with an Excellent rating (90+ %)',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Formation Digital Active',
+      titleEn: 'Digital Active Training',
       provider: 'Google',
       year: '2017',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Marketing',
       color: 'indigo',
       description: 'MOOC certifiant de Google sur les fondamentaux du marketing digital (26 thèmes)',
+      descriptionEn: 'Google-certified MOOC on the fundamentals of digital marketing (26 topics)',
       certificateLink: 'https://learndigital.withgoogle.com'
     },
     {
       icon: BookOpen,
       title: 'Fondamentaux de la Finance',
+      titleEn: 'Fundamentals of Finance',
       provider: 'HP Life via Edcastcloud',
       year: '2018',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Finance',
       color: 'teal',
       image: '/images/hp.jpg',
       description: 'MOOC certifiant sur les bases de la finance',
+      descriptionEn: 'Google-certified MOOC on the fundamentals of finance',
       certificateLink: 'hplife.edcastcloud.com/verify/FBKrMtkg'
     },
     {
       icon: Code,
       title: 'Compétences de Base en Informatique',
+      titleEn: 'Basic Computer Skills',
       provider: 'Code.org',
       year: '2019',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Informatique',
       color: 'blue',
       description: 'Certificats de réussite pour des heures de codage démontrant une compréhension des concepts fondamentaux de l\'informatique',
+      descriptionEn: 'Success certificates for coding hours demonstrating an understanding of fundamental computer science concepts',
       certificateLink: 'www.code.org'
     },
     {
@@ -238,6 +302,8 @@ const Certifications = () => {
       color: 'green',
       image: '/images/appdesign.jpg',
       description: 'Certificat d\'accomplissement pour avoir terminé l\'unité en ligne de Devslopes sur Sketch Tutorial pour les débutants.',
+      descriptionEn: 'Completion certificate for finishing Devslopes’ online unit on Sketch Tutorial for beginners.',
+      scoreEn: 'Certified',
       certificateLink: '#'
     },
     {
@@ -250,11 +316,14 @@ const Certifications = () => {
       color: 'green',
       image: '/images/html.jpg',
       description: 'Certificat d\'achèvement du cours HTML de Sololearn.',
+      descriptionEn: 'Course completion certificate for the Sololearn HTML course.',
+      scoreEn: 'Certified',
       certificateLink: '#'
     },
     {
       icon: Code,
       title: 'Apprendre à coder avec Python',
+      titleEn: 'Learn to Code with Python',
       provider: 'Université Libre de Bruxelles (ULB)',
       year: '2019',
       score: '100%',
@@ -262,11 +331,13 @@ const Certifications = () => {
       color: 'blue',
       image: '/images/python.jpg',
       description: 'MOOC sur la plateforme FUN pour apprendre à coder avec Python.',
+      descriptionEn: 'MOOC on the FUN platform to learn how to code with Python.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Gouvernance Territoriale',
+      titleEn: 'Territorial Governance',
       provider: 'CNFPT via FUN-MOOC',
       year: '2019',
       score: '100%',
@@ -275,17 +346,21 @@ const Certifications = () => {
       image: '/images/cnfpt2019.jpg',
 
       description: 'Certificat de suivi avec succès (100%) du MOOC sur la gouvernance territoriale',
+      descriptionEn: 'Certificate of successful completion (100%) of the MOOC on territorial governance',
       certificateLink: 'https://www.fun-mooc.fr/'
     },
     {
       icon: BookOpen,
       title: 'Webinaires de Gestion de Projet et UNESCO',
+      titleEn: 'Project Management and UNESCO Webinars',
       provider: 'Project Management Institute, UNESCO',
       year: '2018-2025',
       score: 'Certifié',
       type: 'Gestion de Projet',
       color: 'blue',
       description: 'Certificats de participation à divers webinaires sur des thèmes de gestion de projet (PMXPO) et UNESCO',
+      descriptionEn: 'Participation certificates for various project management webinars (PMXPO) and UNESCO topics',
+      scoreEn: 'Certified',
       certificateLink: '#'
     },
     {
@@ -299,6 +374,8 @@ const Certifications = () => {
       image: '/images/corona.jpg',
 
       description: 'Certificat sur les informations essentielles concernant le Coronavirus',
+      descriptionEn: 'Certificate covering the essential information about Coronavirus',
+      scoreEn: 'Certified',
       certificateLink: 'https://alison.com/course/coronavirus-what-you-need-to-know'
     }
   ];
@@ -307,72 +384,91 @@ const Certifications = () => {
     {
       icon: BookOpen,
       title: 'Stage pédagogique (2 mois)',
+      titleEn: 'Pedagogical Internship (2 months)',
       provider: 'CENAFFIF',
       year: '1999',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Pédagogie',
       color: 'blue',
       description: 'Stage pédagogique obligatoire pour les nouvelles recrues des formateurs, organisé par le CENAFFIF.',
+      descriptionEn: 'Mandatory pedagogical internship for newly recruited trainers, organized by CENAFFIF.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Audit dans la formation professionnelle',
+      titleEn: 'Audit in Professional Training',
       provider: 'AFPA (France)',
       year: '1999',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Audit',
       color: 'green',
       description: 'Formation d’une semaine assurée par un expert français de l’AFPA sur l’audit de la formation professionnelle.',
+      descriptionEn: 'One-week training delivered by a French AFPA expert on auditing professional training.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Cycle d’ingénierie de formation',
+      titleEn: 'Training Engineering Program',
       provider: 'CENAFFIF',
       year: '1999-2000',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Qualité',
       color: 'orange',
       description: 'Cycle d’un an sur la qualité, la gestion des centres de formation, les enquêtes statistiques et l’audit.',
+      descriptionEn: 'One-year program on quality, management of training centers, statistical surveys, and auditing.',
       certificateLink: '#'
     },
     {
       icon: Award,
       title: 'Mission qualité France',
+      titleEn: 'Quality Mission in France',
       provider: 'Ministère & partenaires français',
       year: '2002',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Qualité',
       color: 'red',
       description: 'Mission en France sur l’implantation d’une démarche qualité dans la formation professionnelle.',
+      descriptionEn: 'Mission in France on implementing a quality approach in professional training.',
       certificateLink: '#'
     },
     {
       icon: Award,
       title: 'Mission Audit France',
+      titleEn: 'Audit Mission in France',
       provider: 'Ministère & partenaires français',
       year: '2007',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Audit',
       color: 'purple',
       description: 'Mission de 2 semaines en France sur l’appropriation des techniques d’audit appliquées à la formation professionnelle.',
+      descriptionEn: 'Two-week mission in France to learn and apply auditing techniques to professional training.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Cycle certifiant Audit de la formation professionnelle',
+      titleEn: 'Certified Program: Audit of Professional Training',
       provider: 'AFPA (France)',
       year: '2006-2007',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Audit',
       color: 'yellow',
       description: 'Cycle de 11 semaines, phases pratiques : familiarisation, diagnostic et mise en place d’une démarche qualité pour l’audit de formation.',
+      descriptionEn: '11-week program with practical phases: familiarization, diagnosis, and implementation of a quality approach for training audits.',
       certificateLink: '#'
     },
     {
       icon: Globe,
       title: 'Perfectionnement en anglais',
+      titleEn: 'Advanced English Improvement',
       provider: 'British Council, Tunis',
       year: '2009',
       score: '19/20',
@@ -381,90 +477,112 @@ const Certifications = () => {
       image: '/images/britchcouncil.jfif',
 
       description: 'Cycle certifiant de 6 mois couronné par un certificat de langue (niveau intermédiaire, mention excellent).',
+      descriptionEn: '6-month language certification course crowned by a language certificate (intermediate level, excellent mention).',
       certificateLink: '#'
     },
     {
       icon: Trophy,
       title: 'Conférence BTLH & UK Skills Show',
+      titleEn: 'BTLH & UK Skills Show Conference',
       provider: 'British Council, Birmingham',
       year: '2015',
       score: 'Participation officielle',
+      scoreEn: 'Official participation',
       type: 'International',
       color: 'indigo',
       description: 'Mission officielle en Angleterre sur invitation du British Council pour la conférence Bringing The Learning Home et la foire UK Skills Show.',
+      descriptionEn: 'Official mission in England upon invitation from the British Council for the Bringing The Learning Home conference and the UK Skills Show fair.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Coaching pédagogique',
+      titleEn: 'Pedagogical Coaching',
       provider: 'Formation nationale',
       year: '2015',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Coaching',
       color: 'pink',
       description: 'Formation certifiante d’une semaine en coaching pédagogique.',
+      descriptionEn: 'One-week certified training in pedagogical coaching.',
       certificateLink: '#'
     },
     {
       icon: Award,
       title: 'Mise en place d’un système de certification ISO-17024',
+      titleEn: 'Implementing an ISO-17024 Certification System',
       provider: 'UTICA & expert allemand',
       year: '2016',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Qualité',
       color: 'teal',
       description: 'Cycle d’ateliers de 3 semaines sur l’appropriation des exigences de la norme ISO-17024 appliquée à la formation professionnelle.',
+      descriptionEn: 'Three-week workshop cycle to understand the requirements of ISO-17024 applied to professional training.',
       certificateLink: '#'
     },
     {
       icon: Globe,
       title: 'Reconnaissance diplômes professionnels',
+      titleEn: 'Recognition of Professional Diplomas',
       provider: 'Hambourg, Allemagne',
       year: '2022',
       score: 'Participation officielle',
+      scoreEn: 'Official participation',
       type: 'International',
       color: 'orange',
       description: 'Mission officielle sur le système allemand de reconnaissance des diplômes de formation professionnelle.',
+      descriptionEn: 'Official mission on the German system for recognition of professional training diplomas.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Politiques publiques inclusives',
+      titleEn: 'Inclusive Public Policies',
       provider: 'ENA Tunis – Institut de Leadership',
       year: '2022',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Gouvernance',
       color: 'blue',
       description: 'Session de formation certifiante (7 mois) pour hauts cadres, désigné rapporteur adjoint du comité de rédaction du rapport final.',
+      descriptionEn: 'Certified training session (7 months) for senior executives; appointed deputy rapporteur of the final report drafting committee.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Systèmes d’alerte précoce',
+      titleEn: 'Early Warning Systems',
       provider: 'ENA Tunis',
       year: '2022',
       score: 'Certifié',
+      scoreEn: 'Certified',
       type: 'Gouvernance',
       color: 'red',
       image: '/images/ena.jfif',
 
       description: 'Formation certifiante au profit de hauts cadres tunisiens sur les outils de mise en place de systèmes d’alerte précoce.',
+      descriptionEn: 'Certified training for senior Tunisian executives on tools to implement early warning systems.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Animation Pédagogique (Inspection & Audit Formation)',
+      titleEn: 'Pedagogical Facilitation (Inspection & Educational Audit)',
       provider: 'Ministère MFPE, Instituts Nationaux et Étrangers',
       year: 'Diverses Années',
       score: 'N/A',
       type: 'Formation Animée',
       color: 'indigo',
       description: 'Animation de formations pour hauts cadres (tunisiens et étrangers) sur l\'inspection et l\'audit pédagogique, incluant la méthodologie d\'audit et l\'élaboration de logigrammes. Chaque session est suivie d\'un rapport d\'évaluation.',
+      descriptionEn: 'Facilitated training for senior executives (Tunisian and international) on inspection and educational audit, including audit methodology and flowchart development. Each session is followed by an evaluation report.',
       certificateLink: '#'
     },
     {
       icon: Globe,
       title: 'Test de niveau d\'anglais',
+      titleEn: 'English Level Test',
       provider: 'Gymglish',
       year: '2018',
       score: '4.0 (~B2-C1)',
@@ -472,11 +590,13 @@ const Certifications = () => {
       color: 'cyan',
       image: '/images/gymglish.jpg',
       description: 'Évaluation détaillée du niveau d\'anglais et résumé pédagogique, couvrant les concepts maîtrisés en vocabulaire, communication et grammaire, ainsi que les points à réviser.',
+      descriptionEn: 'Detailed assessment of the English level with a teaching summary covering mastered concepts in vocabulary, communication, and grammar, as well as items to review.',
       certificateLink: '#'
     },
     {
       icon: Globe,
       title: 'Test de niveau de français',
+      titleEn: 'French Level Test',
       provider: 'Frantastique',
       year: '2018',
       score: '4.4',
@@ -484,6 +604,7 @@ const Certifications = () => {
       color: 'blue',
       image: '/images/frantastique.jpg',
       description: 'Évaluation détaillée du niveau de français et bilan pédagogique, couvrant les compétences maîtrisées en syntaxe, grammaire et orthographe, ainsi que les points à acquérir ou à réviser.',
+      descriptionEn: 'Detailed assessment of French level with a teaching report covering mastered skills in syntax, grammar, and spelling, as well as items to learn or review.',
       certificateLink: '#'
     },
     {
@@ -492,10 +613,12 @@ const Certifications = () => {
       provider: 'Project Management Institute',
       year: '2018',
       score: 'Certificat de présence',
+      scoreEn: 'Certificate of attendance',
       type: 'Gestion de Projet',
       color: 'blue',
       image: '/images/pmxpo2018.jpg',
       description: 'Certificat de présence pour la participation aux remarques d\'ouverture et à la conférence principale de PMXPO 2018: The Simpsons: There’s no ’I’ in ’Innovation’ (oh wait, there’s ).',
+      descriptionEn: 'Certificate of attendance for participating in the opening remarks and the main conference at PMXPO 2018: The Simpsons: There’s no ’I’ in ’Innovation’ (oh wait, there’s ).',
       certificateLink: '#'
     },
     {
@@ -504,10 +627,12 @@ const Certifications = () => {
       provider: 'Project Management Institute',
       year: '2018',
       score: 'Certificat de présence',
+      scoreEn: 'Certificate of attendance',
       type: 'Gestion de Projet',
       color: 'blue',
       image: '/images/pmxpo2018_session1.jpg',
       description: 'Certificat de présence pour la participation à la session 1 de PMXPO 2018: Imagining the Future of PMOs.',
+      descriptionEn: 'Certificate of attendance for participating in Session 1 of PMXPO 2018: Imagining the Future of PMOs.',
       certificateLink: '#'
     },
     {
@@ -516,10 +641,12 @@ const Certifications = () => {
       provider: 'Project Management Institute',
       year: '2018',
       score: 'Certificat de présence',
+      scoreEn: 'Certificate of attendance',
       type: 'Gestion de Projet',
       color: 'blue',
       image: '/images/pmxpo2018_session2.jpg',
       description: 'Certificat de présence pour la participation à la session 2 de PMXPO 2018: Creative Thinking: Engaging Your Stakeholders, Improving Your R.',
+      descriptionEn: 'Certificate of attendance for participating in Session 2 of PMXPO 2018: Creative Thinking: Engaging Your Stakeholders, Improving Your R.',
       certificateLink: '#'
     },
     {
@@ -528,22 +655,27 @@ const Certifications = () => {
       provider: 'Project Management Institute',
       year: '2018',
       score: 'Certificat de présence',
+      scoreEn: 'Certificate of attendance',
       type: 'Gestion de Projet',
       color: 'blue',
       image: '/images/pmxpo2018_session3.jpg',
       description: 'Certificat de présence pour la participation à la session 3 de PMXPO 2018: 2018 Pulse of the Profession.',
+      descriptionEn: 'Certificate of attendance for participating in Session 3 of PMXPO 2018: 2018 Pulse of the Profession.',
       certificateLink: '#'
     },
     {
       icon: BookOpen,
       title: 'Gestion des Risques (Cours Court)',
+      titleEn: 'Risk Management (Short Course)',
       provider: 'Fournisseur de Cours en Ligne',
       year: '2018',
       score: 'Inscription Confirmée',
+      scoreEn: 'Confirmed registration',
       type: 'Management',
       color: 'pink',
       image: '/images/risk_management.jpg',
       description: 'Confirmation d\'inscription au cours en ligne de gestion des risques, avec évaluation par des travaux écrits et projets.',
+      descriptionEn: 'Enrollment confirmation for an online risk management course, evaluated through written assignments and projects.',
       certificateLink: '#'
     }
   ]);
@@ -552,10 +684,10 @@ const Certifications = () => {
 
   const filteredCertifications = allCertifications.filter(cert => {
     const matchesSearch = (
-      cert.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      getTitle(cert).toLowerCase().includes(searchQuery.toLowerCase()) ||
       cert.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cert.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cert.description.toLowerCase().includes(searchQuery.toLowerCase())
+      getTypeLabel(cert.type).toLowerCase().includes(searchQuery.toLowerCase()) ||
+      getDescription(cert).toLowerCase().includes(searchQuery.toLowerCase())
     );
     const matchesYear = selectedYear === '' || cert.year === selectedYear;
     return matchesSearch && matchesYear;
@@ -592,12 +724,13 @@ const Certifications = () => {
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-base font-medium uppercase tracking-wide">Apprentissage Continu
+            <span className="text-blue-600 dark:text-blue-400 text-base font-medium uppercase tracking-wide">
+              {isFr ? 'Apprentissage Continu' : 'Continuous Learning'}
             </span>
           </div>
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
               <span className="relative">
-                Certifications & Formations
+                {isFr ? 'Certifications & Formations' : 'Certifications & Training'}
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-36 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
               </span>
             </h2>
@@ -607,7 +740,9 @@ const Certifications = () => {
 
           
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-center mb-8">
-            Découvrez mes certifications professionnelles et formations en ligne (MOOCs) obtenues auprès d'organismes de formation reconnus.
+            {isFr
+              ? "Découvrez mes certifications professionnelles et formations en ligne (MOOCs) obtenues auprès d'organismes de formation reconnus."
+              : 'Explore my professional certifications and online training (MOOCs) obtained from recognized training organizations.'}
           </p>
 
           <div className="max-w-4xl mx-auto mb-6 flex flex-col sm:flex-row gap-4">
@@ -617,7 +752,7 @@ const Certifications = () => {
               </div>
               <input
                 type="text"
-                placeholder="Rechercher des certifications..."
+                placeholder={isFr ? 'Rechercher des certifications...' : 'Search certifications...'}
                 className="w-full p-3 pl-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm hover:border-blue-400"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -630,7 +765,7 @@ const Certifications = () => {
                             onClick={() => setIsYearFilterOpen(!isYearFilterOpen)}
                             className="w-full p-3 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-left appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm hover:border-blue-400 flex items-center justify-between"
                           >
-                            <span>{selectedYear || 'Toutes les années'}</span>
+                            <span>{selectedYear || (isFr ? 'Toutes les années' : 'All years')}</span>
                             <svg className={`fill-current h-4 w-4 transform transition-transform ${isYearFilterOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                           </button>
 
@@ -644,7 +779,7 @@ const Certifications = () => {
                                 }}
                                 className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                               >
-                                Toutes les années
+                                {isFr ? 'Toutes les années' : 'All years'}
                               </button>
                               {uniqueYears.map((year) => (
                                 <button
@@ -689,7 +824,7 @@ const Certifications = () => {
                 
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 dark:text-white text-base mb-2 leading-tight">{cert.title}</h4>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-base mb-2 leading-tight">{getTitle(cert)}</h4>
                     <div className="flex items-center text-blue-600 dark:text-blue-400 text-sm mb-2">
                       {cert.icon && <cert.icon className="w-4 h-4 mr-1" />} {/* Display icon for MOOCs */}
                       <Building className="w-4 h-4 mr-1" />
@@ -697,12 +832,12 @@ const Certifications = () => {
                     </div>
                   </div>
                   <span className={`px-3 py-1 rounded-full text-xs font-medium text-white`} style={{ backgroundColor: getTypeHexColor(cert.type) }}>
-                    {cert.type}
+                    {getTypeLabel(cert.type)}
                   </span>
                 </div>
 
                 <div className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                  <p>{cert.description}</p>
+                  <p>{getDescription(cert)}</p>
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
@@ -712,7 +847,7 @@ const Certifications = () => {
                   </div>
                   <div className="flex items-center text-black dark:text-white font-bold">
                     <Star className="w-4 h-4 mr-1 fill-yellow-500 text-yellow-500" />
-                    <span>{cert.score}</span>
+                    <span>{getScore(cert)}</span>
                   </div>
                 </div>
                 
@@ -721,7 +856,7 @@ const Certifications = () => {
                   className="w-full py-2 rounded-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700/50 text-gray-800 dark:text-gray-200 font-medium text-xs transition-colors duration-300 flex items-center justify-center border border-gray-200 dark:border-gray-700"
                 >
                   <Eye className="w-4 h-4 mr-2" />
-                  Voir Certificat
+                  {isFr ? 'Voir Certificat' : 'View Certificate'}
                 </button>
               </div>
             ))}
@@ -733,7 +868,9 @@ const Certifications = () => {
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 animate-fade-in">
             <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-zoom-in flex flex-col">
               <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Détails du Certificat</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {isFr ? 'Détails du Certificat' : 'Certificate Details'}
+                </h3>
                 <button
                   onClick={closeModal}
                   className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700"
@@ -759,7 +896,7 @@ const Certifications = () => {
                       ) : (
                         <div className="text-center text-gray-500 dark:text-gray-400">
                           <Award className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                          <p>Image du certificat non disponible</p>
+                          <p>{isFr ? 'Image du certificat non disponible' : 'Certificate image not available'}</p>
                         </div>
                       )}
                     </div>
@@ -768,7 +905,7 @@ const Certifications = () => {
                   </div>
                   
                   <div className="lg:w-1/3 h-full">
-                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{selectedCertificate.title}</h4>
+                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{getTitle(selectedCertificate)}</h4>
                     <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4 flex items-center">
                       {selectedCertificate.icon && <selectedCertificate.icon className="w-4 h-4 mr-2" />} {/* Display icon for MOOCs in modal */}
                       <Building className="w-4 h-4 mr-2" />
@@ -777,18 +914,18 @@ const Certifications = () => {
                     
                     <div className="space-y-3 mb-6">
                       <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Année</span>
+                        <span className="text-gray-500 dark:text-gray-400">{isFr ? 'Année' : 'Year'}</span>
                         <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.year}</span>
                       </div>
                       
                       <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Score</span>
-                        <span className="font-medium text-emerald-600 dark:text-emerald-400">{selectedCertificate.score}</span>
+                        <span className="text-gray-500 dark:text-gray-400">{isFr ? 'Score' : 'Score'}</span>
+                        <span className="font-medium text-emerald-600 dark:text-emerald-400">{getScore(selectedCertificate)}</span>
                       </div>
                       
                       <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-700">
-                        <span className="text-gray-500 dark:text-gray-400">Type</span>
-                        <span className="font-medium text-gray-900 dark:text-white">{selectedCertificate.type}</span>
+                        <span className="text-gray-500 dark:text-gray-400">{isFr ? 'Type' : 'Type'}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{getTypeLabel(selectedCertificate.type)}</span>
                       </div>
                     </div>
                     
@@ -802,7 +939,7 @@ const Certifications = () => {
                           className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
                         >
                         <Download className="w-4 h-4 mr-2" />
-                          Télécharger
+                          {isFr ? 'Télécharger' : 'Download'}
                         </a>
                       ) : null}
                       
@@ -814,7 +951,7 @@ const Certifications = () => {
                           className="flex-1 py-2.5 px-4 bg-gray-200 hover:bg-gray-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-800 dark:text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
-                          Vérifier en ligne
+                          {isFr ? 'Vérifier en ligne' : 'Verify online'}
                         </a>
                       )}
                     </div>
@@ -831,18 +968,18 @@ const Certifications = () => {
                     className="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 rounded-lg transition-colors duration-300"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
-                    Précédent
+                    {isFr ? 'Précédent' : 'Previous'}
                   </button>
                   
                   <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {certificateIndex + 1} de {filteredCertifications.length}
+                    {certificateIndex + 1} {isFr ? 'de' : 'of'} {filteredCertifications.length}
                   </span>
                   
                   <button
                     onClick={goToNextCertificate}
                     className="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 rounded-lg transition-colors duration-300"
                   >
-                    Suivant
+                    {isFr ? 'Suivant' : 'Next'}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </button>
                 </div>

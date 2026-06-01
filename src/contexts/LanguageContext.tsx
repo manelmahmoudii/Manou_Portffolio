@@ -23,7 +23,6 @@ const translations = {
 
     // Navigation
     'nav.home': 'Accueil',
-    'nav.about': 'À Propos',
     'nav.experience': 'Expérience',
     'nav.education': 'Formation',
     'nav.skills': 'Compétences',
@@ -72,7 +71,6 @@ const translations = {
 
     // Navigation
     'nav.home': 'Home',
-    'nav.about': 'About',
     'nav.experience': 'Experience',
     'nav.education': 'Education',
     'nav.skills': 'Skills',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GraduationCap, Award, BookOpen, Calendar, LucideIcon, Eye, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface EducationItem {
   icon: LucideIcon;
@@ -18,6 +19,8 @@ const Education = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { language } = useLanguage();
+  const isFr = language === 'fr';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,7 +38,7 @@ const Education = () => {
     return () => observer.disconnect();
   }, []);
 
-  const educationData: EducationItem[] = [
+  const educationDataFr: EducationItem[] = [
     {
       icon: GraduationCap,
       level: 'Master en Machines Électroniques et Ordinateurs',
@@ -85,14 +88,72 @@ const Education = () => {
     }
   ];
 
-  const additionalStudies = [
+  const educationDataEn: EducationItem[] = [
+    {
+      icon: GraduationCap,
+      level: 'Master in Electronic Machines and Computers',
+      institution: 'Kyiv Civil Aviation Engineers Institute',
+      year: '1984-1990',
+      description:
+        'Specialization in Electronic Machines and Computers (6 years including the preparatory year)',
+      grade: 'Graduated on June 25, 1990',
+      color: 'from-purple-500 to-blue-600',
+      flag: 'ru',
+      images: [
+        '/images/master_diploma_1.jfif',
+        '/images/master_diploma_2.jpg',
+        '/images/equivalence.jfif',
+      ],
+    },
+    {
+      icon: Award,
+      level: 'Mathematics-Sciences Baccalaureate',
+      institution: 'Lycée 2 Mars 1934, La Goulette-Tunis',
+      year: '1976-1983',
+      description: 'Mathematics and Sciences (7 years)',
+      grade: 'June 1983 Session',
+      color: 'from-blue-500 to-cyan-500',
+      flag: 'tn',
+      images: ['/images/bac_diploma_1.jpg', '/images/bac_diploma_2.jpg'],
+    },
+    {
+      icon: BookOpen,
+      level: 'Professional Training Certifications',
+      institution: 'Multiple International Institutions',
+      year: '1999-2022',
+      description: 'CENAFFIF, AFPA France, British Council, ENA Tunis',
+      grade: 'Various Certifications',
+      color: 'from-cyan-500 to-teal-500',
+    },
+    {
+      icon: Calendar,
+      level: '15+ MOOC Certifications',
+      institution: 'UNESCO, Google, École Centrale Lille',
+      year: '2015-2020',
+      description:
+        'Educational Statistics, Project Management, Digital Marketing, Human Resources Management',
+      grade: 'Outstanding Grades (17-19/20)',
+      color: 'from-teal-500 to-green-500',
+    },
+  ];
+
+  const educationData = isFr ? educationDataFr : educationDataEn;
+
+  const additionalStudiesFr = [
     'Formation en Audit Pédagogique - AFPA France (2006-2007) - Certification de 11 semaines',
-    'Certification d\'Anglais - British Council Tunis (2009) - Excellent 19/20',
-    'Certification de Coaching Pédagogique (2015)',
     'Développement de Politiques Publiques - ENA Tunis (2022) - Programme de 7 mois',
     'Normes d\'Audit ISO-17024 - UTICA (2016) - 3 semaines avec un auditeur allemand',
     'Formation aux Systèmes d\'Alerte Précoce (2022) - Programme pour fonctionnaires'
   ];
+
+  const additionalStudiesEn = [
+    'Pedagogical Audit Training - AFPA France (2006-2007) - 11-week Certification',
+    'Public Policy Development - ENA Tunis (2022) - 7-month Program',
+    'ISO-17024 Audit Standards - UTICA (2016) - 3 weeks with a German auditor',
+    'Training on Early Warning Systems (2022) - Program for civil servants',
+  ];
+
+  const additionalStudies = isFr ? additionalStudiesFr : additionalStudiesEn;
 
   // Fonction pour obtenir le drapeau approprié - CORRIGÉ
   const getFlag = (flagCode: string) => {
@@ -103,7 +164,7 @@ const Education = () => {
           srcSet="https://flagcdn.com/w40/ru.png 2x"
           width="20"
           height="10"
-          alt="Russia"
+          alt={isFr ? 'Russie' : 'Russia'}
           className="mr-2 rounded-sm shadow-sm dark:border-gray-500"
         />
       );
@@ -114,7 +175,7 @@ const Education = () => {
           srcSet="https://flagcdn.com/w40/tn.png 2x"
           width="20"
           height="10"
-          alt="Tunisia"
+          alt={isFr ? 'Tunisie' : 'Tunisia'}
           className="mr-2 rounded-sm shadow-sm dark:border-gray-500"
         />
       );
@@ -154,15 +215,21 @@ const Education = () => {
         <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-full mb-4 shadow-sm">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium uppercase tracking-wide">Fondation Académique</span>
+            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium uppercase tracking-wide">
+              {isFr ? 'Fondation Académique' : 'Academic Foundation'}
+            </span>
           </div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative">
             <span className="relative">
-              Éducation & Apprentissage
+              {isFr ? 'Éducation & Apprentissage' : 'Education & Learning'}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full"></div>
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">Fondation académique et parcours d'apprentissage continu couvrant des décennies de développement professionnel</p>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
+            {isFr
+              ? 'Fondation académique et parcours d\'apprentissage continu couvrant des décennies de développement professionnel'
+              : 'Academic foundation and continuous learning journey spanning decades of professional development'}
+          </p>
         </div>
 
         {/* Enhanced Education Cards */}
@@ -213,7 +280,7 @@ const Education = () => {
                     <button
                       onClick={() => openImageModal(edu.images || [])}
                       className="absolute top-4 right-6 z-10 p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 flex items-center justify-center md:right-8"
-                      aria-label="View diploma images"
+                      aria-label={isFr ? 'Voir les images du diplôme' : 'View diploma images'}
                     >
                       <Eye className="w-5 h-5" />
                     </button>
@@ -223,34 +290,51 @@ const Education = () => {
             ))}
           </div>
 
-          {/* Enhanced Additional Training Section */}
-          <div className={`bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow">
-                <BookOpen className="w-5 h-5 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Formation Professionnelle Additionnelle</h3>
+          {/* Additional Training Section */}
+          <div className={`transform transition-all duration-700 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            {/* Header — line-art icon + title + line */}
+            <div className="flex items-center gap-3 mb-6">
+              <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} />
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
+                {isFr ? 'Formation Professionnelle Additionnelle' : 'Additional Professional Training'}
+              </h3>
+              <div className="flex-1 h-px bg-gradient-to-r from-blue-200 dark:from-blue-800 to-transparent ml-1"></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-4">
-              {additionalStudies.map((study, index) => (
-                <div
-                  key={index}
-                  className="flex items-start space-x-3 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200 group"
-                >
-                  <div className="flex-shrink-0 mt-0.5">
-                    <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+              {additionalStudies.map((study, index) => {
+                const parts = study.split(' - ');
+                const title = parts[0];
+                const org = parts[1] || '';
+                const detail = parts.slice(2).join(' · ');
+                return (
+                  <div
+                    key={index}
+                    className="group bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
+                        <Award className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-gray-900 dark:text-white text-base leading-snug mb-1">
+                          {title}
+                        </h4>
+                        {org && (
+                          <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                            {org}
+                          </p>
+                        )}
+                        {detail && (
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
+                            {detail}
+                          </p>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    {study.split(' - ').map((part, i) => (
-                      <span key={i} className={i === 0 ? "font-medium text-gray-900 dark:text-white" : ""}>
-                        {part}
-                        {i < study.split(' - ').length - 1 && ' - '}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -261,11 +345,13 @@ const Education = () => {
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 animate-fade-in">
           <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-zoom-in flex flex-col">
             <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-slate-700">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Images du Diplôme</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                {isFr ? 'Images du Diplôme' : 'Diploma Images'}
+              </h3>
               <button
                 onClick={closeImageModal}
                 className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700"
-                aria-label="Close image modal"
+                aria-label={isFr ? 'Fermer le modal d\'images' : 'Close image modal'}
               >
                 <X className="w-6 h-6" />
               </button>
@@ -273,7 +359,7 @@ const Education = () => {
             <div className="flex-1 overflow-auto relative flex items-center justify-center p-4 h-full w-full">
               <img
                 src={selectedImages[currentImageIndex]}
-                alt={`Diploma image ${currentImageIndex + 1}`}
+                alt={isFr ? `Image du diplôme ${currentImageIndex + 1}` : `Diploma image ${currentImageIndex + 1}`}
                 className="max-w-full max-h-full object-contain rounded-lg lg:max-w-[45%] lg:max-h-[70%]"
               />
               {selectedImages.length > 1 && (
@@ -281,14 +367,14 @@ const Education = () => {
                   <button
                     onClick={goToPreviousImage}
                     className="absolute left-4 p-3 bg-white/70 dark:bg-slate-700/70 rounded-full shadow-md text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-slate-600 transition-colors duration-200"
-                    aria-label="Previous image"
+                    aria-label={isFr ? 'Image précédente' : 'Previous image'}
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={goToNextImage}
                     className="absolute right-4 p-3 bg-white/70 dark:bg-slate-700/70 rounded-full shadow-md text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-slate-600 transition-colors duration-200"
-                    aria-label="Next image"
+                    aria-label={isFr ? 'Image suivante' : 'Next image'}
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
