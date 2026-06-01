@@ -245,7 +245,7 @@ const Skills = () => {
   );
 
   return (
-    <section id="skills" className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="skills" className="py-12 sm:py-16 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header — matches Experience / Projects */}
         <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>

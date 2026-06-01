@@ -215,7 +215,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="projects" className="py-12 sm:py-16 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Enhanced blue effects */}
       
       
