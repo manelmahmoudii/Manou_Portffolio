@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe, Search } from 'lucide-react';
+import { Award, Calendar, Star, Trophy, X, ChevronLeft, ChevronRight, Building, ExternalLink, Download, Eye, BookOpen, LucideIcon, Code, Globe, Search, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface CertificationItem {
@@ -27,6 +27,7 @@ const Certifications = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
   const [isYearFilterOpen, setIsYearFilterOpen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
   const { language } = useLanguage();
   const isFr = language === 'fr';
 
@@ -696,24 +697,30 @@ const Certifications = () => {
   const openModal = (certificate: CertificationItem, index: number) => {
     setSelectedCertificate(certificate);
     setCertificateIndex(index);
+    setIsImageLoading(!!certificate.image);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedCertificate(null);
+    setIsImageLoading(false);
   };
 
   const goToNextCertificate = () => {
     const nextIndex = (certificateIndex + 1) % filteredCertifications.length;
+    const next = filteredCertifications[nextIndex];
     setCertificateIndex(nextIndex);
-    setSelectedCertificate(filteredCertifications[nextIndex]);
+    setSelectedCertificate(next);
+    setIsImageLoading(!!next.image);
   };
 
   const goToPreviousCertificate = () => {
     const prevIndex = (certificateIndex - 1 + filteredCertifications.length) % filteredCertifications.length;
+    const prev = filteredCertifications[prevIndex];
     setCertificateIndex(prevIndex);
-    setSelectedCertificate(filteredCertifications[prevIndex]);
+    setSelectedCertificate(prev);
+    setIsImageLoading(!!prev.image);
   };
 
 
@@ -912,15 +919,33 @@ const Certifications = () => {
               <div className="flex-1 overflow-auto p-4">
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="lg:w-2/3 flex flex-col h-full">
-                    <div className="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center h-full flex-grow">
+                    <div className="relative bg-gray-100 dark:bg-slate-900 rounded-xl p-4 flex items-center justify-center h-full flex-grow min-h-[300px]">
+                      {/* Loader overlay (only when cert has image and image is loading) */}
+                      {selectedCertificate.image && isImageLoading && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100/70 dark:bg-slate-900/70 backdrop-blur-sm z-10 rounded-xl">
+                          <Loader2 className="w-10 h-10 text-blue-600 dark:text-blue-400 animate-spin" />
+                          <span className="mt-3 text-sm text-gray-600 dark:text-gray-300 font-medium">
+                            {isFr ? 'Chargement…' : 'Loading…'}
+                          </span>
+                        </div>
+                      )}
                       {selectedCertificate.image ? (
                         selectedCertificate.image.endsWith('.pdf') ? (
-                          <iframe src={selectedCertificate.image} className="w-full h-full rounded-lg" title="Certificat PDF"></iframe>
+                          <iframe
+                            key={selectedCertificate.image}
+                            src={selectedCertificate.image}
+                            className={`w-full h-full rounded-lg transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
+                            title="Certificat PDF"
+                            onLoad={() => setIsImageLoading(false)}
+                          ></iframe>
                         ) : (
-                          <img 
-                            src={selectedCertificate.image} 
-                            alt={selectedCertificate.title} 
-                            className="max-w-full max-h-full object-contain rounded-lg shadow-md" 
+                          <img
+                            key={selectedCertificate.image}
+                            src={selectedCertificate.image}
+                            alt={selectedCertificate.title}
+                            className={`max-w-full max-h-full object-contain rounded-lg shadow-md transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
+                            onLoad={() => setIsImageLoading(false)}
+                            onError={() => setIsImageLoading(false)}
                           />
                         )
                       ) : (
@@ -930,8 +955,6 @@ const Certifications = () => {
                         </div>
                       )}
                     </div>
-                    
-                    
                   </div>
                   
                   <div className="lg:w-1/3 h-full">

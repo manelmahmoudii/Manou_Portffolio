@@ -541,11 +541,13 @@ const Experience = () => {
               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-blue-400 via-blue-600 to-blue-700"></div>
 
               <div className="relative p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-                {/* Trophy in gradient blue circle with soft glow */}
+                {/* Trophy in gradient blue circle with soft glow + animations */}
                 <div className="flex-shrink-0 relative">
-                  <div className="absolute inset-0 bg-blue-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
-                    <Trophy className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="absolute inset-0 bg-blue-500 rounded-2xl blur-lg opacity-40 animate-pulse-ring group-hover:opacity-60 transition-opacity duration-500"></div>
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                    {/* Shine sweep */}
+                    <div className="absolute inset-y-0 -inset-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine-sweep pointer-events-none"></div>
+                    <Trophy className="w-8 h-8 md:w-10 md:h-10 text-white relative z-10" />
                   </div>
                 </div>
 

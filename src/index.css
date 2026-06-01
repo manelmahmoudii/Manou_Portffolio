@@ -390,6 +390,26 @@ html {
   animation: pulse-ring 3s ease-in-out infinite;
 }
 
+/* Trophy pulse — pure scale grand/petit */
+@keyframes trophy-shine {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+.animate-trophy {
+  animation: trophy-shine 2s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Shine sweep across the icon container */
+@keyframes shine-sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  60%, 100% { transform: translateX(250%) skewX(-20deg); }
+}
+.animate-shine-sweep {
+  animation: shine-sweep 3.5s ease-in-out infinite;
+}
+
 @keyframes zoom-in {
   from {
     opacity: 0;

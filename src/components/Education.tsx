@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GraduationCap, Award, BookOpen, Calendar, LucideIcon, Eye, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, Calendar, LucideIcon, Eye, ChevronLeft, ChevronRight, X, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface EducationItem {
@@ -19,6 +19,7 @@ const Education = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(false);
   const { language } = useLanguage();
   const isFr = language === 'fr';
 
@@ -186,6 +187,7 @@ const Education = () => {
   const openImageModal = (images: string[]) => {
     setSelectedImages(images);
     setCurrentImageIndex(0);
+    setIsImageLoading(true);
     setIsImageModalOpen(true);
   };
 
@@ -193,13 +195,16 @@ const Education = () => {
     setIsImageModalOpen(false);
     setSelectedImages([]);
     setCurrentImageIndex(0);
+    setIsImageLoading(false);
   };
 
   const goToPreviousImage = () => {
+    setIsImageLoading(true);
     setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? selectedImages.length - 1 : prevIndex - 1));
   };
 
   const goToNextImage = () => {
+    setIsImageLoading(true);
     setCurrentImageIndex((prevIndex) => (prevIndex === selectedImages.length - 1 ? 0 : prevIndex + 1));
   };
 
@@ -249,15 +254,15 @@ const Education = () => {
 
                 <div className="flex flex-col h-full relative z-10">
                   {/* Header with icon */}
-                  <div className="flex items-start space-x-4 mb-4">
-                    <div className={`p-3 rounded-lg bg-gradient-to-br ${edu.color} shadow-md group-hover:shadow-lg transition-all duration-300`}>
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${edu.color} shadow-md group-hover:shadow-lg transition-all duration-300 flex-shrink-0`}>
                       <edu.icon className="w-5 h-5 text-white" />
                     </div>
-                    <div className="max-w-[70%]">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">
                         {edu.level}
                       </h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1 flex items-center">
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mt-1 flex items-center flex-wrap">
                         {edu.flag && getFlag(edu.flag)}
                         {edu.institution}
                       </p>
@@ -270,21 +275,24 @@ const Education = () => {
                   </p>
 
                   {/* Footer */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-600">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-600">
                     <span className="text-gray-500 dark:text-gray-400 text-sm">{edu.grade}</span>
-                    <span className="text-blue-600 dark:text-blue-400 font-medium text-sm bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full">
-                      {edu.year}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400 font-medium text-sm bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full">
+                        {edu.year}
+                      </span>
+                      {edu.images && edu.images.length > 0 && (
+                        <button
+                          onClick={() => openImageModal(edu.images || [])}
+                          className="p-1.5 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 flex items-center justify-center"
+                          aria-label={isFr ? 'Voir les images du diplôme' : 'View diploma images'}
+                          title={isFr ? 'Voir le diplôme' : 'View diploma'}
+                        >
+                          <Eye className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  {edu.images && edu.images.length > 0 && (
-                    <button
-                      onClick={() => openImageModal(edu.images || [])}
-                      className="absolute top-4 right-6 z-10 p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 flex items-center justify-center md:right-8"
-                      aria-label={isFr ? 'Voir les images du diplôme' : 'View diploma images'}
-                    >
-                      <Eye className="w-5 h-5" />
-                    </button>
-                  )}
                 </div>
               </div>
             ))}
@@ -356,11 +364,23 @@ const Education = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <div className="flex-1 overflow-auto relative flex items-center justify-center p-4 h-full w-full">
+            <div className="flex-1 overflow-auto relative flex items-center justify-center p-4 h-full w-full min-h-[50vh]">
+              {/* Loader overlay */}
+              {isImageLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm z-10">
+                  <Loader2 className="w-10 h-10 text-blue-600 dark:text-blue-400 animate-spin" />
+                  <span className="mt-3 text-sm text-gray-600 dark:text-gray-300 font-medium">
+                    {isFr ? 'Chargement…' : 'Loading…'}
+                  </span>
+                </div>
+              )}
               <img
+                key={selectedImages[currentImageIndex]}
                 src={selectedImages[currentImageIndex]}
                 alt={isFr ? `Image du diplôme ${currentImageIndex + 1}` : `Diploma image ${currentImageIndex + 1}`}
-                className="max-w-full max-h-full object-contain rounded-lg lg:max-w-[45%] lg:max-h-[70%]"
+                className={`max-w-full max-h-full object-contain rounded-lg lg:max-w-[45%] lg:max-h-[70%] transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
+                onLoad={() => setIsImageLoading(false)}
+                onError={() => setIsImageLoading(false)}
               />
               {selectedImages.length > 1 && (
                 <>
